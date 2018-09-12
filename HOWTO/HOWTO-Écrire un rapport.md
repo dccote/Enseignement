@@ -8,14 +8,14 @@ Voici des commentaires generaux pour tous:
 
 1. Les lettres dans les équations sont des variables et l’espacement entre celles-ci varie.
 
-   1. LaTeX: Si vous voulez écrire un mot, vous devez utiliser: $100{\rm mW}$, et non pas: $100 mW$
+   1. LaTeX: Si vous voulez écrire un mot, vous devez utiliser: ```$100{\rm mW}$```, et non pas: ```$100 mW$```
    2. Word Equation : Si vous voulez écrire un mot, vous devez utiliser: 100 {Format:Text mW}, et non pas: 100 mW. De plus les espaces sont impossible en mode Math, vous devez changer le format a Text.
 
-2. De la même façon dans LaTeX, on écrit $\sin \theta$ car sinus est reconnu comme une fonction, pas $sin \theta$. Word les reconnait souvent, mais sinon, on doit convertir en Text.
+2. De la même façon dans LaTeX, on écrit  ```$\sin \theta$``` car sinus est reconnu comme une fonction, pas ```$sin \theta$```. Word les reconnait souvent, mais sinon, on doit convertir en Text.
 
-3. LaTeX: Pour avoir des parenthèse de la bonne grosseur, faites \left( et \right) ou \left[ et \right] etc… comme dans $\left( \frac{a}{b} \right)$ au lieu de $( \frac{a}{b} )$. Dans Word, choisissez le bon "groupe" de parenthese dans les icones.
+3. LaTeX: Pour avoir des parenthèse de la bonne grosseur, faites ```\left(``` et ```\right)``` ou ```\left[``` et ```\right]``` etc… comme dans ```$\left( \frac{a}{b} \right)$``` au lieu de ```$( \frac{a}{b} )$```. Dans Word, choisissez le bon "groupe" de parenthèses dans les icônes.
 
-4. LaTeX: Un espace inseparable se fait ~ comme dans 100~mW et non pas 100 mW pour éviter que les mots se separent sur deux lignes. Word: Je crois que c'est control-espace ou option-espace. (unbreakable space ou espace indissociable).
+4. LaTeX: Un espace inseparable se fait ```~``` comme dans ```100~mW``` et non pas ```100 mW``` pour éviter que les mots se séparent sur deux lignes. Word: Je crois que c'est control-espace ou option-espace. (unbreakable space ou espace indissociable).
 
 5. Normalement, on gère les équations comme si elles faisaient partie du texte.  On met donc la ponctuation en conséquence et les majuscules:
 
@@ -25,7 +25,7 @@ Voici des commentaires generaux pour tous:
 
    Notez la virgule après l’équation, et la minuscule à “on"
 
-6. On n'écrit pas les nombres comme 10E-3 dans un texte.  On écrit 10^-3^.
+6. On n'écrit pas les nombres comme 10E-3 dans un texte.  On utilise un exposant et on écrit 10^-3^.
 
 ## Contenu d'un rapport
 
