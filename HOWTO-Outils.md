@@ -42,7 +42,7 @@ Différents documents, scripts, figures ou autres reliés à l'enseignement.
 
 ### Faire un graphique
 
-- Vous pouvez utiliser la commande plot, mais vous pouvez aussi utiliser le fichier de commande ci-dessous, appelé [plotNice.m](./plotNice.m) pour faire un graphique de bonne qualité.
+- Vous pouvez utiliser la commande plot, mais vous pouvez aussi utiliser le fichier de commande ci-dessous, appelé [plotNice.m](./SRC/plotNice.m) pour faire un graphique de bonne qualité.
   - ```matlab
     matlab
     plot(x,y);
