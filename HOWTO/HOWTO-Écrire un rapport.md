@@ -2,26 +2,32 @@
 
 ## Mise en page
 
-Pour les utilisateurs de LaTeX, vous devriez utiliser [http://sharelatex.com](http://sharelatex.com/) ou [http://overleaf.com](http://overleaf.com/), qui permettent d'éditer un document simultanement avec votre co-équipier (comme Google Docs, mais pour LaTeX). Ma préférence récente est Overleaf.
+Pour les utilisateurs de LaTeX, vous devriez utiliser [http://sharelatex.com](http://sharelatex.com/) ou [http://overleaf.com](http://overleaf.com/), qui permettent d'éditer un document simultanément avec votre co-équipier (comme Google Docs, mais pour LaTeX). Ma préférence récente est Overleaf (qui vient d'acheter sharelatex de toutes façons).
 
-Voici des commentaires generaux pour tous:
+Voici des commentaires généraux pour tous:
 
-1. Les lettres dans les équations sont des variables et l’espacement entre celles-ci varie.
+1. Dans une équation,  les variables doivent être en italique mais pas les fonctions. Par exemple, on écrit:
+  *y* = *m* sin*θ* + *b*      et non     y = m sinθ + b      ou     *y = m sinθ + b*
 
-   1. LaTeX: Si vous voulez écrire un mot, vous devez utiliser: ```$100{\rm mW}$```, et non pas: ```$100 mW$```
+  Cela se fait automatiquement dans LaTeX si vous utilisez ```$y=m\sin(\theta) +b$``` qui donne $y=m\sin\theta +b$. Remarquez le ```\``` devant le sinus. Word reconnait souvent les fonctions, mais sinon, on doit convertir en Text.
+
+2. Par contre, comme les unités ne sont pas des variables, elle ne doivent pas être en italique.
+
+3. De plus, il y doit y avoir un espace entre le nombre et son unité et celui-ci doit idéalement être insécable pour éviter que le chiffre et son unité se retrouvent sur deux lignes. Ainsi,
+
+   1. LaTeX: On écrit: ```$100~{\rm~mW}$``` qui donne $100~{\rm~mW}$, et non pas: ```$100 mW$``` qui donne $100 \rm{mW}$
    2. Word Equation : Si vous voulez écrire un mot, vous devez utiliser: 100 {Format:Text mW}, et non pas: 100 mW. De plus les espaces sont impossible en mode Math, vous devez changer le format a Text.
 
-2. De la même façon dans LaTeX, on écrit  ```$\sin \theta$``` car sinus est reconnu comme une fonction, pas ```$sin \theta$```. Word les reconnait souvent, mais sinon, on doit convertir en Text.
-
-3. LaTeX: Pour avoir des parenthèse de la bonne grosseur, faites ```\left(``` et ```\right)``` ou ```\left[``` et ```\right]``` etc… comme dans ```$\left( \frac{a}{b} \right)$``` au lieu de ```$( \frac{a}{b} )$```. Dans Word, choisissez le bon "groupe" de parenthèses dans les icônes.
-
-4. LaTeX: Un espace inseparable se fait ```~``` comme dans ```100~mW``` et non pas ```100 mW``` pour éviter que les mots se séparent sur deux lignes. Word: Je crois que c'est control-espace ou option-espace. (unbreakable space ou espace indissociable).
+4. LaTeX: Pour avoir des parenthèse de la bonne grosseur, faites ```\left(``` et ```\right)``` ou ```\left[``` et ```\right]``` etc… comme dans ```$\left[ \frac{a}{b} \right]$```  qui donne $\left[ \frac{a}{b} \right]$ au lieu de ```$[ \frac{a}{b} ]$``` qui donne $[ \frac{a}{b} ]$. Dans Word, choisissez le bon "groupe" de parenthèses dans les icônes.
 
 5. Normalement, on gère les équations comme si elles faisaient partie du texte.  On met donc la ponctuation en conséquence et les majuscules:
 
-   Avec l’équation:
-   y = mx + b,
-   on obtient la pente ….
+   > On obtient la pente à partir de l’équation:
+   >
+   > *y = mx + b,*
+   >
+   > où *m* est la pente et *b *est l'abcisse à l'origine.
+
 
    Notez la virgule après l’équation, et la minuscule à “on"
 
@@ -33,15 +39,13 @@ Le rapport de laboratoire est une **synthèse** de l'expérience. *Un rapport do
 
 Le rapport de **10 pages** de texte (page titre et annexes en sus) doit donc être structuré de la façon suivante :
 
-1. **Page titre**.  
-
-   Cette première page doit comprendre : le nom (Travaux pratiques d’optique-photonique II) et le sigle (GPH-2004) du cours, le trimestre en cours (H-2014), le titre de l’expérience, le nom et l’adresse électronique de l’auteur, le nom du co-équipier lors de la séance de laboratoire, la date de l’expérience et la date de remise du rapport ainsi qu’un résumé
+1. **Page titre**.  Cette première page doit comprendre : le nom (Travaux pratiques d’optique-photonique II) et le sigle (GPH-2004) du cours, le trimestre en cours (H-2014), le titre de l’expérience, le nom et l’adresse électronique de l’auteur, le nom du co-équipier lors de la séance de laboratoire, la date de l’expérience et la date de remise du rapport ainsi qu’un résumé
 
 2. **Résumé**: Le résumé donne les résultats des expériences et les différentes limitations rencontrées ("Nous avons mesuré un intervalle spectral libre de X GHz." ou encore "L'utilisation d'une lame quart d'onde avec une source de lumière blanche ne permet pas de bien contrôler la polarisation, ce qui amène une ellipticité de 5% pour l'ensemble des longueurs d'ondes." par exemple). *On doit pouvoir lire le résumé et savoir les conclusions*.
 
 3. **Introduction.**  L’introduction est un paragraphe de 10 à 15 lignes au maximum.  Elle sert à préciser le but de l’expérience, à délimiter le sujet de l’étude expérimentale et à la situer dans un contexte plus général.
 
-4. **Théorie (minimale):** La section théorique sert à introduire de**façon concise**les concepts de base, les équations et les symboles utilisés. Si vous n'utilisez pas une équation, il n'y a pas de raison qu'elle soit dans cette section.  Ne répétez pas le protocole, vous pouvez faire référence au protocole. Toute figure doit être donnée avec référence.
+4. **Théorie (minimale):** La section théorique sert à introduire de **façon concise** les concepts de base nécessaire à la compréhension du rapport, les équations et les symboles utilisés. Si vous n'utilisez pas une équation, il n'y a pas de raison qu'elle soit dans cette section.  Ne répétez pas le protocole, vous pouvez faire référence au protocole. Toute figure doit être donnée avec référence.
 
 5. Pour chacune des étapes de l’expérience, vous devez décrire brièvement : la méthode de mesure, les résultats obtenus (et l’interprétation physique de ces résultats) et quelques éléments de discussion.  Les résultats peuvent être présentés sous forme de tableau(x) ou de graphique(s). Il est plus habituel de présenter l'ensemble des méthodes d'abord, suivi de l'ensemble des résultats et de terminer par la discussion plutôt que de présenter la méthode, le résultat et une discussion pour chaque mesure. Ainsi, on s'attend à trois grandes sections:
 
