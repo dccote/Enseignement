@@ -24,14 +24,12 @@ Différents documents, scripts, figures ou autres reliés à l'enseignement.
 ### Entrer des données
 
 - À la main (aide MATLAB: Les matrices):
-
-   - ```matlab
+  - ```matlab
      x = [ 0 1 2 3 4 5 6 ]	
      y = [ 0 3.5 4 6.2 4.4 4.5 8.0];
      ```
 
 - Du disque (aide MATLAB: Importer des fichiers texte ):
-
   - ```matlab
     donnees = dlmread('file.dat');
     x=donnees(:,1)
@@ -72,7 +70,7 @@ Différents documents, scripts, figures ou autres reliés à l'enseignement.
     
     end
     ```
-  ### Faire une régression ("un fit")
+### Faire une régression ("un fit")
 
 - Vous pouvez utiliser la commande fit avec le type de régression (aide MATLAB, tous les modèles):
 
@@ -158,3 +156,6 @@ Différents documents, scripts, figures ou autres reliés à l'enseignement.
   set ylabel 'Axe des Y'
   plot 'data.txt' using 1:2 title "Valeur mesurée" lw 3 pt 5 ps 3
   ```
+
+
+
