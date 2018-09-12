@@ -76,7 +76,7 @@ Différents documents, scripts, figures ou autres reliés à l'enseignement.
 
 - Vous pouvez utiliser la commande fit avec le type de régression (aide MATLAB, tous les modèles):
 
-  - ```
+  - ```matlab
     f=fit(x,y,'poly2')
     plot(f,x,y);
     ```
