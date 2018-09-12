@@ -26,7 +26,7 @@ Voici des commentaires généraux pour tous:
    >
    > *y = mx + b,*
    >
-   > où *m* est la pente et *b *est l'abcisse à l'origine.
+   > où *m* est la pente et *b* est l'abcisse à l'origine.
 
 
    Notez la virgule après l’équation, et la minuscule à “on"
