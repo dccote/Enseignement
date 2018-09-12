@@ -1,9 +1,9 @@
 # Enseignement
-Ce repertoire GitHub contient différents documents, scripts, figures ou autres reliés à l'enseignement du génie physique et de la physique.
+Ce repertoire GitHub contient différents documents, scripts, figures ou autres reliés à l'enseignement du génie physique et de la physique. 
 
 Les documents sont rassemblés comme suit:
 
-- ```HOWTO```: Documents décrivant comment accomplir une tâche.
+- ```HOWTO```: Documents décrivant comment accomplir une tâche. Formats markdown et PDF.
 - ```PROTO```: Protocoles d'expériences.
 - ```SRC```: Scripts pour accomplir certaines tâches dans différents langages.
 - ```MAN```: Manuels de différents appareils pertinents.
