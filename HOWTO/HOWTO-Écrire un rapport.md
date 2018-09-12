@@ -1,6 +1,6 @@
 # Écrire un rapport de laboratoire
 
-## Commentaires généraux
+## Mise en page
 
 Pour les utilisateurs de LaTeX, vous devriez utiliser [http://sharelatex.com](http://sharelatex.com/) ou [http://overleaf.com](http://overleaf.com/), qui permettent d'éditer un document simultanement avec votre co-équipier (comme Google Docs, mais pour LaTeX). Ma préférence récente est Overleaf.
 
@@ -63,7 +63,7 @@ Les graphiques doivent être lisibles. Le but d'un graphique est de donner plus 
 
 3. Lorsque possible, il est préférable d'utiliser une solution noir et blanc avec des courbes pleine, pointillée, etc...: on ne sait pas comment le lecteur l'imprimera.  Cependant, parfois, c'est impossible et on utilise les couleurs.
 
-4. Lorsque vous exportez vos graphiques, assurez-vous d'avoir une résolution très élevée (600 dpi) si vous utilisez un format pixelisé comme PNG, TIFF, etc...  Vous devriez préférer PDF lorsque possible si votre traitement de texte le supporte. Sinon, voici comment obtenir une bonne résolution en Python ou MATLAB:
+4. Lorsque vous exportez vos graphiques, assurez-vous d'avoir une résolution très élevée (600 dpi) si vous utilisez un format pixelisé comme PNG, TIFF, etc...  Vous devriez préférer PDF lorsque possible si votre logiciel le supporte. Sinon, voici comment obtenir une bonne résolution en Python ou MATLAB:
 
    1. Dans Python: ajoutez dpi=600 pour les format pixelisés
 
