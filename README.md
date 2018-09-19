@@ -1,6 +1,8 @@
 # Enseignement
 Ce repertoire GitHub contient différents documents, scripts, figures ou autres reliés à l'enseignement du génie physique et de la physique. 
 
+Il est fortement recommandé d'utiliser le logiciel http://Typora.io pour lire les fichier avec l'extension .md (ou Markdown) même si ceux ci peuvent se lire en format texte.
+
 Les documents sont rassemblés comme suit:
 
 - ```HOWTO```: Documents décrivant comment accomplir une tâche. Formats markdown et PDF.
