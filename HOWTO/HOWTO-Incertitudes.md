@@ -1,11 +1,11 @@
-# Incertitudes, Exactitude et test d'hypothèses
+# UL-Enseignement-HOWTO- Incertitudes, Exactitude et test d'hypothèses
 
 ## Règles générales au laboratoire
 
 1. Nous supposons toujours que les erreurs sont normalement distribuées: les distributions sont donc normales, gaussiennes.
-2. Les incertitudes sur les sommes et soustractions peuvent rapidement être obtenue en additionnant les erreurs absolues de chacune: $(a\pm\Delta a) + (b \pm \Delta b) = a+b \pm (\Delta a + \Delta b)$. Deux nombres à ±1 donnent une somme à ±2.
-3. Les incertitudes sur les produits et quotients peuvent rapidement etre obtenue en additionnant les erreurs relatives de chacune: $(a \pm \Delta a) \times (b \pm \Delta b) = ab \pm (\Delta a / a + \Delta b/b)$  Deux nombres connus à ±2% donne un produit à ±4%.
-4. On prend souvent "la moitié de la plus petite division" d'un appareil parce que c'est raisonnable, rapide et représente souvent "le pire cas".
+2. Les incertitudes sur les sommes et soustractions peuvent rapidement être obtenue en additionnant les erreurs absolues de chacune: $(a\pm\Delta a) + (b \pm \Delta b) = a+b \pm (\Delta a + \Delta b)$. Deux nombres à ±1 donnent une somme ou une différence à ±2.
+3. Les incertitudes sur les produits et quotients peuvent rapidement etre obtenue en additionnant les erreurs relatives de chacune: $(a \pm \Delta a) \times (b \pm \Delta b) = ab \pm (\Delta a / a + \Delta b/b) \%$.  Deux nombres connus à ±2% donne un produit ou un quotient à ±4%.
+4. On prend souvent "la moitié de la plus petite division" d'un appareil parce que c'est raisonnable, rapide et cela représente souvent "le pire cas".
 5. On peut prendre un grand nombre de mesures pour obtenir la distribution de facon plus précise
 6. Si une mesure avec une précision de $\Delta$ est répétée $N$ fois,  la précision sur la moyenne s'améliore à $\Delta/\sqrt{N}$.
 
@@ -40,7 +40,7 @@ Nous concluons:
 1. La moitié de la plus petite division de la règle est 0.05 cm. On peut la prendre comme approximation rapide de la précision de la mesure.
 2. La distribution des mesures, qui englobe l'ensemble du processus de mesures (le livre, la position où la mesure a été prise, l'angle, la règle, l'effet de parallaxe, etc...), possède une largeur de 0.02 cm.  On peut la prendre comme une meilleure valeur de la précision de la mesure obtenue par statistiques (mais c'est plus long: on a pris 25 mesures).
 3. Immédiatement après la première mesure, on dirait que la hauteur du livre est 18.95 ± 0.05 cm. C'est la seule mesure que l'on a. L'incertitude la plus raisonnable est la moitié de la plus petite division.
-4. Après 25 mesures, les mesures sont distribuées autour de 18.97 ± 0.02 cm.
+4. Après 25 mesures, les mesures sont distribuées normalement autour d'une moyenne de 18.97 cm avec une largeur de distribution de 0.02 cm.
 5. La connaissance de la moyenne est maintenant 18.968 ± 0.004 cm car l'erreur sur la moyenne après $N$ mesures est $\sigma/\sqrt{N}$. 
    1. Cette moyenne est pertinente si les mesures sont faites dans des conditions identiques et que la hauteur du livre est vraiment la même dans toutes ces conditions. Ceci peut être discutable.
    2. Dans notre cas, la connaissance de la hauteur moyenne pourrait être pertinente pour calculer l'aire de la couverture (en supposant un rectangle) si on s'intéressait vraiment à la surface de façon précise.
