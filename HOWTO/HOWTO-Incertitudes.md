@@ -36,7 +36,7 @@ Moyenne: 18.698, Écart-type: 0.019
 
 Nous concluons:
 
-1. La moitié de la plus petite division de la règle est 0.05 mm. On peut la prendre comme approximation rapide de la précision de la mesure.
+1. La moitié de la plus petite division de la règle est 0.05 cm. On peut la prendre comme approximation rapide de la précision de la mesure.
 2. La distribution des mesures, qui englobe l'ensemble du processus de mesures (le livre, la position où la mesure a été prise, l'angle, la règle, l'effet de parallaxe, etc...), possède une largeur de 0.02 cm.  On peut la prendre comme une meilleure valeur de la précision de la mesure obtenue par statistiques (mais c'est plus long: on a pris 25 mesures).
 3. Immédiatement après la première mesure, on dirait que la hauteur du livre est 18.95 ± 0.05 cm. C'est la seule mesure que l'on a. L'incertitude la plus raisonnable est la moitié de la plus petite division.
 4. Après 25 mesures, les mesures sont distribuées autour de 18.97 ± 0.02 cm.
