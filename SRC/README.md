@@ -8,7 +8,7 @@ Ce repertoire GitHub contient différents **scripts** reliés à l'enseignement 
   ```bash
   python plotTableFromMarkdown.py fichier.md
   ```
-ou
+  ou
   ```bash
   python plotTableFromMarkdown.py < fichier.md 
   ```
