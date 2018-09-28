@@ -2,7 +2,11 @@ import sys
 import re
 import matplotlib.pyplot as plt
 
-lines = sys.stdin.readlines()
+if len(sys.argv) == 1:
+	lines = sys.stdin.readlines()
+else:
+	with open(sys.argv[1]) as file:
+		lines = file.readlines()
 
 x = []
 y = []
