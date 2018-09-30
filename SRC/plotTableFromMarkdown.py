@@ -6,7 +6,7 @@ from tkinter import filedialog
 import tkinter as tk
 
 
-class Plotter:
+class DataHandler:
     def __init__(self):
         root = tk.Tk()
         root.withdraw()
@@ -16,13 +16,13 @@ class Plotter:
         self.fileExtension = ""
         self.lines = ''
 
+    def plotDataFromFile(self):
         self.askUserOpenFile()
         self.findFileExtension()
         self.printFileInfo()
-        self.extensionVerify()
-        self.extentionHandle()
-
-        self.dataPlot()
+        self.verifyExtension()
+        self.handleData()
+        self.plotData()
 
     def reset(self):
         self.askUserOpenFile()
@@ -37,7 +37,9 @@ class Plotter:
             self.lines = file.readlines()
 
     def askUserOpenFile(self):
-        self.filePath = filedialog.askopenfilename()
+        self.filePath = filedialog.askopenfilename(initialdir="/",
+                                                   title="Select file", filetypes=(("markdown files", "*.md"),
+                                                                                   ("all files", "*.*")))
 
     def findFileExtension(self):
         trash, self.fileExtension = os.path.splitext(self.filePath)
@@ -46,7 +48,7 @@ class Plotter:
     def printFileInfo(self):
         print("File Path: %s\nFile Extension:%s" % (self.filePath, self.fileExtension))
 
-    def extensionVerify(self):
+    def verifyExtension(self):
         if self.fileExtension in self.acceptedExtensions:
             self.compatible = 1
             print("File Extension is compatile.")
@@ -56,19 +58,19 @@ class Plotter:
             print("File Extension is Not Compatible.")
             self.reset()
 
-    def extentionHandle(self):
+    def handleData(self):
         if self.compatible == 1:
             if self.fileExtension == ".md":
                 print("Markdown Data Handler will find tables and store its data.")
-                self.markdownDataHandle()
+                self.getMarkdownTables()
 
             elif self.fileExtension == ".txt":
-                self.txtDataHadle()
+                pass
 
             elif self.fileExtension == ".csv":
                 pass
 
-    def markdownDataHandle(self):
+    def getMarkdownTables(self):
         self.openFile()
         self.x = []
         self.y = []
@@ -92,18 +94,12 @@ class Plotter:
                 self.yLabel = matchObj.group(2)
                 continue
 
-    def txtDataHandle(self):
-        pass
-    def csvDataHandle(self):
-        pass
-    def GUIPlot(self):
-        pass
-
-    def dataPlot(self):
+    def plotData(self):
         plt.plot(self.x, self.y, 'ko')
         plt.xlabel(self.xLabel)
         plt.ylabel(self.yLabel)
         plt.show()
 
 
-LabnoteGraphs = Plotter()
+labNotes = DataHandler()
+labNotes.plotDataFromFile()
