@@ -1,4 +1,8 @@
-#DAQ: Premiers contacts
+*Ce document se retrouve à la fois dans le repo public de dccote et sur le site Web de DCC Lab*
+
+
+
+# DAQ: Premiers contacts
 
 Au fil des années, j'ai développé le goût de la programmation des "appareils physiques". J'aime contrôler les choses qui interagissent avec le monde extérieur: une platine de microscope, un laser, une carte d'acquisition,  une caméra, une imprimante, etc.  Ce goût s'est transformé en expertise au fil des années, et plusieurs étudiants viennent me voir (dans mon groupe, chez Bliq et dans les laboratoires d'enseignement) avec le goût d'en savoir plus.  Ce n'est pas toujours facile de transférer ces connaissances, et c'est en partie par la façon dont je les ai acquises.
 
