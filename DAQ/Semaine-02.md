@@ -4,6 +4,8 @@ Ce document se retrouve à la fois dans le [repo public d'enseignement de dccote
 
 ------
 
+[TOC]
+
 # DAQ: Entrées-sorties numériques avec le UM232R
 
 ## Le monde numérique
@@ -25,9 +27,27 @@ Dans de nombreux textes, une valeur binaire est notée %00100101 (Python: `0b001
 
 L'importance de la notation binaire vient du fait que tout langage de programmation que l'on utilisera pour communiquer avec notre appareil devra invariablement passer par des représentations en binaires et des octets, puisque c'est la représentation interne naturelle de l'ordinateur.
 
+### Exercices
+
+1. Écrivez la valeur suivante en binaire, décimal et hexadécimal:
+   a. 12
+   b. 0x45
+   c. %1001101
+   d. 230
+   e. 0xF3
+2. Effectuez les opérations suivantes:
+   a. % 00101101 +% 00100001
+   b. 0xF6 - 0x41
+   c. 0x29 - 0x56
+3. Multipliez %00111001 par 2, 4 et 8 et écrivez les réponses en binaire.
+4. Divisez %00111001 par 2 et écrivez la réponse en binaire.
+5. Multipliez 0xF3 par 16.
+
+
+
 ## Premier branchement
 
-Pour commencer à faire un système simple avec lequel on pourra expérimenter, on utilise le module de communication **UM232R** de FTDI ([specifications](https://www.ftdichip.com/Support/Documents/DataSheets/Modules/DS_UM232R.pdf)). Ce module est très intéressant pour plusieurs raisons:
+Pour commencer à faire un système simple avec lequel on pourra expérimenter, on utilise le module de communication **UM232R** de FTDI ([specifications](https://www.ftdichip.com/Support/Documents/DataSheets/Modules/DS_UM232R.pdf)) de type UART. Ce module est très intéressant pour plusieurs raisons:
 
 1. Il se branche simplement dans le port USB de n'importe quel ordinateur
 2. Il ne demande aucun branchement supplémentaire pour être au moins fonctionnel
@@ -36,15 +56,15 @@ Pour commencer à faire un système simple avec lequel on pourra expérimenter, 
 5. Les puces USB de FTDI sont utilisées dans un très grand nombre d'appareils
 6. Les librairies de FTDI sont disponibles, simples et sans bugs, et sont supportées par Python.
 
-Pour commencer, il faut se procurer le fameux module UM232R.  La façon la plus simple, venez me voir à mon bureau POP-2141 et demandez-la moi, j'en ai quelques uns. Sinon, on peut les commander pour 28$ chez [Digi-Key](https://www.digikey.ca/product-detail/en/ftdi-future-technology-devices-international-ltd/UM232R/768-1019-ND/1836397) , numéro de pièce Digi-Key 768-1019-ND, ou FTDI UM232R. Idéalement, un petit [kit de breadboard](https://www.digikey.ca/product-detail/en/twin-industries/TW-E41-102B/438-1047-ND/643113) comme le 438-1047-ND serait acheté en même temps, mais n'importe quel breadboard fait l'affaire. On remarque:
+Pour commencer, il faut se procurer le fameux module UM232R.  La façon la plus simple, venez me voir à mon bureau POP-2141 et demandez-le moi, j'en ai quelques uns. Sinon, on peut les commander pour 28$ chez [Digi-Key](https://www.digikey.ca/product-detail/en/ftdi-future-technology-devices-international-ltd/UM232R/768-1019-ND/1836397) , numéro de pièce Digi-Key 768-1019-ND, ou FTDI UM232R. Idéalement, un petit [kit de breadboard](https://www.digikey.ca/product-detail/en/twin-industries/TW-E41-102B/438-1047-ND/643113) comme le 438-1047-ND serait acheté en même temps, mais n'importe quel breadboard fait l'affaire. On remarque:
 
-1. Il y a 24 pins, on commence a compter en haut à gauche en tournant dans le sens trigonométrique.
-2. Plusieurs pins sont identifiées RST, GND, VCC, VIO mais d'autres sont identifiées avec des termes génériques DB0, DB1, etc...
-3. Le [manuel](https://www.ftdichip.com/Support/Documents/DataSheets/Modules/DS_UM232R.pdf) indique qu'il y a une pin nommée TXD (*transmission data*) et une nommée RXD (*receiving data*)
-4. Il y a une pin RESET. Le [manuel](https://www.ftdichip.com/Support/Documents/DataSheets/Modules/DS_UM232R.pdf) indique clairement que mettre cette pin à 0V forcera un "reset" de la puce.
-5. Il y a deux pins configurées par défaut `CB0` et `CB1` pour servir d'indicateurs de transmission et de réception avec une DEL.
-6. Un groupe de pins est identifiés comme faisant du *hardware handshake*: DTR, RTS, DSR, DTS
-7. Bien que nous soyions en 2018, il reste des pins identifiées comme: Ring Indicator (RI, pin 6) Data Carrier Detect Control Input (DCDC, ligne de tonalité d'un modem)
+1. Il y a 24 lignes (ou *pins* en anglais), on commence a compter en haut à gauche en tournant dans le sens trigonométrique.
+2. Plusieurs lignes sont identifiées RST, GND, VCC, VIO mais d'autres sont identifiées avec des termes génériques DB0, DB1, etc...
+3. Le [manuel](https://www.ftdichip.com/Support/Documents/DataSheets/Modules/DS_UM232R.pdf) indique qu'il y a une ligne nommée TXD (*transmission data*) et une nommée RXD (*receiving data*)
+4. Il y a une ligne RESET. Le [manuel](https://www.ftdichip.com/Support/Documents/DataSheets/Modules/DS_UM232R.pdf) indique clairement que mettre cette ligne à 0V forcera un "reset" de la puce.
+5. Il y a deux lignes configurées par défaut `CB0` et `CB1` pour servir d'indicateurs de transmission et de réception avec une DEL.
+6. Un groupe de lignes est identifié comme faisant du *hardware handshake*: DTR, RTS, DSR, DTS
+7. Bien que nous soyions en 2018, il reste des lignes identifiées comme: Ring Indicator (RI, ligne 6) Data Carrier Detect Control Input (DCDC, ligne de tonalité d'un modem)
 
 ![image-20181015004148259](assets/image-20181015004148259.png)
 
@@ -61,11 +81,11 @@ crw-rw-rw-  1 root  wheel   18,  50 14 Oct 22:42 /dev/tty.usbserial-FTCBGW24
 Nestor:anaconda2 dccote$
 ```
 
-Le port série en POSIX apparait en deux formes pour des raisons historiques: `cu` (callout) et `tty` ([teletype](https://en.wikipedia.org/wiki/Teleprinter)).  Nous prendrons `cu*` pour la communication avec les appareils. Le nom du port série (ici `cu.usbserial-FTCBGW24` est programmé par FTDI directement dans la puce à la fabrication).  La valeur `FTCBGW24` est un numéro de série unique chaque puce, donc la vôtre sera différente.
+Le port série en POSIX apparait en deux formes pour des raisons historiques: `cu` (callout) et `tty` ([teletype](https://en.wikipedia.org/wiki/Teleprinter)).  Nous prendrons `cu*` pour la communication avec les appareils. Le nom du port série (ici `cu.usbserial-FTCBGW24` est programmé par FTDI directement dans la puce à la fabrication).  La valeur `FTCBGW24` est un numéro de série unique à chaque puce, donc la vôtre sera différente de la mienne.
 
 ### Expérience 2: débrancher
 
-Si on débranche le câble USB, le port de communication associé au module disparaitra du système car le module n'est plus disponible. On peut faire la même chose à l'aide d'un fil en connectant la pin `RST` au `GND` pour forcer un reset du module. Lorsqu'on le fait, on voit:
+Si on débranche le câble USB, le port de communication associé au module disparaitra du système car le module n'est plus disponible. On peut faire la même chose à l'aide d'un fil en connectant la ligne `RST` au `GND` pour forcer un reset du module. Lorsqu'on le fait, on voit:
 
 ```bash
 Nestor:anaconda2 dccote$ ls -l /dev/*usbserial*
@@ -103,14 +123,14 @@ except:
 
 On peut regarder plusieurs choses:
 
-1. Si on connecte une DEL à la pin CB1, elle clignotera lorsqu'on envoie des données
-2. Si on utilise un oscilloscope sur la pin TXD, on verra la ligne osciller entre 0V et 5V.
+1. Si on connecte une DEL à la ligne CB1, elle clignotera lorsqu'on envoie des données
+2. Si on utilise un oscilloscope sur la ligne TXD, on verra la ligne osciller entre 0V et 5V.
 
-Rien n'est connecté, donc notre module "parle dans le vide". On vient de dire au module d'envoyer "hello" sur "ses pins de sortie" mais cette information n'a pas été utilisée ou capté par personne, sauf notre oscilloscope.
+Rien n'est connecté, donc notre module "parle dans le vide". On vient de dire au module d'envoyer "hello" sur "ses lignes de sortie" mais cette information n'a pas été utilisée ou capté par personne, sauf notre oscilloscope.
 
 ### Expérience 4: écouter
 
-Si on essaie de lire le module, on n'obtiendra rien: la ligne read() ne completera jamais (il n''y a pas de délai limité):
+Si on essaie de lire le module, on n'obtiendra rien: la ligne read() ne complètera jamais (il n''y a pas de *timeout*, il est infini par défaut):
 
 ```python
 import serial
@@ -119,13 +139,7 @@ text = 'hello'
 path = '/dev/cu.usbserial-FTCBGW24'
 try:
     port = serial.Serial(path)
-    bytesRead = port.read(text)
-
-    if bytesRead == len(text):
-        print('Wrote to port: %s' % port.name)
-    else:
-        print('Error when writing to port: %s' % port.name)
-
+    text = port.read() ## Bloquera ici. Faites Ctrl-C pour quitter.
     port.close()
 except IOError:
     print('Unable to open the port with path: %s' % path)
@@ -133,11 +147,11 @@ except:
     print('Unknown error')
 ```
 
-
+En effet, le module n'est aucunement connecté à quoi que ce soit pour lire des données. Il peut transmettre, mais n'a rien à lire.
 
 ### Expérience 5: écouter l'écho
 
-On peut par contre prendre le module et le connecter pour qu'il s'écoute lui-même.  En effet, on connecte la pin de sortie (TXD) à la pin d'entrée (RXD).  Ainsi, 
+On peut par contre prendre le module et le connecter pour qu'il s'écoute lui-même.  En effet, on connecte la ligne de sortie (TXD) à la ligne d'entrée (RXD).  Ainsi, 
 
 ```python
 import serial
@@ -176,36 +190,4 @@ except:
 [^4]: Le standard USB est un standard complexe qui n'est pas nécessaire de comprendre pour l'instant.  Cependant, un bon ingénieur devra comprendre la reconnaissance des appareils, l'association des drivers, les classes, les vendor ID, product ID, la sérialisation des ports, les endpoints, etc... Bien sur, nous verrons tout cela plus loin lorsque ce sera nécessaire.
 
 
-
-## Exercices
-
-1. Écrivez la valeur suivante en binaire, décimal et hexadécimal:
-   a. 12
-   b. 0x45
-   c. %1001101
-   d. 230
-   e. 0xF3
-2. Effectuez les opérations suivantes:
-     a. % 00101101 +% 00100001
-     b. 0xF6 - 0x41
-     c. 0x29 - 0x56
-3. Multipliez %00111001 par 2, 4 et 8 et écrivez les réponses en binaire.
-4. Divisez %00111001 par 2 et écrivez la réponse en binaire.
-5. Multipliez 0xF3 par 16.
-
-
-​    
-
-## Plan potentiel
-
-1. Entrées-sorties numériques simples
-   1. Faire un circuit simple pour obtenir des entrées sortie avec UM232R
-   2. Installer python in libftdi avec Anaconda
-   3. Vérifier avec un oscilloscope l'état des *pins*
-   4. Allumer une DEL
-   5. Faire clignoter une DEL
-2. La communication par RS-232
-   1. Qu'est-ce qu'un protocole?
-   2. Pourquoi RS-232?
-   3. Pourquoi USB?
-   4. Faire un ECHO RS232
+ 
