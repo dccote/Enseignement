@@ -1,3 +1,5 @@
+*Ce document se retrouve à la fois dans le [repo public de dccote](https://github.com/dccote/Enseignement/blob/master/DAQ/Semaine-02.md) et éventuellement sur le site [Web de DCC Lab](http://www.dcclab.ca/fr/francais-tutoriel-introduction-au-controle/)*
+
 # DAQ: Entrées-sorties numériques avec le UM232R
 
 ## Le monde numérique

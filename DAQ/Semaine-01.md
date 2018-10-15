@@ -1,4 +1,4 @@
-*Ce document se retrouve à la fois dans le repo public de dccote et sur le site Web de DCC Lab*
+*Ce document se retrouve à la fois dans le [repo public de dccote](https://github.com/dccote/Enseignement/blob/master/DAQ/Semaine-01.md) et sur le site [Web de DCC Lab](http://www.dcclab.ca/fr/francais-tutoriel-introduction-au-controle/)*
 
 
 
