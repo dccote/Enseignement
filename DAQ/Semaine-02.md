@@ -47,7 +47,7 @@ L'importance de la notation binaire vient du fait que tout langage de programmat
 
 ## Premier branchement
 
-Pour commencer à faire un système simple avec lequel on pourra expérimenter, on utilise le module de communication **UM232R** de FTDI ([specifications](https://www.ftdichip.com/Support/Documents/DataSheets/Modules/DS_UM232R.pdf)) de type UART. Ce module est très intéressant pour plusieurs raisons:
+Le plan ici est d'obtenir un système pour expérimenter.  Il y aura bien sûr des moments où l'on pourra se questionner sur le fonctionnement exact d'un ou l'autre aspect.  Cependant, pour l'instant, il s'agit simplement de mettre en place un "banc d'expérimentation" pour aider à la compréhension, pour démystifier certains aspects et pour permettre l'exploration. Ainsi, on utilise le module de communication **UM232R** de FTDI ([specifications](https://www.ftdichip.com/Support/Documents/DataSheets/Modules/DS_UM232R.pdf)) de type UART. Ce module est très intéressant pour plusieurs raisons:
 
 1. Il se branche simplement dans le port USB de n'importe quel ordinateur
 2. Il ne demande aucun branchement supplémentaire pour être au moins fonctionnel

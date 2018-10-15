@@ -4,7 +4,7 @@ Ce document se retrouve à la fois dans le [repo public d'enseignement de dccote
 
 ------
 
-
+[TOC]
 
 # DAQ: Premiers contacts
 
