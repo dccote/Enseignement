@@ -1,4 +1,8 @@
-*Ce document se retrouve à la fois dans le [repo public de dccote](https://github.com/dccote/Enseignement/blob/master/DAQ/Semaine-01.md) et sur le site [Web de DCC Lab](http://www.dcclab.ca/fr/francais-tutoriel-introduction-au-controle/)*
+------
+
+Ce document se retrouve à la fois dans le [repo public d'enseignement de dccote](https://github.com/dccote/Enseignement/blob/master/DAQ/Semaine-01.md) et sur le site [Web de DCC Lab](http://www.dcclab.ca/fr/francais-tutoriel-introduction-au-controle/).  Le format Markdown est celui supporté par [Typora.io](http://Typora.io). Une version [PDF](Semaine-01.pdf) est disponible.
+
+------
 
 
 
