@@ -151,7 +151,7 @@ En effet, le module n'est aucunement connecté à quoi que ce soit pour lire des
 
 ### Expérience 5: écouter l'écho
 
-On peut par contre prendre le module et le connecter pour qu'il s'écoute lui-même.  En effet, on connecte la ligne de sortie (TXD) à la ligne d'entrée (RXD).  Ainsi, 
+On peut par contre prendre le module et le connecter pour qu'il s'écoute lui-même.  En effet, on connecte la ligne de sortie (TXD) à la ligne d'entrée (RXD).  Ainsi, en excéutant le code suivant, on pourra écrire "hello" et lire "hello" par la suite.
 
 ```python
 import serial
