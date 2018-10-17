@@ -145,7 +145,7 @@ Rien n'est connecté, donc notre module "parle dans le vide". On vient de dire a
 
 ### Expérience 4: parler et illuminer
 
-Ce n'est pas tout le monde qui a un oscilloscope. Pour visualiser un peu ce qui se passe, on peut utiliser une diode électroluminescente (DEL) et la connecter directement sur la ligne de transmission avec une résistance de 220 Ohms au ground. Pour bien voir ce qui se passe, on écrit plusieurs 0 en ligne, à la vitesse la plus lente permise (300 bits par seconde).  Ainsi, la ligne TXD sera à 5V pour commencer, et descendra à 0 pour 30 ms, remontera brièvement à 5V pour descendre tout de suite, et ce 15 fois en ligne.  La DEL sera  allumée, ensuite essentiellement éteinte pendant 0.5 seconde (avec un minuscule petit flash de 3 ms à chaque 30 ms) et ensuite rallumée. Voir le vidéo.
+Ce n'est pas tout le monde qui a un oscilloscope. Pour visualiser un peu ce qui se passe, on peut utiliser une diode électroluminescente (DEL) et la connecter directement sur la ligne de transmission avec une résistance de 220 Ohms au ground. Pour bien voir ce qui se passe, on écrit plusieurs 0 en ligne, à la vitesse la plus lente permise (300 bits par seconde).  Ainsi, la ligne TXD sera à 5V pour commencer, et descendra à 0 pour 30 ms, remontera brièvement à 5V pour descendre tout de suite, et ce 15 fois en ligne.  La DEL sera  allumée, ensuite essentiellement éteinte pendant 0.5 seconde (avec un minuscule petit flash de 3 ms à chaque 30 ms) et ensuite rallumée. Voir le [vidéo](assets/flash.mov).
 
 ```python
 import serial
