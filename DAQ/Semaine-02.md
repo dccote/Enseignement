@@ -68,7 +68,7 @@ Pour commencer, il faut se procurer le fameux module UM232R.  La façon la plus 
 
 ![image-20181015004148259](assets/image-20181015004148259.png)
 
-Pour l'instant, mes instructions seront pour macOS car c'est ce que j'utilise. D'autres instructions devraient suivre pour les autres plateformes, même si la tâche me donne plutôt le goût d'aller chez le dentiste me faire enlever la totalité des dents d'en bas sans anesthésie.
+Pour l'instant, mes instructions seront pour macOS/Linux car c'est ce que j'utilise. D'autres instructions devraient suivre pour les autres plateformes, même si la tâche me donne plutôt le goût d'aller chez le dentiste me faire enlever la totalité des dents d'en bas. Sans anesthésie.
 
 ### Expérience 1: brancher
 
@@ -97,22 +97,71 @@ Avant de continuer, on enlève la connexion entre  `RST` et `GND` .
 
 ### Expérience 3: parler
 
-Le langage de référence dans ces tutoriels est Python, non pas pour sa puissance, sa convivialité ou l'élégance de sa syntaxe mais bien pour son universalité. La façon la plus rapide d'être opérationnel est de télécharger [Anaconda2](https://www.anaconda.com/download/). Vous aurez un environnement et la majorité des modules importants pour travailler, incluant un petit module appelé `libftdi`. Surprenamment, les routines de port serie `PySerial` n'y sont pas, on les installe avec: `easy_install PySerial`. Par la suite, le programme suivant peut être exécuter:
+Le langage de référence dans ces tutoriels est Python, non pas pour sa puissance, sa convivialité ou l'élégance de sa syntaxe mais bien pour son universalité. La façon la plus rapide d'être opérationnel est de télécharger [Anaconda2](https://www.anaconda.com/download/). Vous aurez un environnement et la majorité des modules importants pour travailler, incluant un petit module appelé `libftdi`. Surprenamment, les routines de port serie `PySerial` n'y sont pas, on les installe avec: `easy_install PySerial`. Par la suite, les programmes Python qui suivent peuvent être exécuter.
+
+Le UM232R est une puce pour la communication série de type UART (*Universal Asynchronous Receiver-Transmitter*), c'est à dire qu'elle sert à transférer l'information vers un récepteur un bit à la fois. Pour l'instant, ignorons les détails et concentrons-nous sur la ligne de transmission TXD (ou DB0). Dans Python, on peut ouvrir la communication avec cette puce UM232R par "le port série".  En effet, tout ce que l'on écrit sera sur la ligne de transmission TXD et tout ce qui est sur la ligne RXD nous pourrons lire par le port série.
 
 ```python
 import serial
+import time
 
-text = 'hello'
+text = 'a'
 path = '/dev/cu.usbserial-FTCBGW24'
 try:
-    port = serial.Serial(path)
+    port = serial.Serial(path, 9600)
     bytesWritten = port.write(text)
-
     if bytesWritten == len(text):
         print('Wrote to port: %s' % port.name)
     else:
         print('Error when writing to port: %s' % port.name)
 
+    time.sleep(.1)
+    port.close()
+except IOError:
+    print('Unable to open the port with path: %s' % path)
+except:
+    print('Unknown error')
+```
+
+*Pour commencer, idéalement, on utilise un oscilloscope.  Ne vous en faites pas, l'expérience suivante ne nécessite pas d'oscilloscope.*
+
+En exécutant le code précédent (`python parler.py`) avec une sonde d'oscilloscope sur la ligne TXD/DB0 (la premiere ligne en haut à gauche), on verra la ligne osciller entre 0V et 5V, comme sur l'image suivante.  La ligne est d'abord à 5V, ensuite descend à 0 pour environ 100 µs, remonte à 5V, redescend pendant 400 µs, remonte pour 200 µs et finalement descend 100 µs et remonte pour rester à 5 V.
+
+![scope_a](assets/scope_a.jpg)
+
+
+
+Nous verrons les details de cette communication UART plus tard, mais on remarque:
+
+1. environ 100 µs est en fait précisément 104 µs, c'est-à-dire 1/9600 de secondes,
+2. la lettre 'a' est codée comme le code ASCII 97. En binaire, 97 s'écrit %10000110,
+3. à partir de la première descente, il y a 9 périodes de 104 µs pour un total de 936 µs sur l'écran d'oscilloscope. Si on remplace les période de 104 µs à 5V par 1 et celle de 104 µs à 0V par zéro, on obtient 0 suivi de 10000110.
+
+On comprendra donc que la communication envoie la lettre 'a' (code 97) à 9600 bits per seconde. Dans le cas de la puce ici présente qui implémente le protocole UART, la ligne commence toujours à 5V pour commencer, descend à 0 le temps d'un "coup d'horloge", et ensuite écrit la valeur en binaire:
+
+![scope_a_bin](assets/scope_a_bin.jpg)
+
+Rien n'est connecté, donc notre module "parle dans le vide". On vient de dire au module d'envoyer un "a" sur "ses lignes de sortie" mais cette information n'a pas été utilisée ou capté par personne, sauf notre oscilloscope.
+
+### Expérience 4: parler et illuminer
+
+Ce n'est pas tout le monde qui a un oscilloscope. Pour visualiser un peu ce qui se passe, on peut utiliser une diode électroluminescente (DEL) et la connecter directement sur la ligne de transmission avec une résistance de 220 Ohms au ground. Pour bien voir ce qui se passe, on écrit plusieurs 0 en ligne, à la vitesse la plus lente permise (300 bits par seconde).  Ainsi, la ligne TXD sera à 5V pour commencer, et descendra à 0 pour 30 ms, remontera brièvement à 5V pour descendre tout de suite, et ce 15 fois en ligne.  La DEL sera  allumée, ensuite essentiellement éteinte pendant 0.5 seconde (avec un minuscule petit flash de 3 ms à chaque 30 ms) et ensuite rallumée. Voir le [vidéo](assets/flash.mov).
+
+```python
+import serial
+import time
+
+data = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+path = '/dev/cu.usbserial-FTCBGW24'
+try:
+    port = serial.Serial(path, 300)
+    bytesWritten = port.write(data)
+    if bytesWritten == len(data):
+        print('Wrote to port: %s' % port.name)
+    else:
+        print('Error when writing to port: %s' % port.name)
+
+    time.sleep(1)
     port.close()
 except IOError:
     print('Unable to open the port with path: %s' % path)
@@ -121,21 +170,15 @@ except:
 
 ```
 
-On peut regarder plusieurs choses:
+<video src="assets/flash.mov"></video>
 
-1. Si on connecte une DEL à la ligne CB1, elle clignotera lorsqu'on envoie des données
-2. Si on utilise un oscilloscope sur la ligne TXD, on verra la ligne osciller entre 0V et 5V.
+### Expérience 5: écouter dans le vide
 
-Rien n'est connecté, donc notre module "parle dans le vide". On vient de dire au module d'envoyer "hello" sur "ses lignes de sortie" mais cette information n'a pas été utilisée ou capté par personne, sauf notre oscilloscope.
-
-### Expérience 4: écouter
-
-Si on essaie de lire le module, on n'obtiendra rien: la ligne read() ne complètera jamais (il n''y a pas de *timeout*, il est infini par défaut):
+Si on essaie de lire le module, on n'obtiendra rien: la ligne `read()` ne complètera jamais (il n'y a pas de *timeout*, il est infini par défaut):
 
 ```python
 import serial
 
-text = 'hello'
 path = '/dev/cu.usbserial-FTCBGW24'
 try:
     port = serial.Serial(path)
@@ -149,7 +192,7 @@ except:
 
 En effet, le module n'est aucunement connecté à quoi que ce soit pour lire des données. Il peut transmettre, mais n'a rien à lire.
 
-### Expérience 5: écouter l'écho
+### Expérience 6: écouter l'écho
 
 On peut par contre prendre le module et le connecter pour qu'il s'écoute lui-même.  En effet, on connecte la ligne de sortie (TXD) à la ligne d'entrée (RXD).  Ainsi, en excéutant le code suivant, on pourra écrire "hello" et lire "hello" par la suite.
 
@@ -181,6 +224,8 @@ except:
     print('Unknown error')
 ```
 
+On appelle ce mode le mode ECHO, puisque tout ce qui est écrit sur le port est lu sur le même port. En exécutant le code précédent, on obtient "hello" en lecture après avoir écrit "hello" sur le port série. Le mode ECHO permet de tester notre compréhension de plusieurs façon car nous savons toujours ce qui devrait être lu sur le port: il s'agira de ce que l'on vient d'écrire.
+
 
 
 
@@ -190,4 +235,4 @@ except:
 [^4]: Le standard USB est un standard complexe qui n'est pas nécessaire de comprendre pour l'instant.  Cependant, un bon ingénieur devra comprendre la reconnaissance des appareils, l'association des drivers, les classes, les vendor ID, product ID, la sérialisation des ports, les endpoints, etc... Bien sur, nous verrons tout cela plus loin lorsque ce sera nécessaire.
 
 
- 
+
