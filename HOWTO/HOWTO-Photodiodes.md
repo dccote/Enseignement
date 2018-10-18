@@ -4,7 +4,7 @@
 
 # Détecter et quantifier la lumière
 
-D'une façon ou d'une autre, on doit éventuellement prendre des mesures de lumière pour la caractériser, la quantifier.  Le tableau ce dessous donne une liste de plusieurs types de détecteurs avec leurs caractéristiques générales.
+En optique, on doit éventuellement prendre des mesures de lumière pour la caractériser, la quantifier.  Le tableau ce dessous donne une liste de plusieurs types de détecteurs avec leurs caractéristiques générales.
 
 
 | Nom                             | Vitesse    | Gain      | Réponse | Sensibilité | Bruit intrinsèque                   |
