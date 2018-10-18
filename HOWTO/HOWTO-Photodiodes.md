@@ -27,7 +27,7 @@ Ce document a comme but uniquement de discuter des photodiodes, puisque ce sont 
 
 La photodiode est une structure de semiconducteurs: lorsqu'on illumine la surface du détecteur avec des photons ayant une énergie supérieure à la bande interdite, chaque photon absorbé créera une paire électron-trou dans la partie *intrinsèque*. Parce que le matériel dit *intrinsèque* est en sandwhich entre un semiconducteur de type *donneur* (à charge négative) et un autre de type *accepteur* (à charge positive), il se crée un champ électrique à travers la région *intrinsèque* qui poussera toute charge négative (électron) vers la région *accepteur*  et qui poussera une charge positive (trou) vers la région *donneur*. C'est pour cette raison que les photodiode sont parfois appelées *p-i-n photodiode* ou juste *p-i-n junction* ou vraiment simplement photodiode. La matériel de la région instrinsèque donne son nom à la photodiode: on parle de diode à la silice (Si), arseniure de gallium (GaAs), indium-arseniure de gallium (InGaAs), germanium (Ge). L'énergie de la bande interdite du matériel instrinsèque donne la response spectrale du détecteur: Si (< 1µm), GaAs ( < 850 nm). La photodiode Si est le détecteur le plus utilisé pour la lumière visible car il est sensible est par sa nature, très facile à faire à bas coût, ce qui en fait un photodétecteur de choix.
 
-Ces phénomènes sont entièrement décrits par la physique de l'état solide des semiconducteurs. L'intérêt de ces structures vient de leur utilisation dans un circuit électrique qui en fait un convertisseur de photons en électrons, donc un photodétecteur. Les caractéristiques des photodétecteurs seront données par le reste du circuit.
+Ces phénomènes sont entièrement décrits par la physique de l'état solide des semiconducteurs. L'intérêt de ces structures vient de leur utilisation dans un circuit électrique qui en fait un convertisseur de photons en électrons, donc un photodétecteur. Les caractéristiques de la photodétection (réponse en fréquence, force du signal en Volts, etc...) seront données par le reste du circuit.
 
 ![image-20181017205102746](assets/image-20181017205102746.png)
 
@@ -37,7 +37,7 @@ Ces phénomènes sont entièrement décrits par la physique de l'état solide de
 
 ### Rappel
 
-La diode est un élement qui a comme caractéristique de laisser passer un courant lorsque la tension est *forward-biased* et ne laisse essentiellement pas passer de courant si la tension est dans le sens inverse (*reverse-biased*).
+La diode est un élement qui a comme caractéristique de laisser passer un courant lorsque la tension est *forward-biased* et ne laisse essentiellement pas passer de courant si la tension est dans le sens inverse (*reverse-biased*). Le mot *bias* en anglais se traduit par "la tension aux bornes de quelque chose".
 
 ![image-20181017221441448](assets/image-20181017221441448.png)
 
@@ -55,7 +55,7 @@ Les caractéristiques de ce "circuit" sont très mauvaises:
 2. Très lent
 3. Très non-linéaire car les charges s'accumulent dans la diode
 
-Ce "mode" n'est essentiellement jamais utilisé sauf pour faire des petits circuits pour enfants (un "oeil magique")
+Ce "mode" n'est essentiellement jamais utilisé sauf pour faire des petits [circuits pour enfants](https://www.amazon.ca/Elenco-Snap-Circuits-Jr-SC-100/dp/B00008BFZH/ref=asc_df_B00008BFZH/?tag=googleshopc0c-20&linkCode=df0&hvadid=292929908838&hvpos=1o3&hvnetw=g&hvrand=17551251118043948642&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9000255&hvtargid=pla-346177025985&psc=1).
 
 
 
@@ -87,11 +87,14 @@ Les caractéristiques de ce circuit sont :
 2. La diode produit encore environ 1 A/W, donc on aura environ 1V/µW
 3. Plus bruyant
 4. Courant résiduel donne un signal non nul en permanence
-5. **Avantage**: Demande une alimentation mais peut être une batterie, ne demande pas de circuit imprimé.
+5. **Avantage**: Demande une alimentation mais peut être une batterie, ne demande pas de circuit imprimé très complexe.
 
 ### Des exemples
 
-Le [DET110A](https://www.thorlabs.com/tutorials.cfm?tabID=31760) de Thorlabs est un détecteur avec un circuit de type [photoconductif](https://www.thorlabs.com/tutorials.cfm?tabID=31760).
+1. Le [DET110A](https://www.thorlabs.com/tutorials.cfm?tabID=31760) de Thorlabs qui est très commun dans les laboratoires de 1er cycle est une photodiode Si avec un circuit de type [photoconductif](https://www.thorlabs.com/tutorials.cfm?tabID=31760), mais la résistance de charge (*load resistor* n'est pas dans le circuit).  On doit donc en fournir une (implicitement comme avec un oscilloscope) ou explicitement (en mettant une résistance entre deux pinces alligators).
+2. Parfois, on connecte directement une photodiode directement dans un oscilloscope, avec où sans source de tension. On note que la résistance interne de l'oscilloscope (souvent 1 MΩ ou 10 MΩ) devient la résistance dans laquelle le courant se décharge et fait partie du circuit.
+
+![image-20181018082806053](assets/image-20181018082806053.png)
 
 
 
