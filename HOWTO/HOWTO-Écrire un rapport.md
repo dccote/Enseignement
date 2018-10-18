@@ -95,8 +95,8 @@ Les graphiques doivent être lisibles. Le but d'un graphique est de donner plus 
 
 Pour référence, voici des exemples de bons et mauvais graphiques: 
 
-![Exemple_graphiques](Exemple_graphiques.png)
+![Exemple_graphiques](assets/Exemple_graphiques.png)
 
 Voici un bon tableau.  Notez qu'on ne met pas de lignes verticales dans un tableau, et ce, même si Microsoft Word continue de vous le faire par défaut.
 
-![Exemple_tableau](Exemple_tableau.png)
+![Exemple_tableau](assets/Exemple_tableau.png)

@@ -20,7 +20,7 @@
 
 Lorsqu'une mesure de $a ± \Delta a$ est donnée, on veut dire qu'un grand nombre de mesures *dans les mêmes conditions* donnera une distribution gausienne centrée sur $\mu = a$ et de largeur $\sigma = \Delta a$. Une mesure de 100 ± 1 est illustrée ci-contre:
 
-![image-20180918210554856](image-20180918210554856.png)
+![image-20180918210554856](assets/image-20180918210554856.png)
 
 
 
@@ -32,7 +32,7 @@ Une règle à mesurer à une division de 1 mm est utilisée pour mesurer la haut
 
 Moyenne: 18.698, Écart-type: 0.019 
 
-![image-20180918211716443](image-20180918211716443.png)
+![image-20180918211716443](assets/image-20180918211716443.png)
 
 
 Nous concluons:

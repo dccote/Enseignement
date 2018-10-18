@@ -79,7 +79,7 @@ MATLAB retournera un array de structures avec chaque element de la structure ide
 
 La boite Find de BBEdit/TextWrangler/SublimteText/Emacs, permettent de trouver du texte avec des expressions régulières, mais aussi de le remplacer. Par exemple, avec TextWrangler, changer les commentaires dans du texte de C++ à C. Chaque groupe de capture peut être utiliser dans la boîte de remplacement avec \1, \2, \3 etc…:
 
-![textWrangler](textWrangler.png)
+![textWrangler](assets/textWrangler.png)
 
 ### Python
 
