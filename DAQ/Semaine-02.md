@@ -224,7 +224,7 @@ except:
     print('Unknown error')
 ```
 
-On appelle ce mode le mode ECHO, puisque tout ce qui est écrit sur le port est lu sur le même port. En exécutant le code précédent, on obtient "hello" en lecture après avoir écrit "hello" sur le port série. Le mode ECHO permet de tester notre compréhension de plusieurs façon car nous savons toujours ce qui devrait être lu sur le port: il s'agira de ce que l'on vient d'écrire.
+On appelle ce mode le mode ECHO, puisque tout ce qui est écrit sur le port est lu sur le même port. En exécutant le code précédent, on obtient "hello" en lecture après avoir écrit "hello" sur le port série. Le mode ECHO permet de tester notre compréhension de plusieurs façons car nous savons toujours ce qui devrait être lu sur le port: il s'agira de ce que l'on vient d'écrire.
 
 
 
