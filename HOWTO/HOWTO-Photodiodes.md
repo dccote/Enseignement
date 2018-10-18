@@ -92,9 +92,13 @@ Les caractéristiques de ce circuit sont :
 ### Des exemples
 
 1. Le [DET110A](https://www.thorlabs.com/tutorials.cfm?tabID=31760) de Thorlabs qui est très commun dans les laboratoires de 1er cycle est une photodiode Si avec un circuit de type [photoconductif](https://www.thorlabs.com/tutorials.cfm?tabID=31760), mais la résistance de charge (*load resistor* n'est pas dans le circuit).  On doit donc en fournir une (implicitement comme avec un oscilloscope) ou explicitement (en mettant une résistance entre deux pinces alligators).
-2. Parfois, on connecte directement une photodiode directement dans un oscilloscope, avec où sans source de tension. On note que la résistance interne de l'oscilloscope (souvent 1 MΩ ou 10 MΩ) devient la résistance dans laquelle le courant se décharge et fait partie du circuit.
+2. Parfois, on connecte directement une photodiode directement dans un oscilloscope, avec où sans source de tension. On note que la résistance interne de l'oscilloscope (souvent 1 MΩ ou 10 MΩ) devient la résistance dans laquelle le courant se décharge et fait partie du circuit. 
+   ![image-20181018082806053](assets/image-20181018082806053.png)
+3. Une carte d'acquisition simple (LabJack) qui numérise des signaux avec un *Analog-to-Digital Converter* (ADC) le fait toujours 1) en tension et 2) avec des amplificateurs à l'entrée qui n'accepte aucun courant (leur résistance d'entrée est infiniment grande). Ainsi, on ne peut pas espérer décharger une photodiode directement dans un numériseur: on doit mettre une résistance de charge et mesurer aux bornes de cette résistance. 
 
-![image-20181018082806053](assets/image-20181018082806053.png)
+
+
+
 
 
 
