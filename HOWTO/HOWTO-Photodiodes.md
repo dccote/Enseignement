@@ -95,6 +95,6 @@ Le [DET110A](https://www.thorlabs.com/tutorials.cfm?tabID=31760) de Thorlabs est
 
 
 
-[^1]: On ne dit pas d'un amplificateur transimpédenace qu'il a un gain car il n'amplifie pas une tension en une autre tension: il converti un courant en tension.
-[^2]: L'amplificateur est à peu de choses près un filtre passe bas à cause de la capacitance résiduelle C en parallèle avec la résistance R.  La réponse en fréquence a une coupure de 1/RC.
+[^1]: On ne dit pas d'un amplificateur transimpédenace qu'il a un gain car il n'amplifie pas une tension en une autre tension: il convertit un courant en tension.
+[^2]: L'amplificateur est à peu de choses près un filtre passe-bas à cause de la capacitance résiduelle C en parallèle avec la résistance R.  La réponse en fréquence a une coupure de 1/RC.
 
