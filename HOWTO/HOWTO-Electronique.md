@@ -12,7 +12,9 @@ On ne s'en sort pas: la connaissance de l'électronique est essentielle pour acc
 3. Les résistances, capacitances et inductance sont regroupés sous le terme général *impédance*, qui est une résistance complexe.
 4. Une source de tension idéale a une impédance de sortie faible.
 5. Une source de courant idéale a une impédance de sortie élevée.
-6. On veut souvent qu'un appareil ait une impédance d'entrée de 50 Ω
+6. On veut souvent qu'un appareil ait une impédance d'entrée de 50 Ω (s'il accepte du courant) ou élevé par exemple 1MΩ (s'il doit être en parallèle sans affecter le circuit).
+7. Finalement, on décrira souvent les courants et les tensions en termes de fréquences d'oscillation.  On parle de DC pour les fréquence 0 Hz et AC pour les autres.
+   1. Ne pas mélanger $f$ et $\omega = 2\pi f$.   
 
 
 
@@ -27,12 +29,15 @@ On ne s'en sort pas: la connaissance de l'électronique est essentielle pour acc
 - **Capacitance**
 
   1. Une capacitance moyenne est environ 1 µF
-  2. Les capacitance résiduelles de connecteurs sont de l'ordre de quelques pF.
-  3. Un câble a une capacitance de 30 pF/m
+  2. Une capacitance ne laisse pas passer le courant continu. Son impédance diminue avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
+  3. L'impédance d'une capacitance est $\frac{1}{j 2\pi f C}$.
+  4. Les capacitance résiduelles de connecteurs sont de l'ordre de quelques pF.
+  5. Un câble a une capacitance de 30 pF/m
 
 - **Inductance**
-
   1. On travaille très peu avec les inductances
+  2. Une inductance s'oppose au courant qui varie vite, et pas du tout au courant qui n'osccile pas. Son impédance augmente avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
+  3. L'impédance d'une inductance est $j 2 \pi f L$
 
 - **Tension**
 
@@ -49,8 +54,11 @@ On ne s'en sort pas: la connaissance de l'électronique est essentielle pour acc
   3. Un courant très important est 1A
 
 - **Batterie**
-
   1. Une batterie de maison AA contient 2000 mA-h (milli-ampère $\times$ heure).
+
+- **Filtres**
+  1. Un filtre RC a un temps caractéristique de $RC$ en  secondes.
+
 
 
 
@@ -62,7 +70,7 @@ On ne s'en sort pas: la connaissance de l'électronique est essentielle pour acc
 ### Commentaires photodétection
 
 1. Les photodétecteurs produisent des courants de 0.5A/W.
-2. 
+
 
 [^1]: J'étais nul en électronique au bacc. Nul. Zéro.  J'ai eu un déclic dans le cours Physique Expérimentale III en 1994 avec [Normand Balaux](https://www.coopfuneraire2rives.com/avis-de-deces/normand-balaux-147920/#ecrire) (que j'aimais beaucoup même s'il était extrêmement discret).  Par la suite, un stage d'été à Toronto en compagnie de l'excellent étudiant [Gary Allan](https://www.linkedin.com/in/gary-allan-6250a210/) m'a convaincu de l'importance d'apprendre l'électronique au moins pour être opérationnel au laboratoire. Pour graduer, j'ai dû faire beaucoup d'électronique, réparer des choses, en construire des nouvelles, automatiser mes montages, etc... À force d'en faire, les automatismes de laboratoire se sont transformés en connaissances.
 
