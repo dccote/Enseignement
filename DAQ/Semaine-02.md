@@ -16,6 +16,8 @@ Les pionniers de l'informatique ont dû concevoir un système qui permettrait de
 
 ## Bits et octets
 
+Un **bit** a 2 valeurs possibles, 0 ou 1. C'est la plus petite quantité d'information que nous puissions avoir sur quelque chose[^2].  Une collection ordonnée de 8 bits est un octet. Chaque bit pouvant avoir deux valeurs, un octet peut donc avoir  $2\times2\times2\times2\times2\times2\times2\times2=2^8 = 256$ valeurs différentes. Par commodité, nous représentons cela sous forme de nombre en base 2 (binaire). La séquence suivante de 8 bits 0 0 1 0 0 1 0 1 peut être prise pour avoir une valeur de:
+
 $$
 0 \times 2^7 + 0 \times 2^6 + 1 \times 2^5 + 0 \times 2^4 + 0 \times 2^3 + 1 \times 2^2 + 0 \times 2^1 + 1 \times 2^0 = 37\text{ dec}.
 $$
