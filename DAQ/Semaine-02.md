@@ -22,7 +22,7 @@ $$
 0 \times 2^7 + 0 \times 2^6 + 1 \times 2^5 + 0 \times 2^4 + 0 \times 2^3 + 1 \times 2^2 + 0 \times 2^1 + 1 \times 2^0 = 37\text{ dec}.
 $$
 
-Comprenons bien que l'interprétation d'un octet en nombre entier allant de 0 à 255 n'est rien de plus qu'une *interprétation*: on pourrait aussi interpréter ce nom autrement. Par exemple, on pourrait déterminer que si le dernier bit est 1.
+Comprenons bien que l'interprétation d'un octet en nombre entier allant de 0 à 255 n'est rien de plus qu'une *interprétation*: on pourrait aussi interpréter ce nom autrement. Par exemple, on pourrait déterminer que si le dernier bit est 1, une sortie est activée par exemple.
 
 Dans de nombreux textes, une valeur binaire est notée %00100101 (Python: `0b00100101`) pour la différencier de la valeur décimale 100101, qui a pour valeur «cent mille cent un». Cependant, la notation binaire n’est pas pratique: elle prend beaucoup de place lorsqu’elle est écrite et il est difficile d’évaluer rapidement une valeur pour le non-expert. Par conséquent, une notation raccourci est l'hexadécimale ou la notation en base 16. Les "chiffres" hexadécimaux sont {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F}.  Le nombre ci-dessus peut donc être ré-écrit sous la forme %10100101 = $10 \times 16^1 + 5 \times 16^0$ ou 0xA5 en hexadécimal, le préfixe 0x (souvent seulement x) désignant hexadécimal. Évidemment, puisque la base $16 = 2^4$on voit que la notation hexadécimale permet de regrouper les bits par groupe de 4: les moins significatifs (à droite) sont représentés par le chiffre 5 = %0101​ et les plus significatifs (à gauche) sont représentés par la lettre 0xA = %1010.
 
