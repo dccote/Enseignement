@@ -1,4 +1,4 @@
-*This code was written by Ludovick Bégin and Arnaud Mercier*
+*This code was written by Ludovick Bégin and Arnaud Mercier.  The code was then transferred to DCCote on November 6th 2018 as part of the https://github.com/dccote/Enseignement repository*.
 
 
 
@@ -12,14 +12,12 @@ These instructions will get you a copy of the project on your local machine for 
 
 ### Prerequisites
 
-It is obligatory to get the Anaconda distribution for python 3.x since it has most of the required modules. You can download it  [here](https://www.anaconda.com/download/).
-**To be able to use labJackStream, make sure to install the following packages through a command window: (power shell)**
-
-```powershell
-$ pip install labjackpython
-```
-
-**You will also need to install the [LabJack Drivers](https://labjack.com/support/software/installers/ud)**
+1. It is simpler to get the Anaconda distribution for python 2.x/3.x since it has most of the required modules. You can download it  [here](https://www.anaconda.com/download/)
+2. Install the [LabJack Drivers](https://labjack.com/support/software/installers/ud)
+3. You must activate Python2 because labjackPython is only compatible with Python2. 
+   `$ conda install python=2.7.15`
+4. 
+5. To be able to use labJackStream, make sure to install the following packages through a command window: `$ pip install labjackpython`
 
 If those modules are missing you wont be able to use the program properly.
 
@@ -28,7 +26,7 @@ If those modules are missing you wont be able to use the program properly.
 First of all, if it has not been done yet, get a copy of the repository (with clone, fork, or download - see GitHub's documentation for more information).
 
 ```powershell
-$ git clone https://github.com/JLBegin/TPOBLabs.git
+$ git clone https://github.com/dccote/Enseignement
 ```
 
 And make sure your IDE has a PATH to the folder containing this project. 
