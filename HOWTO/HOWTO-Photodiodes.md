@@ -61,7 +61,11 @@ Ce "mode" n'est essentiellement jamais utilisé sauf pour faire des petits [circ
 
 ### Photodiode en mode photovoltaïque (meilleur mais difficile)
 
-![image-20181017223242008](assets/image-20181017223242008.png)
+
+
+![image-20181121082640478](assets/image-20181121082640478-2806800.png) ou ![image-20181121082654285](assets/image-20181121082654285-2806814.png)
+
+
 
 La façon de convertir une source de courant en source de tension est d'utiliser un [amplificateur transimpédance](https://en.wikipedia.org/wiki/Transimpedance_amplifier) comme sur la figure.  Cet amplificateur a un facteur de conversion[^1] de R en V/A (ou bien sûr, en Ω).  Typiquement on retrouvera 10-100 kΩ, et la réponse en fréquence dépendra inversement de cette résistance[^2]. 
 
