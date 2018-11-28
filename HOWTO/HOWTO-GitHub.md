@@ -1,3 +1,5 @@
+[TOC]
+
 # Les systèmes de version
 
 Le *versioning* est une méthode de travail qui s'exécute à l'aide *d'outils de versioning*. Grâce à ces outils:
@@ -10,7 +12,7 @@ Il existe plusieurs outils de versioning: `cvs`, ` subversion`,  `perforce`,  `g
 
 ## 1-2-3 Comment ça marche, le *versioning*?
 
-Voici un exemple de journée de travail fait avec un logiciel de versioning dans sa version la plus simple:
+Voici un exemple de journée de travail fait avec un logiciel de versioning dans sa version la plus simplifié:
 
 1. J'ouvre mes outils pour travailler.
 
@@ -28,7 +30,7 @@ Voici un exemple de journée de travail fait avec un logiciel de versioning dans
 
 5. Lorsque j'ai terminé, tout le monde sur le même projet a accès aux modifications que j'ai fait.
 
-
+# GitHub
 
 ## S'inscrire
 
