@@ -10,58 +10,58 @@ Pour tout information manquante, se référer aux notes ([iBook](https://itunes.
 
 ## Résumé du premier cours
 
+Les diapositives sont disponibles [ici](https://www.icloud.com/keynote/0HW4-8BHOf1WDqqQbkVMHjn9Q#BPH-7006_Imagerie).
+
 ### Optique ondulatoire
 
-1. L'optique géométrique est la manipulation des faisceaux dans des conditions où les distances sont beaucoup plus grandes que la longueur d'onde (essentiellement $\lambda \rightarrow 0$)
+1. L'optique ondulatoire considère la longueur d'onde de la lumière $\lambda \ne 0$.
 
-   1. On détermine la position des objets, des images, des diaphragmes
-   2. Il n'y a pas d'interférence
-   3. Il n'y a pas de diffraction
+2. Un front d'onde représente les points de phase constante. (par exemple, un maximum).
 
-2. L'optique ondulatoire considère la longueur d'onde de la lumière
+3. Un front d'onde peut avoir une profile de champ électrique d'amplitude variable.
 
-3. Un front d'onde représente les points de phase constante. (par exemple, un maximum).
+4. Les ondes sphériques et planes sont des bases complètes et peuvent décrire tous les faisceaux.
 
-4. Un front d'onde peut avoir une profile de champ électrique d'amplitude variable.
+5. Le vecteur de Poynting instantané est $\vec{S}= \frac{1}{\mu} \vec{E} \times \vec{B} $ [W/cm^2^]
 
-5. Les ondes sphériques et planes sont des bases complètes et peuvent décrire tous les faisceaux.
+6. Le vecteur de Poynting moyen d'une onde sinusoïdale est $\vec{S}= \frac{c \epsilon_\circ}{2} \left| \vec{E}_\circ \right|^2 $ où $\left| \vec{E}_\circ \right|$ est l'amplitude de l'onde sinusoidale.
 
-6. Le vecteur de Poynting instantané est $\vec{S}= \frac{1}{\mu} \vec{E} \times \vec{B} $ [W/cm^2^]
-
-7. Le vecteur de Poynting moyen d'une onde sinusoïdale est $\vec{S}= \frac{c \epsilon_\circ}{2} \left| \vec{E}_\circ \right|^2 $ où $\left| \vec{E}_\circ \right|$ est l'amplitude de l'onde sinusoidale.
-
-8. Des chifffres à retenir: 
+7. Des chifffres à retenir: 
 
    1. Un photon de à $\lambda = 1 \mu m$ a une énergie de 1eV
    2. 1 photon par seconde dans le visible donne environ 10^-19^ W
    3. 100 pW donne 1 photon par 100 ns dans le visible.
    4. Une PMT ne peut mesurer des photons plus rapproché que 100 ns.
 
-9. L'indice de réfraction provient de la réaction du matériel avec ses dipôles qui s'opposent au champ électrique de l'onde
+8. L'indice de réfraction provient de la réaction du matériel avec ses dipôles qui s'opposent au champ électrique de l'onde
 
-10. L'équation de Sellmeir donne l'indice de réfraction avec précision dans les zones de transparence
+9. L'équation de Sellmeir donne l'indice de réfraction avec précision dans les zones de transparence
 
-11. Le site http://refractiveindex.info regorge d'information. C'est obscène tellement il y en a beaucoup.
+10. Le site http://refractiveindex.info regorge d'information. C'est obscène tellement il y en a beaucoup.
 
 ### Optique géométrique
 
-1. Une lentille a une seul distance focale (dans l'air) et deux points focaux (avant et arrière).
-2. Les plans principaux et les plans nodaux sont superposées si la lentille est dans l'air
-3. On mesure les distances focales à partir des plans principaux
+1. L'optique géométrique est la manipulation des faisceaux dans des conditions où les distances sont beaucoup plus grandes que la longueur d'onde (essentiellement $\lambda \rightarrow 0$)
+  1. On détermine la position des objets, des images, des diaphragmes
+  2. Il n'y a pas d'interférence
+  3. Il n'y a pas de diffraction
+2. Une lentille a une seul distance focale (dans l'air) et deux points focaux (avant et arrière).
+3. Les plans principaux et les plans nodaux sont superposées si la lentille est dans l'air
+4. On mesure les distances focales à partir des plans principaux
    1. Une lentille mince a ses plans principaux au centre avec les plans nodaux
-4. Les plans principaux sont de grossissement transverse de $M_T= 1$
-5. Les plans nodaux sont de grossissement angulaire $M_A= 1$
-6. Le produit est toujours $M_T \times M_A \equiv 1$.
-7. On peut utiliser Zemax (dispendieux) Oslo (gratuit) ou Code V pour faire des calculs avec aberrations
-8. On peut utiliser une librairie MATLAB du groupe dcclab à https://github.com/DCC-Lab/dcclab-matlab-toolbox
-9. Ouverture numérique NA d'une lentille
+5. Les plans principaux sont de grossissement transverse de $M_T= 1$
+6. Les plans nodaux sont de grossissement angulaire $M_A= 1$
+7. Le produit est toujours $M_T \times M_A \equiv 1$.
+8. On peut utiliser Zemax (dispendieux) Oslo (gratuit) ou Code V pour faire des calculs avec aberrations
+9. On peut utiliser une librairie MATLAB du groupe dcclab à https://github.com/DCC-Lab/dcclab-matlab-toolbox
+10. Ouverture numérique NA d'une lentille
    1. $NA = n \sin u$ où $u$ est l'angle maximal de sortie ou d'entrée
    2. Résolution d'une lentille (ou grosseur du point focal) $\Delta x = \frac{\lambda}{2 NA}$
-10. f-number ou $f_\#$ d'une lentille
+11. f-number ou $f_\#$ d'une lentille
    1. $f_\# = f / D$ où $D$ est le diamètre extérieur du faisceau, au maxium le diamètre de la lentille
    2. Grosseur du point focal (ou résolution d'une lentille) $\Delta x = f_\# \lambda$
-11. $f_\# = \frac{1}{2 NA} $
-12. Bonne qualité de lentille : Grand $NA$ ou petit $f_\#$
+12. $f_\# = \frac{1}{2 NA} $
+13. Bonne qualité de lentille : Grand $NA$ ou petit $f_\#$
 
 ### Systèmes
 
