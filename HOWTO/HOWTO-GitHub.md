@@ -32,10 +32,35 @@ Voici un exemple de journée de travail fait avec un logiciel de versioning dans
 
 # GitHub
 
+## Je veux travailler sur le code de xyz, qu'est-ce que je fais?
+
+1. Je trouve le code voulu sur GitHub et l'URL pour cloner:
+
+   ![image-20181203190825831](assets/image-20181203190825831.png)
+
+2. Dans l'application [GitHub](https://desktop.github.com), je clone: 
+   ![image-20181203190925136](assets/image-20181203190925136.png)
+
+3. Je copie l'URL voulu et je clique **Clone**:
+   ![image-20181203191201686](assets/image-20181203191201686.png)
+
+4. Je peux demander a GitHub de m'ouvrir le repertoire sur mon ordinateur:
+   ![image-20181203191022532](assets/image-20181203191022532.png)
+
+5. Je commence a travailler avec les logiciels appropriés. J'édite les fichiers. Lorsque j'ai terminé, je **Commit** mes changements:
+   ![image-20181203191545484](assets/image-20181203191545484.png)
+
+6. Si j'ai la permission sur ce **Repository**, je peux envoyer mes modifications (**Push**).
+
+
 ## S'inscrire
 
 1. S'inscrire pour obtenir un compte sur [GitHub.com](https://github.com/join?source=experiment-header-dropdowns-home)
+
 2. Se brancher sur github.com
+
+
+
 
 
 
