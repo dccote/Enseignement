@@ -66,9 +66,29 @@ Les diapositives sont disponibles [ici](https://www.icloud.com/keynote/0HW4-8BHO
 ### Systèmes
 
 1. Les plans objets et images sont des plans conjuguées
+
 2. Le plan objet et son plan de Fourier sont "des plans de Fourier l'un de l'autre". On ne dit pas "conjugués" car il n'y a pas d'image de l'objet.
+
 3. **Système 2f**: Un objet à $f$ d'une lentille donne la transformé de Fourier à l'autre plan focal $f$.
-4. **Système 4f**: Deux système 2f consécutifs avec un objet à $f_1$ de la première lentille donne une image à $f_2$ de la deuxième lentille avec un grossissement transverse  $M_T = -f_2/f_1$.
-5. Le diaphragme d'entrée (*aperture stop*) limite le cône angulaire de lumière à l'entrée
-6. Le diaphragme de champ (*field stop*) limite la grandeur du champ de vue (*field of view*).
+
+4. **Système 4f**: Deux systèmes $2f_1$ et $2f_2$ consécutifs avec un objet à $f_1$ de la première lentille donne une image à $f_2$ de la deuxième lentille avec un grossissement transverse  $M_T = -f_2/f_1$.
+
+5. Le diaphragme d'entrée (*aperture stop* ou AS) limite le cône angulaire de lumière à l'entrée
+
+6. Le diaphragme de champ (*field stop* ou FS) limite la grandeur du champ de vue (*field of view*).
+
+7. Un objectif a (habituellement?) son plan focal arrière exactement égal à l'épaule des filets
+
+8. L'objectif forme un système 4f avec le *tube lens*. Les focales sont différentes pour chaque manufacturier.
+
+   | Manufacturier | Focale | Filets |
+   | ------------- | ------ | ------ |
+   | Leica         | 200    | M25    |
+   | Nikon         | 200    | M25    |
+   | Olympus       | 180    | RMS    |
+   | Zeiss         | 165    | RMS    |
+
+9. Un objectif 40x a une focal 40x plus petite que la *tube lens* associée.
+
+10. Dans un microscope le AS est habituellement à l'arrière de l'objectif
 
