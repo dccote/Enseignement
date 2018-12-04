@@ -1,9 +1,11 @@
 # COURS
 ## Contenu de ce répertoire
 
-Ce répertoire GitHub contient mes notes de présentation en classe, des résumés, des liens vers les diapos originales. Pour l'instant, c'est minimal: seulement le cours *BPH-7006 Imagerie en biophotonique* est présent.
+Ce répertoire GitHub contient mes notes de présentation en classe, des résumés, des liens vers les diapos originales. Pour l'instant, la liste est minimale:
 
-L'entente ici est que je rends mes notes complètement disponibles mais que vous **corrigerez** toute erreur qui s'y est glissée en me soumettant une correction (voir section Correction plus bas).
+1. Cours *BPH-7006 Imagerie en biophotonique*
+
+L'entente ici est que je rends mes notes complètement disponibles mais que vous **corrigerez** toute erreur qui s'y est glissée en me soumettant une correction (voir section [Correction](#comment-me-faire-parvenir-une-correction) plus bas).
 
 ## Format de fichiers
 
@@ -13,7 +15,7 @@ Pour obtenir les notes de cours, suivez directement le lien (.url sur votre ordi
 
 ![image-20181203221808164](assets/image-20181203221808164-3893488.png)
 
-## Comment me faire parvenir une correction?
+## Comment me faire parvenir une correction
 
 1. Simple pour vous: Modifiez les textes directement et renvoyez moi le document modifié.
 2. Simple pour moi: Faites une branche (*fork*) du répertoire, modifiez et soumettez votre correction à l'aide d'un *Pull Request*.
