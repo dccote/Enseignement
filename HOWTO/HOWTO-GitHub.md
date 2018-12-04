@@ -32,7 +32,7 @@ Voici un exemple de journée de travail fait avec un logiciel de versioning dans
 
 # GitHub
 
-## Je veux travailler sur le code de xyz, qu'est-ce que je fais?
+## Je veux travailler sur le code de *xyz*, qu'est-ce que je fais?
 
 1. Je trouve le code voulu sur GitHub et l'URL pour cloner:
 
@@ -44,7 +44,7 @@ Voici un exemple de journée de travail fait avec un logiciel de versioning dans
 3. Je copie l'URL voulu et je clique **Clone**:
    ![image-20181203191201686](assets/image-20181203191201686.png)
 
-4. Je peux demander a GitHub de m'ouvrir le repertoire sur mon ordinateur:
+4. Je peux demander a GitHub de m'ouvrir le répertoire sur mon ordinateur une fois que la copie est terminée:
    ![image-20181203191022532](assets/image-20181203191022532.png)
 
 5. Je commence a travailler avec les logiciels appropriés. J'édite les fichiers. Lorsque j'ai terminé, je **Commit** mes changements:
