@@ -1,4 +1,4 @@
-# COURS
+# BPH-7006 Imagerie en biophotonique
 ## Contenu de ce répertoire
 
 Ce répertoire GitHub contient mes notes de présentation en classe, des résumés, des questions et des liens vers les diapos originales pour le cours *BPH-7006 Imagerie en biophotonique* est présent.
