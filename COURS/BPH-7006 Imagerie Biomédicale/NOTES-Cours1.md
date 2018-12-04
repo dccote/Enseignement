@@ -79,7 +79,7 @@ Les diapositives sont disponibles [ici](https://www.icloud.com/keynote/0HW4-8BHO
 
 7. Un objectif a (habituellement?) son plan focal arrière exactement égal à l'épaule des filets
 
-8. L'objectif forme un système 4f avec le *tube lens*. Les focales sont différentes pour chaque manufacturier.
+8. L'objectif forme un système 4f avec le *tube lens*. Les focales [sont différentes pour chaque manufacturier](https://www.microscopyu.com/microscopy-basics/infinity-optical-systems).
 
    | Manufacturier | Focale | Filets |
    | ------------- | ------ | ------ |
