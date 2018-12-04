@@ -3,7 +3,7 @@
 
 Ce répertoire GitHub contient mes notes de présentation en classe, des résumés, des liens vers les diapos originales. Pour l'instant, la liste est minimale:
 
-1. [Cours *BPH-7006 Imagerie en biophotonique*](./BPH-7006 Imagerie Biomédicale)
+1. [Cours *BPH-7006 Imagerie en biophotonique*](./BPH-7006%20Imagerie%20Biomédicale)
 
 L'entente ici est que je rends mes notes complètement disponibles mais que vous **corrigerez** toute erreur qui s'y est glissée en me soumettant une correction (voir section [Correction](#comment-me-faire-parvenir-une-correction) plus bas).
 
