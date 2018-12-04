@@ -33,15 +33,15 @@ Pour tout information manquante, se référer aux notes ([iBook](https://itunes.
 8. Des chifffres à retenir: 
 
    1. Un photon de à $\lambda = 1 \mu m$ a une énergie de 1eV
-   2. 1 photon par seconde donne 10^-19^ W
-   3. 100 pW donne 1 photon par 100 ns.
+   2. 1 photon par seconde dans le visible donne environ 10^-19^ W
+   3. 100 pW donne 1 photon par 100 ns dans le visible.
    4. Une PMT ne peut mesurer des photons plus rapproché que 100 ns.
 
 9. L'indice de réfraction provient de la réaction du matériel avec ses dipôles qui s'opposent au champ électrique de l'onde
 
-10. L'Équation de Sellmeir donne l'indice de réfraction avec précision dans les zones de transparence
+10. L'équation de Sellmeir donne l'indice de réfraction avec précision dans les zones de transparence
 
-11. Le site http://refractiveindex.info regorge d'information
+11. Le site http://refractiveindex.info regorge d'information. C'est obscène tellement il y en a beaucoup.
 
 ### Optique géométrique
 
