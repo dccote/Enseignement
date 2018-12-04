@@ -19,6 +19,6 @@
 17. Un laser rouge de longeur d'onde 632.8 nm illumine une piscine.  Sachant que la vitesse dans un milieu est  $c/n$ et que la longueur d’onde dans un milieu est $\lambda^\prime= \lambda/n$, est-ce que si vous regardez dans la piscine vous verrez que le laser est bleu dans l’eau?
 18. Donnez des valeurs d’indice de réfraction pour l’eau, le verre, l’huile, les semiconducteurs ?
 19. Est-ce que cette valeur dépend de la longueur d’onde ? Pourquoi ?
-20. De quel côté doit-on placer une lentille au laboratoire si c'est une lentille Plano-convexe avec :
+20. De quel côté doit-on placer une lentille au laboratoire si c'est une lentille Plano-convexe lorsqu'on a :
     1. Un faisceau collimé incident
     2. Un faisceau provenant d'un point près de la lentille
