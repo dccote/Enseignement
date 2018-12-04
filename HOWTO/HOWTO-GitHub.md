@@ -52,6 +52,8 @@ Voici un exemple de journée de travail fait avec un logiciel de versioning dans
 
 6. Si j'ai la permission sur ce **Repository**, je peux envoyer mes modifications (**Push**).
 
+   ![image-20181203191658308](assets/image-20181203191658308.png)
+
 
 ## S'inscrire
 
