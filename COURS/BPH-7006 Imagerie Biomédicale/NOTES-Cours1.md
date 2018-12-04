@@ -31,7 +31,7 @@ Les diapositives sont disponibles [ici](https://www.icloud.com/keynote/0HW4-8BHO
    1. Un photon de à $\lambda = 1 \mu m$ a une énergie de 1eV
    2. 1 photon par seconde dans le visible donne environ 10^-19^ W
    3. 100 pW donne 1 photon par 100 ns dans le visible.
-   4. Une PMT ne peut mesurer des photons plus rapproché que 100 ns.
+   4. Une PMT ne peut mesurer des photons plus rapprochés que 100 ns.
 
 8. L'indice de réfraction provient de la réaction du matériel avec ses dipôles qui s'opposent au champ électrique de l'onde
 
@@ -53,12 +53,12 @@ Les diapositives sont disponibles [ici](https://www.icloud.com/keynote/0HW4-8BHO
 6. Les plans nodaux sont de grossissement angulaire $M_A= 1$
 7. Le produit est toujours $M_T \times M_A \equiv 1$.
 8. On peut utiliser Zemax (dispendieux) Oslo (gratuit) ou Code V pour faire des calculs avec aberrations
-9. On peut utiliser une librairie MATLAB du groupe dcclab à https://github.com/DCC-Lab/dcclab-matlab-toolbox
+9. On peut utiliser une librairie MATLAB (sur demande) du groupe dcclab à https://github.com/DCC-Lab/dcclab-matlab-toolbox
 10. Ouverture numérique NA d'une lentille
    1. $NA = n \sin u$ où $u$ est l'angle maximal de sortie ou d'entrée
    2. Résolution d'une lentille (ou grosseur du point focal) $\Delta x = \frac{\lambda}{2 NA}$
 11. f-number ou $f_\#$ d'une lentille
-   1. $f_\# = f / D$ où $D$ est le diamètre extérieur du faisceau, au maxium le diamètre de la lentille
+   1. $f_\# = f / D$ où $D$ est le diamètre extérieur du faisceau, au maximum le diamètre de la lentille
    2. Grosseur du point focal (ou résolution d'une lentille) $\Delta x = f_\# \lambda$
 12. $f_\# = \frac{1}{2 NA} $
 13. Bonne qualité de lentille : Grand $NA$ ou petit $f_\#$
