@@ -55,12 +55,12 @@ Les diapositives sont disponibles [ici](https://www.icloud.com/keynote/0HW4-8BHO
 8. On peut utiliser Zemax (dispendieux) Oslo (gratuit) ou Code V pour faire des calculs avec aberrations
 9. On peut utiliser une librairie MATLAB (sur demande) du groupe dcclab à https://github.com/DCC-Lab/dcclab-matlab-toolbox
 10. Ouverture numérique NA d'une lentille
-   1. $NA = n \sin u$ où $u$ est l'angle maximal de sortie ou d'entrée
-   2. Résolution d'une lentille (ou grosseur du point focal) $\Delta x = \frac{\lambda}{2 NA}$
+  1. $NA = n \sin u$ où $u$ est l'angle maximal de sortie ou d'entrée
+  2. Résolution d'une lentille (ou grosseur du point focal) $\Delta x = \frac{1.22 \lambda}{NA}$
 11. f-number ou $f_\#$ d'une lentille
    1. $f_\# = f / D$ où $D$ est le diamètre extérieur du faisceau, au maximum le diamètre de la lentille
-   2. Grosseur du point focal (ou résolution d'une lentille) $\Delta x = f_\# \lambda$
-12. $f_\# = \frac{1}{2 NA} $
+   2. Grosseur du point focal (ou résolution d'une lentille) $\Delta x = f_\# \lambda/2$
+12. $f_\# = \frac{1}{2NA} $
 13. Bonne qualité de lentille : Grand $NA$ ou petit $f_\#$
 
 ### Systèmes
