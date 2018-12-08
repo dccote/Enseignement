@@ -1,23 +1,3 @@
-# Enseignement
-Ce repertoire GitHub contient différents documents, scripts, figures ou autres reliés à l'enseignement du génie physique et de la physique. Tout est distribué sous la [Licence MIT](#licence-mit).
-
-Il est fortement recommandé d'utiliser le logiciel http://Typora.io pour lire les fichier avec l'extension .md (ou Markdown) même si ceux ci peuvent se lire en format texte.
-
-Les documents sont rassemblés comme suit:
-
-- `HOWTO`: Documents décrivant comment accomplir une tâche. Formats markdown et PDF.
-- `Protocols`: Protocoles d'expériences.
-- `SRC`: Scripts pour accomplir certaines tâches dans différents langages.
-- `MAN`: Manuels de différents appareils pertinents.
-- `FIG`: Figures (png, pdf, etc..).
-- `DAQ`: Tutoriels sur l'acquisition de données
-
-
-
-Daniel Côté
-
-dccote@cervo.ulaval.ca
-
 # Licence MIT
 
 Copyright (c) 2018 Daniel C. Côté
