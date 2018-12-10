@@ -40,3 +40,14 @@ Les diapositives sont disponibles [ici](./DIAPOS-Cours2-Système.url).
 
    1. Soit par détection confocal, où un pinhole devant le détecteur est imagé sur l'échantillon et bloque la lumière hors du point focal
    2. Soit par excitation multiphotonique, où l'illumination excite l'échantillon seulement au point focal et cette fluorescence/émission est envoyée au détecteur en totalité
+
+4. Le champ de vue d'un système à balayage est obtenu en regardant l'angle de balayage maximal $\theta_\text{max}$ du système de balayage à l'entrée arrière de l'objectif de focal $f_\text{obj}$.  On obtient: $f_\text{obj} \theta_\text{max}$.
+
+5. Si un objectif est conçu pour un système, le diaphragme d'entrée sera l'entrée arrière de l'objectif et correspond à l'ouverture numérique
+
+6. Pour chaque grossissement $M$ du faisceau par un système 4f, le balayage en angle est réduit du même facteur $1/M$.
+
+7. Un système à balayage doit considerer:
+
+   1. Les angles balayées
+   2. La grosseur du faisceau à l'objectif 
