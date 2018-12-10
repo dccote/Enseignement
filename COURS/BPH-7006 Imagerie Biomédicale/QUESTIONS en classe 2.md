@@ -2,6 +2,6 @@
 
 2. Le microscope à balayage (recopié ici bas) utilise un tube photomultiplicateur R3896 avec un socket C7950 en détection confocale pour imager du FITC. L'objectif 40x est utilisé correctement. Le sténopé (*pinhole*) devant la PMT A a un diamètre de 10 µm.  Quel est la concentration de FITC si vous mesurez ceci à l'oscilloscope en provenance d'un seul pixel en illuminant avec un laser bleu à 488nm:
 
-   ![image-20181207090956581](../BPH-7006%20Imagerie%20Biome%CC%81dicale/assets/image-20181207090956581-4191796.png)
+   ![image-20181205180235988-4050956-4055058](assets/image-20181205180235988-4050956-4055058-4449448.png)
 
    ![VideoM](assets/VideoM.png)
