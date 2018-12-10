@@ -10,7 +10,7 @@ Le microscope suivant, qui fonctionne avec un laser Ti:sapphire et un objectif O
 2. Quel est la résolution optique du microscope?
 3. Si vous numérisez de façon idéale, quelle sera la taille de l'image (micron et pixels) à 30 images par secondes?
 4. J'aimerais utiliser le 20X (Objectif #2 ci-dessous). Est-ce possible? Est-ce que j'ai des modifications à faire?
-5. Où sont les incertitudes de performance dans votre système?
+5. Après avoir complété vos calculs, que devriez vous vérifier pour confirmer le tout? Où sont les incertitudes dans votre système?
 
 ![VideoM](assets/VideoM.png)
 
