@@ -8,7 +8,7 @@ Pour tout information manquante, se référer aux notes ([iBook](https://itunes.
 
 ![225x225bb](assets/225x225bb.jpg)
 
-## Résumé du troisième cours
+## Résumé du deuxième cours
 
 Les diapositives sont disponibles [ici](./DIAPOS-Cours2-Système.url).
 
