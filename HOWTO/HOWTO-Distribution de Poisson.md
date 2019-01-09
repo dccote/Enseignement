@@ -1,3 +1,7 @@
+*Ce document n'est pas terminé.* - Daniel Cote
+
+
+
 # Distribution de Poisson
 
 ## Introduction
