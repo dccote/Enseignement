@@ -9,7 +9,7 @@ information mais la présentant différemment. Le document présente les
 notions pratiques de base pour pouvoir adéquatement analyser un signal
 et obtenir son spectre de Fourier, étalonné correctement.
 
-La connaissance et la maitrise de cette transformation en science est importante: nous prenons des mesures dans le temps et l'esapce, mais l'origine des phénomènes a souvent une composante oscillatoire qui est facilement décrite en fréquence (par exemple, autour d'un point d'équilibre, le comportement de rappel est souvent une oscillation harmonique, ou encore les émissions provenant des atomes sont des ondes à des fréquences spécifiques, etc…). Ainsi, la description dans l'espace de Fourier est souvent un élément clef pour mieux comprendre, ou pour mesurer ou analyser plus facilement un phénomène.
+La connaissance et la maitrise de cette transformation en science est importante: nous prenons des mesures dans le temps et l'espace, mais l'origine des phénomènes a souvent une composante oscillatoire qui est facilement décrite en fréquence (par exemple, autour d'un point d'équilibre, le comportement de rappel est souvent une oscillation harmonique, ou encore les émissions provenant des atomes sont des ondes à des fréquences spécifiques, etc…). Ainsi, la description dans l'espace de Fourier est souvent un élément clef pour mieux comprendre, ou pour mesurer ou analyser plus facilement un phénomène.
 
 Définitions
 ===========
