@@ -3,148 +3,122 @@ from numpy.random import *
 import matplotlib.pyplot as plt
 from numpy.fft import *
 
-""" Ce script genere des interferogrammes tels qu'obtenus avec un interferometre de Michelson 
-dans le but d'etudier la transformée de Fourier et de comprendre comment la resolution est 
-déterminée.
+""" Ce script genere des interferogrammes tels qu'obtenus avec un interferometre
+de Michelson dans le but d'etudier la transformée de Fourier et de comprendre 
+comment la resolution spectrale est déterminée.
 """
 
 
 # Parametres de generation
 
-def genererXVecteur(xMin, xMax, N):
-	dx = (xMax - xMin)/N
-	x = np.linspace(xMin, xMax, N)
-	return x
 
-def lireVecteursSurDisque(filename):
+def readVectorsFromFile(filename):
 	x = np.loadtxt(filename, usecols=(0))
 	y = np.loadtxt(filename, usecols=(1))
 	return (x,y)
 
-def transformeDeFourier(x,y):
-	spectre = abs(fft(y))
-	dx = x[1]-x[0]
-	N = len(x)
-	frequencies = fftfreq(N, dx)
-	wavelengths = 1/frequencies
+def generateHeNeInterferogram(xMin, xMax, N):
+	""" Genere un tableau de N valeurs equidistantes enntre xMin et xMax.
+	Ensuite, genere un tableau de N valeurs qui representent un interferogramme
+	d'un laser He-Ne a 0.6328 microns. On ajoute du bruit pour rendre le tout
+	plus realiste.
+	"""
+	dx = (xMax - xMin)/N
+	x = np.linspace(xMin, xMax, N)
+	noise = random(len(x))*0.05
+	y = 1+np.cos(2 * np.pi / 0.6328 * x)+noise
+	return (x,y)
+
+def generateWhiteLightInterferogram(xMin, xMax, N):
+	""" Genere un tableau de N valeurs equidistantes enntre xMin et xMax.
+	Ensuite, genere un tableau de N valeurs qui representent un interferogramme
+	d'une source blanche visible. On ajoute du bruit pour rendre le tout
+	plus realiste.
+	"""
+	dx = (xMax - xMin)/N
+	x = np.linspace(xMin, xMax, N)
+	noise = random(len(x))*0.05
+	k1 = 1/0.4
+	k2 = 1/0.8
+	y = 1+np.exp(-x*x/4)*(np.sin(2 * np.pi * (k1+k2)*x/2)/x * np.sin(2 * np.pi * (k1-k2)*x/2)+ noise)
+	return (x,y)
+
+def fourierTransformInterferogram(x,y):
+	""" A partir du tableau de valeurs Y correspondant a l'abscisse X, 
+	la transformée de Fourier est calculée et l'axes des fréquences (f en 
+	µm^-1) et des wavelengths (1/f en microns) est retournée.
+
+	Le spectre est un ensemble de valeurs complexes pour lesquelles l'amplitude
+	et la phase sont pertinentes: l'ordre des valeurs commence par la valeur DC (0)
+	et monte jusqu'a f_max=1/2/∆x par resolution de ∆f = 1/N/∆x. A partir de la
+	(N/2) ieme valeur, la frequence est negative jusqu'a -∆f dans la N-1 case.
+	Voir 
+	https://github.com/dccote/Enseignement/blob/master/HOWTO/HOWTO-Transformes%20de%20Fourier%20discretes.pdf 
+	"""
+	spectre = fft(y)
+	dx = x[1]-x[0] # on obtient dx, on suppose equidistant
+	N = len(x)     # on obtient N directement des données
+	frequencies = fftfreq(N, dx) # Cette fonction est fourni par numpy
+	wavelengths = 1/frequencies  # Les fréquences en µm^-1 sont moins utiles que lambda en µm
 	return (wavelengths, frequencies, spectre)
 
-def genereHeNeInterferogramme(x):
-	noise = random(len(x))*0.1
-	y = np.cos(2 * np.pi / 0.632 * x)+noise
-	return y
-
-def plotCombinedFigures(x, y, w, s, title="", left=500, right=800):
+def plotCombinedFigures(x, y, w, s, title="", left=400, right=800):
+	""""
+	On met l'interferogramme et le spectre sur la meme page.
+	"""
 	fig, (axes, axesFFT) = plt.subplots(2,1,figsize=(10, 7))
 	axes.plot(x, y, '-')
 	axes.set_title("Interferogramme")
-	axesFFT.plot(w*1000, s, '-')
+	axesFFT.plot(w*1000, abs(s), 'o-')
 	axesFFT.set_xlim(left=left, right=right)
 	axesFFT.set_xlabel("Longueur d'onde [nm]")
-	axes.set_title(title)
+	axesFFT.set_title(title)
 	plt.show()
 
 
 # Basse resolution
-x = genererXVecteur(xMin=-10, xMax=10, N=200)
-y = genereHeNeInterferogramme(x)
-(w, f, s)  = transformeDeFourier(x,y)
+(x,y) = generateHeNeInterferogram(xMin=-10, xMax=10, N=200) # en microns
+(w, f, s)  = fourierTransformInterferogram(x,y)
 df = f[1]-f[0]
-dl = 0.6328*df*df*1000
-plotCombinedFigures(x,y,w,s,left=600, right=650, title="Spectre basse resolution {0:0.4f} nm".format(dl))
+dl = 0.6328*0.6328*df*1000 # x 1000 pour nm
+plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre basse resolution {0:0.2f} nm".format(dl))
 
 # Haute resolution
 # Resolution ∆f = 1/(200 µm * 2000)
-x = genererXVecteur(xMin=-100, xMax=100, N=2000)
-y = genereHeNeInterferogramme(x)
-(w, f, s) = transformeDeFourier(x,y)
+# Resolution @ 632.8 nm : ∆lambda = 632.8^2 * ∆f 
+(x,y) = generateHeNeInterferogram(xMin=-100, xMax=100, N=2000) # en microns
+(w, f, s) = fourierTransformInterferogram(x,y)
 df = f[1]-f[0]
-dl = 0.6328*df*df*1000
-plotCombinedFigures(x,y,w,s,left=600, right=650, title="Spectre haute resolution {0:0.4f} nm".format(dl))
+dl = 0.6328*0.6328*df*1000
+plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre haute resolution {0:0.2f} nm".format(dl))
 
 
 # Tres haute resolution
 # Resolution ∆f = 1/(2000 µm * 2000)
-# Resolution @ 632.8 nm : ∆lambda = 632.8 * ∆f^2 
-x = genererXVecteur(xMin=-1000, xMax=1000, N=20000)
-y = genereHeNeInterferogramme(x)
-(w, f, s) = transformeDeFourier(x,y)
+# Resolution @ 632.8 nm : ∆lambda = 632.8^2 * ∆f 
+(x,y) = generateHeNeInterferogram(xMin=-1000, xMax=1000, N=20000) # en microns
+(w, f, s) = fourierTransformInterferogram(x,y)
 df = f[1]-f[0]
-dl = 0.6328*df*df*1000
-plotCombinedFigures(x,y,w,s,left=625, right=640, title="Spectre tres haute resolution {0:0.4f} nm".format(dl))
+dl = 0.6328*0.6328*df*1000
+plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre tres haute resolution {0:0.2f} nm".format(dl))
 
 
-
-# Lecture des donnees et axes
-
-# Generer la figure
-
-# Parametres de generation
-filename="hene-short-2000.txt"
-N = 2000
-xMin = -10
-xMax = 10
-x1 = np.linspace(xMin, xMax, N)
-y1 = np.cos(2 * np.pi / 0.632 * x1)+noise
-np.savetxt(filename, np.transpose((x1,y1)),header="#Interferogramme He-Ne\n\n# Position\tIntensite\n\n")
+# Hyper haute resolution
+# Resolution ∆f = 1/(20000 µm * 20000)
+# Resolution @ 632.8 nm : ∆lambda = 632.8^2 * ∆f 
+(x,y) = generateHeNeInterferogram(xMin=-10000, xMax=10000, N=200000) # en microns
+(w, f, s) = fourierTransformInterferogram(x,y)
+df = f[1]-f[0]
+dl = 0.6328*0.6328*df*1000
+plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre hyper haute resolution {0:0.2f} nm".format(dl))
 
 
-# Lecture des donnees et axes
-x1 = np.loadtxt(filename, usecols=(0))
-y1 = np.loadtxt(filename, usecols=(1))
-spectre = abs(fft(y1))
-fig, (axes, axesFFT) = plt.subplots(2,1,figsize=(10, 7))
-axes.plot(x1, y1, '-')
-axes.set_title("Donnees")
-axesFFT.plot(spectre, '-')
-axes.set_title("Spectre (valeur absolue)")
-plt.show()
+# Spectre de lumiere blanche
+# Resolution ∆f = 1/(20000 µm * 20000)
+# Resolution @ 632.8 nm : ∆lambda = 632.8^2 * ∆f 
+(x,y) = generateWhiteLightInterferogram(xMin=-100, xMax=100, N=20000) # en microns
+(w, f, s)  = fourierTransformInterferogram(x,y)
+df = f[1]-f[0]
+dl = 0.500*0.500*df*1000 # resolution autour de 0.500 µm en nm
+plotCombinedFigures(x,y,w,s,left=0, right=2000, title="Spectre lumiere blanche, resolution {0:0.2f} nm".format(dl))
 
-# Generer la figure
-filename="hene-long-2000.txt"
-xMin = -100
-xMax = 100
-x1 = np.linspace(xMin, xMax, N)
-noise = random(N)*0.1
-y1 = np.cos(2 * np.pi / 0.632 * x1)+noise
-np.savetxt(filename, np.transpose((x1,y1)),header="#Interferogramme He-Ne\n\n# Position\tIntensite\n\n")
-
-x1 = np.loadtxt(filename, usecols=(0))
-y1 = np.loadtxt(filename, usecols=(1))
-spectre = abs(fft(y1))
-fig, (axes, axesFFT) = plt.subplots(2,1,figsize=(10, 7))
-axes.plot(x1, y1, '-')
-axesFFT.plot(spectre, '-')
-plt.show()
-
-
-filename="white-2000.txt"
-N = 2000
-xMin = -100
-xMax = 100
-x1 = np.linspace(xMin, xMax, N)
-noise = random(N)*0.01
-y1 = np.exp(-x1*x1/4)*np.sin(2 * np.pi / 0.540 * x1)/(2 * np.pi / 0.540 * x1)+noise
-np.savetxt(filename, np.transpose((x1,y1)),header="#Interferogramme He-Ne\n\n# Position\tIntensite\n\n")
-
-x1 = np.loadtxt(filename, usecols=(0))
-y1 = np.loadtxt(filename, usecols=(1))
-spectre = abs(fft(y1))
-fig, (axes, axesFFT) = plt.subplots(2,1,figsize=(10, 7))
-axes.plot(y1, '-')
-axesFFT.plot(spectre, '-')
-plt.show()
-
-filename="sodium-20000.txt"
-N = 20000
-xMin = -1500
-xMax = 1500
-x1 = np.linspace(xMin, xMax, N)
-noise = random(N)*0.01
-y1 = (np.sin(2 * np.pi / 0.589 * x1)+np.sin(2 * np.pi / 0.5896 * x1))+noise
-np.savetxt(filename, np.transpose((x1,y1)),header="#Interferogramme He-Ne\n\n# Position\tIntensite\n\n")
-spectre = abs(fft(y1))
-fig, (axes, axesFFT) = plt.subplots(2,1,figsize=(10, 7))
-axes.plot(x1, y1, '-')
-axesFFT.plot(spectre, '-')
-plt.show()
