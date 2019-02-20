@@ -8,10 +8,6 @@ de Michelson dans le but d'etudier la transformée de Fourier et de comprendre
 comment la resolution spectrale est déterminée.
 """
 
-
-# Parametres de generation
-
-
 def readVectorsFromFile(filename):
 	x = np.loadtxt(filename, usecols=(0))
 	y = np.loadtxt(filename, usecols=(1))
@@ -85,7 +81,7 @@ plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre ba
 
 # Haute resolution
 # Resolution ∆f = 1/(200 µm * 2000)
-# Resolution @ 632.8 nm : ∆lambda = 632.8^2 * ∆f 
+# Resolution @ 632.8 nm : ∆lambda = 632.8^2 * ∆f car ∆lambda/lambda = ∆f/f.
 (x,y) = generateHeNeInterferogram(xMin=-100, xMax=100, N=2000) # en microns
 (w, f, s) = fourierTransformInterferogram(x,y)
 df = f[1]-f[0]
