@@ -51,12 +51,12 @@ def fourierTransformInterferogram(x,y):
 	Voir 
 	https://github.com/dccote/Enseignement/blob/master/HOWTO/HOWTO-Transformes%20de%20Fourier%20discretes.pdf 
 	"""
-	spectre = fft(y)
+	spectrum = fft(y)
 	dx = x[1]-x[0] # on obtient dx, on suppose equidistant
 	N = len(x)     # on obtient N directement des données
-	frequencies = fftfreq(N, dx) # Cette fonction est fourni par numpy
+	frequencies = fftfreq(N, dx) # Cette fonction est fournie par numpy
 	wavelengths = 1/frequencies  # Les fréquences en µm^-1 sont moins utiles que lambda en µm
-	return (wavelengths, frequencies, spectre)
+	return (wavelengths, frequencies, spectrum)
 
 def plotCombinedFigures(x, y, w, s, title="", left=400, right=800):
 	""""
@@ -77,7 +77,7 @@ def plotCombinedFigures(x, y, w, s, title="", left=400, right=800):
 (w, f, s)  = fourierTransformInterferogram(x,y)
 df = f[1]-f[0]
 dl = 0.6328*0.6328*df*1000 # x 1000 pour nm
-plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre basse resolution {0:0.2f} nm".format(dl))
+plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre He-Ne basse resolution {0:0.2f} nm".format(dl))
 
 # Haute resolution
 # Resolution ∆f = 1/(200 µm * 2000)
@@ -86,7 +86,7 @@ plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre ba
 (w, f, s) = fourierTransformInterferogram(x,y)
 df = f[1]-f[0]
 dl = 0.6328*0.6328*df*1000
-plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre haute resolution {0:0.2f} nm".format(dl))
+plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre He-Ne haute resolution {0:0.2f} nm".format(dl))
 
 
 # Tres haute resolution
@@ -96,7 +96,7 @@ plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre ha
 (w, f, s) = fourierTransformInterferogram(x,y)
 df = f[1]-f[0]
 dl = 0.6328*0.6328*df*1000
-plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre tres haute resolution {0:0.2f} nm".format(dl))
+plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre He-Ne tres haute resolution {0:0.2f} nm".format(dl))
 
 
 # Hyper haute resolution
@@ -106,12 +106,12 @@ plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre tr
 (w, f, s) = fourierTransformInterferogram(x,y)
 df = f[1]-f[0]
 dl = 0.6328*0.6328*df*1000
-plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre hyper haute resolution {0:0.2f} nm".format(dl))
+plotCombinedFigures(x,y,w,s,left=632.8-5*dl, right=632.8+5*dl, title="Spectre He-Ne hyper haute resolution {0:0.2f} nm".format(dl))
 
 
 # Spectre de lumiere blanche
 # Resolution ∆f = 1/(20000 µm * 20000)
-# Resolution @ 632.8 nm : ∆lambda = 632.8^2 * ∆f 
+# Resolution @ 500 nm : ∆lambda = 500^2 * ∆f 
 (x,y) = generateWhiteLightInterferogram(xMin=-100, xMax=100, N=20000) # en microns
 (w, f, s)  = fourierTransformInterferogram(x,y)
 df = f[1]-f[0]
