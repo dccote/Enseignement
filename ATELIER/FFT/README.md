@@ -14,8 +14,8 @@ Objectifs:
 
 4. Afficher des graphiques de spectres dans Python
 
-5. Comprendre l'axe des X d'une transformé de Fourier
+5. Comprendre l'axe des X d'une transformée de Fourier
 
-6. Obtenir une transformé de Fourier avec meilleure résolution en fréquence
+6. Obtenir une transformée de Fourier avec meilleure résolution en fréquence
 
    
