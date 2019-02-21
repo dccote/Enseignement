@@ -95,7 +95,7 @@ Notez:
     $0 \Delta \nu$, suivies de $\Delta \nu$, $2 \Delta \nu$, etc...
     jusqu’à $(N/2) \Delta \nu$. Le dernier point du tableau est
     $- \Delta \nu$, l’avant dernier est $-2\Delta \nu$, précédé par
-    $-3 \Delta \nu$. Vous pourrez vérifier que le point que le dernier
+    $-3 \Delta \nu$. Vous pourrez vérifier que le dernier
     point du tableau est égal au deuxième, etc...
 
 ![Illustration d'un signal numérique et de sa transformée de Fourier,
@@ -125,7 +125,7 @@ MATLAB.[]{data-label="fig:signalEtFFT"}](assets/Numerisation.pdf){width="4in"}
    $$
 
    $$
-   F(k) = \frac{1}{2\pi}\int_{-\infty}^{+\infty} \frac{e^{i(k_\circ+k) x}}{2}+\frac{1}{2\pi}\int_{-\infty}^{+\infty}\frac{e^{-i(k_\circ-k) x}}{2} dx,
+   F(k) = \frac{1}{2\pi}\int_{-\infty}^{+\infty} \frac{e^{i(k_\circ+k) x}}{2}dx+\frac{1}{2\pi}\int_{-\infty}^{+\infty}\frac{e^{-i(k_\circ-k) x}}{2} dx,
    $$
    $$
    F(k) = \delta(k+k_\circ) + \delta(k-k_\circ),
