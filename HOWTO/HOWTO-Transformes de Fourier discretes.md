@@ -35,7 +35,7 @@ $m^{-1}$ ou $s^{-1}$. Pour calculer cette transformation, la fonction
 $f(x)$ doit être connue sur l’intervalle complet de $-\infty$ à
 $+\infty​$.
 
-> Peut-être vous demandez-vous pourquoi l'équation $(\ref{defFourier})$ est complexe? Voir [note](#Phaseurs_et_autres) ci-dessous.
+> Peut-être vous demandez-vous pourquoi l'équation $(\ref{defFourier})$ est complexe? Voir [note](#Phaseurs-et-autres) ci-dessous.
 
 Au laboratoire, on peut mesurer des signaux par échantillonnage discret:
 plutôt que d’avoir la représentation continue du signal, on ne connait
@@ -43,7 +43,6 @@ la valeur de la fonction qu’à certains points discrets
 $x_j = j \Delta x$. On écrira parfois simplement $f[x_i]$, pour rappeler
 la syntaxe informatique pour l’accès d’un tableau. On définit la
 transformée de Fourier discrète comme:
-
 $$
 F[\nu_i] = \sum_{j=0}^{N-1} f[x_j] e^{i 2 \pi \nu_i x_j}
 $$
