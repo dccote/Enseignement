@@ -4,8 +4,7 @@ Introduction
 La transformée de Fourier est un outil mathématique qui permet de
 représenter une fonction (dans le temps ou l'espace par exemple) par une autre fonction qui contient la même
 information totale, mais qui l'exprime sous la forme d'une somme de composantes harmoniques (en fréquences temporelles ou spatiales). On peut parler de série
-temporelle et de son spectre par exemple de façon interchangeable, les deux contenant la même
-information mais la présentant différemment. Le document présente les
+temporelle et de son spectre par exemple de façon interchangeable, les deux contenant la même information mais la présentant différemment. Le document présente les
 notions pratiques de base pour pouvoir adéquatement analyser un signal
 et obtenir son spectre de Fourier, étalonné correctement.
 
