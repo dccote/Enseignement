@@ -59,15 +59,17 @@ Le rapport de **10 pages** de texte (page titre et annexes en sus) doit donc êt
 
 **Graphiques**
 
-Les graphiques doivent être lisibles. Le but d'un graphique est de donner plus d'information que ce qui serait donné autrement (par du texte, un tableau, etc.). Donc, à retenir:
+Les graphiques doivent être lisibles et clairs. Le but d'un graphique est de donner plus d'information que ce qui serait donné autrement (par du texte, un tableau, etc.). Donc, à retenir:
 
 1. Des axes bien identifiés avec des lettres assez grandes, pas trop petites.
 
-2. Des symboles de points, lorsque nécessaire, assez différents pour chaque courbe: rond plein, rond vide, c'est beaucoup mieux que rond plein losange plein.
+2. Des symboles de points, lorsque nécessaire, assez différents pour chaque courbe: rond plein, rond vide, c'est beaucoup mieux que rond plein et losange plein.
 
-3. Lorsque possible, il est préférable d'utiliser une solution noir et blanc avec des courbes pleine, pointillée, etc...: on ne sait pas comment le lecteur l'imprimera.  Cependant, parfois, c'est impossible et on utilise les couleurs.
+3. Lorsque possible, il est préférable d'utiliser une solution noir et blanc avec des courbes pleines, pointillées, etc...: on ne sait pas comment le lecteur l'imprimera.  Cependant, parfois, c'est impossible et on utilise les couleurs.
 
-4. Lorsque vous exportez vos graphiques, assurez-vous d'avoir une résolution très élevée (600 dpi) si vous utilisez un format pixelisé comme PNG, TIFF, etc...  Vous devriez préférer PDF lorsque possible si votre logiciel le supporte. Sinon, voici comment obtenir une bonne résolution en Python ou MATLAB:
+4. On ne met pas de titre en haut.  On met plutot une légende (i.e. *caption* en anglais) qui explique de façon indépendante du texte les points saillants du graphique. Par exemple, on dirait: "Figure 1: Intensité de l'onde (en dB) pour différentes distances entre les prismes. On voit une section de dépendance linéaire pour les distances intermédiaires qui permet d'obtenir le coefficient d'atténuation exponentielle de l'onde de $\alpha = 90~\text{cm}^{-1}$ à l'aide d'une régression linéaire."
+
+5. Lorsque vous exportez vos graphiques, assurez-vous d'avoir une résolution très élevée (600 dpi) si vous utilisez un format pixelisé comme PNG, TIFF, etc...  Vous devriez préférer PDF lorsque possible si votre logiciel le supporte. Sinon, voici comment obtenir une bonne résolution en Python ou MATLAB:
 
    1. Dans Python: ajoutez dpi=600 pour les format pixelisés
 
@@ -97,6 +99,6 @@ Pour référence, voici des exemples de bons et mauvais graphiques:
 
 ![Exemple_graphiques](assets/Exemple_graphiques.png)
 
-Voici un bon tableau.  Notez qu'on ne met pas de lignes verticales dans un tableau, et ce, même si Microsoft Word continue de vous le faire par défaut.
+Voici un bon tableau.  Notez qu'on ne met pas de lignes verticales dans un tableau, et ce, même si Microsoft Word continue de vous le faire par défaut. On ne met pas non plus de lignes doubles et simples de tous les côtés pour montrer qu'on maitrise les différents style de $\LaTeX$. On met  une ligne simple en haut, une en bas et une pour séparer les titres des données.
 
 ![Exemple_tableau](assets/Exemple_tableau.png)
