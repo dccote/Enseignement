@@ -1,5 +1,7 @@
 [TOC]
 
+*Toute aide pour améliorer ce document est le bienvenue.*
+
 # Les systèmes de version
 
 Le *versioning* est une méthode de travail qui s'exécute à l'aide *d'outils de versioning*. Grâce à ces outils:
