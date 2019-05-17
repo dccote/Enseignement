@@ -49,18 +49,23 @@ Voici un exemple de journée de travail fait avec un logiciel de versioning dans
 4. Je peux demander a GitHub de m'ouvrir le répertoire sur mon ordinateur une fois que la copie est terminée:
    ![image-20181203191022532](assets/image-20181203191022532.png)
 
-5. Je commence a travailler avec les logiciels appropriés. J'édite les fichiers. Lorsque j'ai terminé, je **Commit** mes changements:
+5. Je commence à travailler en créant une branche ou en prenant un branche existante.
+   
+6. Je travaille avec les logiciels appropriés. J'édite les fichiers. Lorsque j'ai terminé, je **Commit** mes changements:
+
    ![image-20181203191545484](assets/image-20181203191545484.png)
 
-6. Si j'ai la permission sur ce **Repository**, je peux envoyer mes modifications (**Push**).
+7. Si j'ai la permission sur ce **Repository**, je peux envoyer mes modifications (**Push**).
 
    ![image-20181203191658308](assets/image-20181203191658308.png)
+
+8. Je demande un Pull Request pour que quelqu'un revise mon code.  Si personne n'est associé à ce projet, je merge mon code moi-même mais j'utilise Pull request quand même pour retracer les actions.
+
 
 
 ## S'inscrire
 
 1. S'inscrire pour obtenir un compte sur [GitHub.com](https://github.com/join?source=experiment-header-dropdowns-home)
-
 2. Se brancher sur github.com
 
 
