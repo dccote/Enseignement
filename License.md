@@ -1,6 +1,6 @@
 # Licence MIT
 
-Copyright (c) 2018 Daniel C. Côté
+Copyright (c) 2018-2019 Daniel C. Côté
 
 L'autorisation est accordée, gracieusement, à toute personne acquérant une copie de ces textes, code source, images et des fichiers de documentation associés (la "Bibliothèque"), de commercialiser la Bibliothèque sans restriction, notamment les droits d'utiliser, de copier, de modifier, de fusionner, de publier, de distribuer, de sous-licencier et / ou de vendre des copies de la Bibliothèque, ainsi que d'autoriser les personnes auxquelles la Bibliothèque est fournie à le faire, sous réserve des conditions suivantes :
 
