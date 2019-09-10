@@ -1,4 +1,4 @@
-# Écrire un rapport de laboratoire
+# Écrire un rapport de laboratoires
 
 ## Mise en page
 
@@ -9,16 +9,16 @@ Voici des commentaires généraux pour tous:
 1. Dans une équation,  les variables doivent être en italique mais pas les fonctions. Par exemple, on écrit:
   *y* = *m* sin*θ* + *b*      et non     y = m sinθ + b      ou     *y = m sinθ + b*
 
-  Cela se fait automatiquement dans LaTeX si vous utilisez ```$y=m\sin(\theta) +b$``` qui donne $y=m\sin\theta +b$. Remarquez le ```\``` devant le sinus. Word reconnait souvent les fonctions, mais sinon, on doit convertir en Text.
+  Cela se fait automatiquement dans LaTeX si vous utilisez `$y=m\sin(\theta) +b$` qui donne $y=n\sin\theta +b$. Remarquez le `\` devant le sinus. Word reconnait souvent les fonctions, mais sinon, on doit convertir en Text.
 
 2. Par contre, comme les unités ne sont pas des variables, elle ne doivent pas être en italique.
 
 3. De plus, il y doit y avoir un espace entre le nombre et son unité et celui-ci doit idéalement être insécable pour éviter que le chiffre et son unité se retrouvent sur deux lignes. Ainsi,
 
-   1. LaTeX: On écrit: ```$100~{\rm~mW}$``` qui donne $100~{\rm~mW}$, et non pas: ```$100 mW$``` qui donne $100 \rm{mW}$
+   1. LaTeX: On écrit: `$100~{\rm~mW}$` qui donne $100~{\rm~mW}$, et non pas: `$100 mW$` qui donne $100 \rm{mW}$
    2. Word Equation : Si vous voulez écrire un mot, vous devez utiliser: 100 {Format:Text mW}, et non pas: 100 mW. De plus les espaces sont impossible en mode Math, vous devez changer le format a Text.
 
-4. LaTeX: Pour avoir des parenthèse de la bonne grosseur, faites ```\left(``` et ```\right)``` ou ```\left[``` et ```\right]``` etc… comme dans ```$\left[ \frac{a}{b} \right]$```  qui donne $\left[ \frac{a}{b} \right]$ au lieu de ```$[ \frac{a}{b} ]$``` qui donne $[ \frac{a}{b} ]$. Dans Word, choisissez le bon "groupe" de parenthèses dans les icônes.
+4. LaTeX: Pour avoir des parenthèse de la bonne grosseur, faites `\left(` et `\right)` ou `\left[` et `\right]` etc… comme dans `$\left[ \frac{a}{b} \right]$`  qui donne $\left[ \frac{a}{b} \right]$ au lieu de `$[ \frac{a}{b} ]$` qui donne $[ \frac{a}{b} ]$. Dans Word, choisissez le bon "groupe" de parenthèses dans les icônes.
 
 5. Normalement, on gère les équations comme si elles faisaient partie du texte.  On met donc la ponctuation en conséquence et les majuscules:
 
