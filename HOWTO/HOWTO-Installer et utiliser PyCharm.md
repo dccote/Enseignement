@@ -37,6 +37,9 @@ PyCharm est un outil complet et peut parfois être intimidant, car il demande un
 
 6. Si vous avez deja créé des projets, les projets indiqueront "Project Interpreter" qui sera l'interpreteur Python pour ce projet.  Il y a peut-etre lieu de prendre le temps de le changer.
 
+7. Modifiez le module de tests selon votre choix:
+   <img src="HOWTO-Installer et utiliser PyCharm.assets/image-20200118152905378.png" alt="image-20200118152905378" style="zoom:20%;" />
+
 
 
 ## Utilisation de base
