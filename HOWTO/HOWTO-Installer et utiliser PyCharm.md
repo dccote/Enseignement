@@ -35,12 +35,19 @@ PyCharm est un outil complet et peut parfois être intimidant, car il demande un
 
    <img src="HOWTO-Installer et utiliser PyCharm.assets/image-20200118151738599.png" alt="image-20200118151738599" style="zoom:25%;" />
 
-6. Si vous avez deja créé des projets, les projets indiqueront "Project Interpreter" qui sera l'interpreteur Python pour ce projet.  Il y a peut-etre lieu de prendre le temps de le changer.
+6. Si vous avez deja créé des projets, les projets indiqueront "Project Interpreter" qui sera l'interpréteur Python pour ce projet.  Il y a peut-être lieu de prendre le temps de le changer.
 
 7. Modifiez le module de tests selon votre choix:
+
    <img src="HOWTO-Installer et utiliser PyCharm.assets/image-20200118152905378.png" alt="image-20200118152905378" style="zoom:20%;" />
+   
+8. Si vous ajoutez votre compte GitHub dans les préférences: 
+  
+   <img src="HOWTO-Installer et utiliser PyCharm.assets/image-20200118171448459.png" alt="image-20200118171448459" style="zoom:20%;" />
+   
+   vous pourrez ouvrir les projets directement:
 
-
+   <img src="HOWTO-Installer et utiliser PyCharm.assets/image-20200118171543626.png" alt="image-20200118171543626" style="zoom:25%;" /> 
 
 ## Utilisation de base
 
