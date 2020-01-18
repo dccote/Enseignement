@@ -6,13 +6,11 @@
 
 Objectif:
 
-alskhdfalkshj
+
 
 Proposition:
 
-	1. 
 
-Vous
 
 ## Microscopie HiLo
 
