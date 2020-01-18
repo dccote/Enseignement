@@ -2,11 +2,11 @@
 
 # PyCharm
 
-PyCharm est l'Environnement de Développement Intégré (IDE en anglais pour *Integrated Development Environment*) qui permet de gérer un projet et tous ses fichiers comme un tout.  Le programmeur a accès à un éditeur avec syntaxe de couleur, un debugger, un profiler, et bien d'autres choses.
+PyCharm est l'Environnement de Développement Intégré (IDE en anglais pour *Integrated Development Environment*) qui permet de gérer un projet et tous ses fichiers comme un tout.  Le programmeur a accès à un éditeur avec syntaxe de couleur, un debugger, un profiler, et bien d'autres choses. L'interface graphique rend la programmation plus simple.
 
 ## Installation
 
-1. Vous devriez probablement installer Python avec Anaconda sur votre ordinateur avant de commencer.
+1. Vous devriez probablement [installer Python avec Anaconda](HOWTO-Installer%20Python.md) sur votre ordinateur avant de commencer.
 2. Téléchargez [PyCharm](https://www.jetbrains.com/pycharm/download/#section=mac) (version Free) sur Jetbrains pour votre plateforme.  
    1. Vous pouvez aussi télécharger la version complète car les licences académiques sont gratuites. Il vous faudra fournir une adresse courriel universitaire et attendre la confirmation.
 3. Démarrer l'installateur et suivre les instructions.
