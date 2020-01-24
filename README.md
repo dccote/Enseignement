@@ -1,7 +1,7 @@
 # Enseignement
 Ce repertoire GitHub contient différents documents, scripts, figures ou autres reliés à l'enseignement du génie physique et de la physique. Tout est distribué sous la [Licence MIT](#licence-mit).
 
-Il est fortement recommandé d'utiliser le logiciel http://Typora.io pour lire les fichier avec l'extension .md (ou Markdown) même si ceux ci peuvent se lire en format texte.
+Il est fortement recommandé d'utiliser le logiciel http://Typora.io pour lire les fichiers avec l'extension .md (ou Markdown) même si ceux ci peuvent se lire en format texte.
 
 Les documents sont rassemblés comme suit:
 
