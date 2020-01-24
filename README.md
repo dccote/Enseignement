@@ -5,12 +5,12 @@ Il est fortement recommandé d'utiliser le logiciel http://Typora.io pour lire l
 
 Les documents sont rassemblés comme suit:
 
-- `HOWTO`: Documents décrivant comment accomplir une tâche. Formats markdown et PDF.
-- `Protocols`: Protocoles d'expériences.
-- `SRC`: Scripts pour accomplir certaines tâches dans différents langages.
-- `MAN`: Manuels de différents appareils pertinents.
-- `FIG`: Figures (png, pdf, etc..).
-- `DAQ`: Tutoriels sur l'acquisition de données
+- [HOWTO](./HOWTO): Documents décrivant comment accomplir une tâche. Formats markdown et PDF.
+- [Protocols](./Protocols): Protocoles d'expériences.
+- [SRC](./SRC): Scripts pour accomplir certaines tâches dans différents langages.
+- [MAN](./MAN): Manuels de différents appareils pertinents.
+- [FIG](./FIG): Figures (png, pdf, etc..).
+- [DAQ](./DAQ): Tutoriels sur l'acquisition de données.  En cours.
 
 
 
