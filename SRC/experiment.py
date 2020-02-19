@@ -55,17 +55,31 @@ class Graph:
         plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
         plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
-        self.title = ""
-        self.xlabel = "Axe x [arb. u]"
-        self.ylabel = "Axe y [arb. u]"
+        self._title = ""
         self.x = x
         self.y = y
         self.linewidth = 2
         self.markersize= 7
         (self.fig, self.axes) = plt.subplots(figsize=(6, 5))
-        self.axes.set(xlabel=self.xlabel, ylabel=self.ylabel, title=self.title)
+        self.axes.set(xlabel="X [arb. u]", ylabel="Y [arb. u]", title="")
         self.axes.plot(x, y, 'ko', markersize=self.markersize)
 
+    @property
+    def xlabel(self):
+        return self.axes.get_xlabel()
+
+    @xlabel.setter
+    def xlabel(self, label):
+        self.axes.set_xlabel(label)
+
+    @property
+    def ylabel(self):
+        return self.axes.get_ylabel()
+
+    @ylabel.setter
+    def ylabel(self, label):
+        self.axes.set_ylabel(label)
+        
     def show(self):
         plt.ioff()
         plt.show()
