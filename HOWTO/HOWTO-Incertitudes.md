@@ -1,20 +1,19 @@
 # UL-Enseignement-HOWTO- Incertitudes, Exactitude et test d'hypothèses
 
-## Règles générales au laboratoire
+## Règles *rapides* au laboratoire
 
 1. Nous supposons toujours que les erreurs sont normalement distribuées: les distributions sont donc normales, gaussiennes.
-2. Les incertitudes sur les sommes et soustractions peuvent rapidement être obtenue en additionnant les erreurs absolues de chacune: $(a\pm\Delta a) + (b \pm \Delta b) = a+b \pm (\Delta a + \Delta b)$. Deux nombres à ±1 donnent une somme ou une différence à ±2.
+2. Les incertitudes sur les sommes et soustractions peuvent rapidement être obtenue en additionnant les erreurs absolues de chacune: $(a\pm\Delta a) + (b \pm \Delta b) = a+b \pm (\Delta a + \Delta b)$. Deux nombres à ±1 donnent une somme ou une différence à ±2. *Cette règle surestime l'incertitude mais est rapide à calculer.*
 3. Les incertitudes sur les produits et quotients peuvent rapidement etre obtenue en additionnant les erreurs relatives de chacune: $(a \pm \Delta a) \times (b \pm \Delta b) = ab \pm (\Delta a / a + \Delta b/b) \%$.  Deux nombres connus à ±2% donne un produit ou un quotient à ±4%.
 4. On prend souvent "la moitié de la plus petite division" d'un appareil parce que c'est raisonnable, rapide et cela représente souvent "le pire cas".
 5. On peut prendre un grand nombre de mesures pour obtenir la distribution de facon plus précise
 6. Si une mesure avec une précision de $\Delta$ est répétée $N$ fois,  la précision sur la moyenne s'améliore à $\Delta/\sqrt{N}$.
 
-## Règles générales "rigoureuses"
+## Règles générales *rigoureuses*
 
-1. De façon plus générale, lorsque la dépendence d'une mesure sur d'autres variables est plus complexe, on fait un calcul d'erreur complet avec les différentielles partielles par rapport à chaque variable: $\Delta = \sqrt{\sum_i \left( \frac{\partial f}{\partial x_i} \Delta x_i\right)^2 }$
+1. De façon générale, lorsque la dépendence d'une mesure sur d'autres variables est plus complexe, on fait un calcul d'erreur complet avec les différentielles partielles par rapport à chaque variable: $\Delta = \sqrt{\sum_i \left( \frac{\partial f}{\partial x_i} \Delta x_i\right)^2 }$
 2. Les incertitudes des mesures ne sont pas toujours pertinentes dans une expérience
 3. On peut modifier *a posteriori* une incertitude suite à une analyse plus poussée.
-
 
 ## Signification de a ± ∆a
 
