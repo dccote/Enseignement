@@ -4,15 +4,19 @@ Ce repertoire GitHub contient différents **scripts** reliés à l'enseignement 
 * [experiment.py](experiment.py): un petit script Python pouvant être importé pour rapidement lire des fichiers `csv` en Python grâce à une classe `DataFile` et `Graph`. S'utilise simplement comme suit:
   
   ```python
-  import experiment
+  import experiment as Exp
   
   # La classe DataFile permet de rapidement lire des données .csv
-  data = experiment.DataFile('data.csv')
+  data = Exp.DataFile('data.csv')
   print(data.columns[0]) #Premiere colonne
   print(data.columns[1]) #Deuxieme colonne...
+  print(data.x) #Synonyme de columns[0]
+  print(data.y) #Synonyme de columns[1]
   
   # La classe Graph permet de rapidement faire un graphique raisonnable
-  graph = experiment.Graph(x=file.columns[0], y=file.columns[1])
+  graph = Exp.Graph(x=data.x, y=data.y)
+  graph.xlabel = "Courant [mA]"
+  graph.ylabel = "Intensité [arb. u]"
   graph.show()
   graph.save('test.pdf')
   ```

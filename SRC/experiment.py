@@ -27,6 +27,14 @@ class DataFile:
                 self.rows.append(row)
 
     @property
+    def x(self):
+        return self.columns[0]
+
+    @property
+    def y(self):
+        return self.columns[1]
+
+    @property
     def columns(self):
         nColumns = len(self.rows[0])
 
@@ -55,7 +63,6 @@ class Graph:
         plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
         plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
-        self._title = ""
         self.x = x
         self.y = y
         self.linewidth = 2
