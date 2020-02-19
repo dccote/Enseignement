@@ -13,7 +13,7 @@ print(file.columns[1]) #Deuxieme colonne...
 """
 
 class DataFile:
-    def __init__(self, filepath, delimiter=','):
+    def __init__(self, filepath):
         self.filepath = filepath
         self.rows = []
 
