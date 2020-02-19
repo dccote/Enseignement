@@ -80,8 +80,17 @@ En pratique, des fonctions existent pour effectuer un test de Student dans de no
 Dans le cas spécifique illustré ci-dessus, le test dans Python retourne comme résultat ($b$ et $r$ sont les listes des valeurs pour les feuilles bleues et roses respectivement) : 
 
 ```python
->>> scipy.stats.ttest_ind(b, r)
-Ttest_indResult(statistic=7.684227890383348, pvalue=2.975371339734147e-09)
+import numpy as np
+from scipy import stats
+
+bleues = [205,206, 205, 205, 206, 206, 205, 206, 205, 206, 205, 210, 210, 205, 210, 207, 206, 210, 206, 206, 205]
+roses = [207,208,207,207,208,207,207,207,207,208,207,210,210,207,210,207,208,210,207,207,207]
+
+(t,p) = stats.ttest_ind(bleues, roses)
+print("Resultats ttest_ind {0:0.1f}, p-value: {1:0.4f}:".format(t, p))
+print("Je suis certain à {0:0.1f}% que les distributions sont differentes".format(100*(1-p)))
+
+# Output: Ttest_indResult(statistic=7.684227890383348, pvalue=2.975371339734147e-09)
 ```
 
 Le premier chiffre du résultat est la statistique du test (t-statistics) tandis que le second est la **p-value**. Ici, la probabilité que les deux couleurs soient de même largeur est infime ($<3\times10^{-7}$ %). On peut donc conclure que nos mesures démontrent que les feuilles des deux couleurs viennent de distributions différentes.  On le savait déja en superposant une feuille rose et une bleue (puissance des mesures différentielles) mais ça ne sera pas toujours le cas... 

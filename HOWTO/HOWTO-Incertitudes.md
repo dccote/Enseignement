@@ -1,4 +1,4 @@
-# UL-Enseignement-HOWTO- Incertitudes, Exactitude et test d'hypothèses
+# HOWTO- Incertitudes, Exactitude et test d'hypothèses
 
 ## Règles *rapides* au laboratoire
 
