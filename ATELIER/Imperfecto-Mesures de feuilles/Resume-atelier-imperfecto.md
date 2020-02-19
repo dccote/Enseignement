@@ -1,6 +1,6 @@
 ## Ateliers sur la mesure de l'aire d'une feuille 
 
-30 septembre et 7 octobre 2019 - Daniel Côté et Simon Rainville
+Hiver 2020 - Daniel Côté et Simon Rainville
 
 
 
@@ -21,7 +21,7 @@
 
 - Il faut définir précisément la question avant d'entreprendre une mesure (trous, 2 côtés, ...) 
 - Il est inévitable de faire des suppositions mais on doit en être conscient et prendre l'habitude de les vérifier le plus possible. (Est-ce que la feuille est rectangulaire? Mesurer en haut et en bas.)
-- Il faut être conscient des limites de nos instruments de mesure. Idéalement, on souhaiterait les valider en les comparant avec un autre instrument. (Par exemple, notre règle n'était psa fiable.) Si on dispose d'une référence fiable et précise, on peut étalonner notre instrument de mesure et ajuster les données en conséquence. Cela peut se faire après la prise de mesure.
+- Il faut être conscient des limites de nos instruments de mesure. Idéalement, on souhaiterait les valider en les comparant avec un autre instrument. (Par exemple, notre règle n'était pas fiable.) Si on dispose d'une référence fiable et précise, on peut étalonner notre instrument de mesure et ajuster les données en conséquence. Cela peut se faire après la prise de mesure.
 - Nous supposons toujours que les erreurs sont normalement distribuées: les distributions sont donc normales (gaussiennes).
 
 
