@@ -9,7 +9,7 @@ Ce repertoire GitHub contient différents **scripts** reliés à l'enseignement 
   # La classe DataFile permet de rapidement lire des données .csv
   data = experiment.DataFile('data.csv')
   print(data.columns[0]) #Premiere colonne
-print(data.columns[1]) #Deuxieme colonne...
+  print(data.columns[1]) #Deuxieme colonne...
   
   # La classe Graph permet de rapidement faire un graphique raisonnable
   graph = experiment.Graph(x=file.columns[0], y=file.columns[1])
