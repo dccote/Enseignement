@@ -1,15 +1,17 @@
 # Enseignement-SRC
 Ce repertoire GitHub contient différents **scripts** reliés à l'enseignement du génie physique et de la physique. 
 
-* [experiment.py](experiment.py): un petit script Python pouvant être importé pour rapidement lire des fichiers `csv` en Python grâce à une classe `DataFile`. S'utilise simplement comme suit:
+* [experiment.py](experiment.py): un petit script Python pouvant être importé pour rapidement lire des fichiers `csv` en Python grâce à une classe `DataFile` et `Graph`. S'utilise simplement comme suit:
   
   ```python
-  import experiment 
+  import experiment
+  
+  # La classe DataFile permet de rapidement lire des données .csv
   data = experiment.DataFile('data.csv')
   print(data.columns[0]) #Premiere colonne
-  print(data.columns[1]) #Deuxieme colonne...
+print(data.columns[1]) #Deuxieme colonne...
   
-# La classe Graph permet de rapidement faire un graphique raisonnable
+  # La classe Graph permet de rapidement faire un graphique raisonnable
   graph = experiment.Graph(x=file.columns[0], y=file.columns[1])
   graph.show()
   graph.save('test.pdf')
