@@ -70,13 +70,13 @@ Nous en sommes encore à évaluer l'experience.
 
 L'étalonnage de la règle *Imperfecto* obtenu à partir de la photo et d'une règle de reference est le suivant:
 
-![image-20180920154513474](assets/image-20180920154513474.png)
+![image-20180920154513474](Imperfecto.assets/image-20180920154513474.png)
 
 ## Annexe 1: Mes donnnées, largeur feuille rose
 
 J'ai mesuré la feuille rose: [20.55, 20.55, 20.52, 20.52, 20.55, 20.55, 20.56, 20.55, 20.53, 20.55, 20.57]
 
-![image-20180920133158193](assets/image-20180920133158193.png)
+<img src="Imperfecto.assets/image-20180920133158193.png" alt="image-20180920133158193" style="zoom:50%;" />
 
 ## Annexe 2: Tests d'hypothèse
 
