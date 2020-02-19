@@ -1,14 +1,25 @@
 import csv
 import matplotlib.pyplot as plt
 
-""" Une classe DataFile pour lire les données de fichiers CSV. A utiliser
+""" Une classe DataFile pour lire les données de fichiers CSV et
+une class Graph pour voir et sauvegarder un graphique. A utiliser
 comme suit:
 
-import experiment # Copiez le fichier experiment.py dans votre repertoire
+import experiment as Exp
 
-file = experiment.DataFile('data.csv')
-print(file.columns[0]) #Premiere colonne
-print(file.columns[1]) #Deuxieme colonne...
+# La classe DataFile permet de rapidement lire des données .csv
+data = Exp.DataFile('data.csv')
+print(data.columns[0]) #Premiere colonne
+print(data.columns[1]) #Deuxieme colonne...
+print(data.x) #Synonyme de columns[0]
+print(data.y) #Synonyme de columns[1]
+
+# La classe Graph permet de rapidement faire un graphique raisonnable
+graph = Exp.Graph(x=data.x, y=data.y)
+graph.xlabel = "Courant [mA]"
+graph.ylabel = "Intensité [arb. u]"
+graph.show()
+graph.save('test.pdf')
 
 """
 
