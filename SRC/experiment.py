@@ -1,5 +1,16 @@
 import csv
 
+""" Une classe DataFile pour lire les données de fichiers CSV. A utiliser
+comme suit:
+
+import experiment # Copiez le fichier experiment.py dans votre repertoire
+
+file = experiment.DataFile('data.csv')
+print(file.columns[0]) #Premiere colonne
+print(file.columns[1]) #Deuxieme colonne...
+
+"""
+
 class DataFile:
     def __init__(self, filepath, delimiter=','):
         self.filepath = filepath
