@@ -1,5 +1,7 @@
 [TOC]
 
+*English version at the bottom*
+
 *Toute aide pour améliorer ce document est le bienvenue.*
 
 # Francais
