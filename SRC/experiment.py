@@ -59,8 +59,12 @@ class DataFile:
 
         return columns
 
+class DataCurve:
+	def __init__(self, x=None, y=None, dx=None, dy=None):
+
+
 class Graph:
-    def __init__(self, x=None, y=None):
+    def __init__(self, x=None, y=None, dx=None, dy=None):
 
         SMALL_SIZE = 11
         MEDIUM_SIZE = 13
@@ -76,11 +80,19 @@ class Graph:
 
         self.x = x
         self.y = y
+        self.dx = dx
+        self.dy = dy
         self.linewidth = 2
         self.markersize= 7
         (self.fig, self.axes) = plt.subplots(figsize=(6, 5))
         self.axes.set(xlabel="X [arb. u]", ylabel="Y [arb. u]", title="")
-        self.axes.plot(x, y, 'ko', markersize=self.markersize)
+        if dx is None and dy is None:
+	        self.axes.plot(x, y, 'ko', markersize=self.markersize)
+	    elif dy is not None:
+	    	self.axes.errorbar(x, y, 'ko', markersize=self.markersize)
+
+	def addCurve(self, x=None, y=None, dx=None, dy=None):
+		return
 
     @property
     def xlabel(self):
@@ -106,3 +118,9 @@ class Graph:
         self.fig.savefig(filepath, dpi=600)
 
 
+if __name__ == "__main__":
+	data = Exp.DataFile('data.csv')
+	print(data.columns[0]) #Premiere colonne
+	print(data.columns[1]) #Deuxieme colonne...
+	print(data.x) #Synonyme de columns[0]
+	print(data.y) #Synonyme de columns[1]
