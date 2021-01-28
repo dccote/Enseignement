@@ -22,34 +22,37 @@ En terminant:
 
 ### Commentaires généraux
 
-1. **On mesure des tensions, en Volts**. La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances) et si on le mesurait en série on devrait s'inclure dans le système.  Les deux options ne sont pas pratique.
+1. La perte de tension à travers une résistance est donnée par $V = RI$
+2. La puissance dissipée par un élément est $P = VI $
+3. **On mesure des tensions, en Volts**. La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances) et si on le mesurait en série on devrait s'inclure dans le système.  Les deux options ne sont pas pratique.
    1. Un capteur qui retourne un courant devra être adapté pour s'intégrer au reste de notre circuit
-2. Les résistances, capacitances et inductance sont regroupés sous le terme général *impédance*, qui est une résistance complexe.
-3. Une source de tension idéale a une impédance de sortie faible.
-4. Une source de courant idéale a une impédance de sortie élevée.
-5. On veut souvent qu'un appareil ait une impédance d'entrée de 50 Ω (s'il accepte du courant) ou élevé par exemple 1MΩ (s'il doit être en parallèle sans affecter le circuit).
-6. Finalement, on décrira souvent les courants et les tensions en termes de fréquences d'oscillation.  On parle de DC pour les fréquences 0 Hz et AC pour les autres.
+4. Les résistances, capacitances et inductance sont regroupés sous le terme général *impédance*, qui est une résistance complexe.
+5. Une source de tension idéale a une impédance de sortie faible.
+6. Une source de courant idéale a une impédance de sortie élevée.
+7. On veut souvent qu'un appareil ait une impédance d'entrée de 50 Ω (s'il accepte du courant) ou élevé par exemple 1MΩ (s'il doit être en parallèle sans affecter le circuit).
+8. Finalement, on décrira souvent les courants et les tensions en termes de fréquences d'oscillation.  On parle de DC pour les fréquences 0 Hz et AC pour les autres.
    1. Ne pas confondre $f$ et $\omega = 2\pi f$.  
 
 
 
 **Règles du pouce**
 
-- $V = RI$
+
+
 - **Résistance**
   1. Une résistance moyenne est de 10 kΩ.
   2. Une petite résistance résiduelle est de l'ordre de 1 Ω ou moins
   3. Une grande résistance d'entrée est de l'ordre de 1 à 10 MΩ.
+  4. L'impédance d'une résistance est de $R$
 - **Capacitance**
-
-  1. Une capacitance moyenne est environ 1 µF
+1. Une capacitance moyenne est environ 1 µF
   2. Une capacitance ne laisse pas passer le courant continu. Son impédance diminue avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
   3. L'impédance d'une capacitance est $\frac{1}{j 2\pi f C}$.
-  4. Les capacitance résiduelles de connecteurs sont de l'ordre de quelques pF.
-  5. Un câble a une capacitance de 30 pF/m
+  4. Les capacitances résiduelles de connecteurs sont de l'ordre de quelques pF.
+  5. Un câble "standard" a une capacitance de 30 pF/m
 - **Inductance**
   1. On travaille très peu avec les inductances
-  2. Une inductance s'oppose au courant qui varie vite, et pas du tout au courant qui n'osccile pas. Son impédance augmente avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
+  2. Une inductance s'oppose au courant qui varie vite, et pas du tout au courant qui n'oscille pas. Son impédance augmente avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
   3. L'impédance d'une inductance est $j 2 \pi f L$
 - **Tension**
 
@@ -67,6 +70,21 @@ En terminant:
   1. Une batterie de maison AA contient 2000 mA-h (milli-ampère $\times$ heure).
 - **Filtres**
   1. Un filtre RC a un temps caractéristique de $\tau = RC$ en  secondes
+
+
+
+## Équipement
+
+
+
+| Description       |                          Apparence                           |
+| ----------------- | :----------------------------------------------------------: |
+| Multimètre        | <img src="HOWTO-Electronique.assets/multimeter-523153_960_720-5768a8193df78ca6e45dc883.jpg" alt="What Is a Multimeter?" style="zoom:25%;" /> |
+| Câbles BNC        | <img src="HOWTO-Electronique.assets/2249-C-12.jpg" alt="2249-C-12" style="zoom:25%;" /> |
+| Prises alligators | <img src="HOWTO-Electronique.assets/71IFNUMDJML._AC_SL1500_.jpg" alt="img" style="zoom:12%;" /> |
+| Prises bananes    | <img src="HOWTO-Electronique.assets/1325-02.jpg" alt="1325-02" style="zoom:25%;" /> |
+
+
 
 
 
