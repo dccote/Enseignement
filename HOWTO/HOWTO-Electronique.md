@@ -7,11 +7,15 @@ En terminant:
 1. Briser un fil, brûler une résistance, écraser un condensateur, brancher un transistor à l'envers, péter un chip à 10$ fait partie de l'apprentissage. Ce n'est pas grave: c'est quelques dollars. Voir 2.
 2. Brancher 100V dans un oscilloscope de 3000$ et le péter, mettre ses mains ou sa langue sur 1200V et finir à l'hôpital, brûler une puce à 200\$ qui a un temps de livraison de 8 semaines, faire sauter le microntrolleur d'un laser commercial, fait partie de la liste des choses qui font que les gens se font mettre dehors.  Apprenez la différence avec 1.
 
+La meilleure façon d'apprendre l'électronique, c'est d'en faire, c'est comme la musique :
+
+> “When I think about kids watching a TV show like American Idol or The Voice, then they think, ‘Oh, OK, that’s how you become a musician, you stand in line for eight fucking hours with 800 people at a convention center and… then you sing your heart out for someone and then they tell you it’s not fuckin’ good enough.’ Can you imagine?” he implores. “It’s destroying the next generation of musicians! Musicians should go to a yard sale and buy and old fucking drum set and get in their garage and just suck. And get their friends to come in and they’ll suck, too. And then they’ll fucking start playing and they’ll have the best time they’ve ever had in their lives and then all of a sudden they’ll become Nirvana. Because that’s exactly what happened with Nirvana. Just a bunch of guys that had some shitty old instruments and they got together and started playing some noisy-ass shit, and they became the biggest band in the world. That can happen again! You don’t need a fucking computer or the internet or The Voice or American Idol.” - Dave Grohl
+
 
 
 ## Vraiment: les bases
 
-![image-20210128123012217](HOWTO-Electronique.assets/image-20210128123012217.png)
+![](HOWTO-Electronique.assets/image-20210128131705277.png)
 
 1. Une source de tension idéale donne une différence de potentiel constante entre ses bornes, quelle que soit la résistance connectée entre ses bornes.
 2. Une source de courant idéale donne un courant constant quelle que soit la résistance connectée entre ses bornes.
@@ -35,7 +39,7 @@ En terminant:
 
 
 
-**Règles du pouce**
+### Règles du pouce
 
 
 
@@ -84,27 +88,38 @@ En terminant:
 | Prises alligators | <img src="HOWTO-Electronique.assets/71IFNUMDJML._AC_SL1500_.jpg" alt="img" style="zoom:12%;" /> |
 | Prises bananes    | <img src="HOWTO-Electronique.assets/1325-02.jpg" alt="1325-02" style="zoom:25%;" /> |
 
+##Les imperfections
+
+![image-20210128131736576](HOWTO-Electronique.assets/image-20210128131736576.png)
+
+## Les équivalences
+
+Équivalent de Norton:
+
+$R_\text{Th} = R_\text{No}$
+
+$V_\text{Th} = I_\text{No} R_\text{No}$
+
+$I_\text{No} = \frac{V_\text{Th}}{R_\text{Th}}$
 
 
 
+![img](HOWTO-Electronique.assets/260px-Norton-to-thevenin-20210128132127347.png)
 
 ### Blocs fonctionnels à décrire
 
-1. RC HP, LP
+1. Voltage divider
+2. RC HP, LP
+3. Op-amp follower/buffer
+4. Op-amp gain
+5. Op-amp transimpedance
+6. Op-amp adder
+7. Numeriseur
+8. Instrumentaiton amplifier
+9. https://artofelectronics.net
 
-2. Op-amp follower/buffer
 
-3. Op-amp gain
 
-4. Op-amp transimpedance
-
-5. Op-amp adder
-
-6. Numeriseur
-
-7. Instrumentaiton amplifier
-
-8. https://artofelectronics.net
 
 
 
