@@ -7,6 +7,17 @@ En terminant:
 1. Briser un fil, brûler une résistance, écraser un condensateur, brancher un transistor à l'envers, péter un chip à 10$ fait partie de l'apprentissage. Ce n'est pas grave: c'est quelques dollars. Voir 2.
 2. Brancher 100V dans un oscilloscope de 3000$ et le péter, mettre ses mains ou sa langue sur 1200V et finir à l'hôpital, brûler une puce à 200\$ qui a un temps de livraison de 8 semaines, faire sauter le microntrolleur d'un laser commercial, fait partie de la liste des choses qui font que les gens se font mettre dehors.  Apprenez la différence avec 1.
 
+
+
+## Vraiment: les bases
+
+![image-20210128123012217](HOWTO-Electronique.assets/image-20210128123012217.png)
+
+1. Une source de tension idéale donne une différence de potentiel constante entre ses bornes, quelle que soit la résistance connectée entre ses bornes.
+2. Une source de courant idéale donne un courant constant quelle que soit la résistance connectée entre ses bornes.
+3. Un voltmètre idéal a une résistance "infinie" et mesure la différence de potentiel entre ses bornes sans prendre de courant.
+4. Un ampèremètre idéal a une résistance nulle et mesure le courant qui passe entre ses bornes sans perte de potentiel.
+
 ## Être opérationnel
 
 ### Commentaires généraux
@@ -18,7 +29,7 @@ En terminant:
 4. Une source de courant idéale a une impédance de sortie élevée.
 5. On veut souvent qu'un appareil ait une impédance d'entrée de 50 Ω (s'il accepte du courant) ou élevé par exemple 1MΩ (s'il doit être en parallèle sans affecter le circuit).
 6. Finalement, on décrira souvent les courants et les tensions en termes de fréquences d'oscillation.  On parle de DC pour les fréquences 0 Hz et AC pour les autres.
-   1. Ne pas mélanger $f$ et $\omega = 2\pi f$.  
+   1. Ne pas confondre $f$ et $\omega = 2\pi f$.  
 
 
 
