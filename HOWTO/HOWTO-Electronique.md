@@ -39,18 +39,19 @@ Bon apprentissage.
 3. La puissance dissipée par un élément est $P = VI $
 4. **On mesure des tensions, en Volts**. La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances) et si on le mesurait en série on devrait s'inclure dans le système.  Les deux options ne sont pas pratique.
    1. Un capteur qui retourne un courant devra être adapté pour s'intégrer au reste de notre circuit
-5. Les résistances, capacitances et inductance sont regroupés sous le terme général *impédance*, qui est une résistance complexe.
-6. Finalement, on décrira souvent les courants et les tensions en termes de fréquences d'oscillation.  On parle de DC pour les fréquences 0 Hz et AC pour les autres.
+5. Si on retourne vraiment à la base de l'électromagnétisme, une différence de potentiel entre deux points (i.e. un gradient) nous dit qu'il y a un champ électrique entre ces deux points. Donc lorsque je mets une différence de potentiel entre deux points, les charges sont accélérées (i.e. il y a du courant).
+6. Les résistances, capacitances et inductance sont regroupés sous le terme général *impédance*, qui est une résistance complexe.
+7. Finalement, on décrira souvent les courants et les tensions en termes de fréquences d'oscillation.  On parle de DC pour les fréquences 0 Hz et AC pour les autres.
    1. Ne pas confondre $f$ et $\omega = 2\pi f$.  
-7. Ainsi, puisque les circuits sont assez souvent linéaires, on décomposera en fréquences le courant et les tensions
+8. Ainsi, puisque les circuits sont assez souvent linéaires, on décomposera en fréquences le courant et les tensions
 
 
 
-### Règles (très) générales
+## Règles (très) générales
 
 - **Tension**
   1. Une tension moyenne dans un circuit simple est de l'ordre du Volt.
-  2. Une tension d'alimentation dans un circuit analogique est typiquement ±12V ou ±15V
+  2. # Une tension d'alimentation dans un circuit analogique est typiquement ±12V ou ±15V
   3. Un circuit logique de type TTL (i.e. *Transistor-To-Transistor-Logic*) fonctionne avec 0 V et 5 V comme signaux.
   4. Mesurer 1 Volt est facile.  Mesure 1 mV est difficile. Mesure 10 V est très facile.
   5. Un bruit typique dans les circuits de Monsieur-tout-monde est de l'ordre de quelques mVs.
@@ -77,7 +78,7 @@ Bon apprentissage.
   2. Une inductance s'oppose au courant qui varie vite, et pas du tout au courant qui n'oscille pas. Son impédance augmente avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
   3. L'impédance d'une inductance est $j 2 \pi f L$
 - **Batterie**
-1. Une batterie de maison AA contient une charge de 2000 mA-h (milli-ampère $\times$ heure), c'est-à-dire qu'elle peut fournir 2000 mA pendant une heure, ou 100 mA pendant 20 heures. 
+  1. Une batterie de maison AA contient une charge de 2000 mA-h (milli-ampère $\times$ heure), c'est-à-dire qu'elle peut fournir 2000 mA pendant une heure, ou 100 mA pendant 20 heures. 
 - **Filtres**
   1. Un filtre RC a un temps caractéristique de $\tau = RC$ en  secondes
 
@@ -95,6 +96,19 @@ Bon apprentissage.
    3. Puisque l'on sait $V_c$ et $R_c$, on peut calculer **le courant** qui passe dans la résistance de charge, et donc dans le circuit, avec $I= V_c/R_c$.
    4. Puisque la tension appliquée est $V_s$, et qu'une perte de tension de $V_c$ est mesurée à travers la résistance, on sait que la **perte de tension** dans la résistance interne est $V_i = V_s - V_c$ car la boucle doit passer de $V_c$ à 0V.
    5. On sait la perte de tension dans la résistance interne et on sait le courant, donc la résistance interne est simplement $R_i = R_c(V_s - V_c)/V_c$.
+
+## Les résistances
+
+À la base de plusieurs circuits, il y a les résistances.  Elles viennent en différents formats:
+
+1. Elles ont des **valeurs standards** qui semblent bizarres (10, 12, 15, ... 82, etc...), mais il y a une raison: les valeurs par décade (entre 10 et 100, entre 100 et 1000, etc...) sont séparées de façon égales sur une échelle logarithmique, et toute combinaison de 2 résistances peut être à moins de 10% de n'importe quelle valeur désirée. Il existe plusieurs groupes: E12, E24, E48, E96 et E192 qui respectivement permettent une précision de 10% , 5%, 2%, 1% et 0.5%. De plus, il y a des valeurs standards de 10$\Omega$, 100$\Omega$, 1k$\Omega$, 10k$\Omega$, 100k$\Omega$ et 1M$\Omega$ parce que des fois, dans la vie, on aime les chiffres ronds.
+2. Elles peuvent être faites pour **dissiper la puissance** un peu, moyen, beaucoup, ou énormément. Les plus fréquentes en laboratoires sont de 0.5W.  Plus elles sont grosses, plus elles dissipent beaucoup de puissance.
+   <img src="HOWTO-Electronique.assets/resistor-wattage.jpg" alt="resistor wattage" style="zoom:25%;" />
+3. Il existe des résistances variables appelées *potentiomètres*. Certains peuvent se mettre directement sur un *breadboard* (souvent ils sont bleus), d'autre se mettent sur des panneaux de contrôles et ils ont un bouton. Avec un bouton ou avec un tournevis, on peut ajuster la valeur de la résistance.
+   <img src="HOWTO-Electronique.assets/3362P SERIES.jpg" alt="3362P Series" style="zoom:10%;" /> <img src="HOWTO-Electronique.assets/1200px-Electronic-Component-Potentiometer.jpg" alt="Potentiometer - Wikipedia" style="zoom:8%;" />
+4. Les résistances sont simplement des mauvais conducteurs, avec des obstacles en différentes concentration pour obtenir une résistance désirée.  Ainsi,  au niveau microscopique, une charge accélèrera jusqu'à ce qu'elle entre en collision, recommencera à accélérer, etc... Au niveau macroscopique (i.e. intégré sur un temps de µs par exemple), elle semble avoir une vitesse moyenne constante.
+
+
 
 ## Les équivalences
 
@@ -116,12 +130,13 @@ $I_\text{No} = \frac{V_\text{Th}}{R_\text{Th}}$
 
 
 
-| Description           |                          Apparence                           |
-| --------------------- | :----------------------------------------------------------: |
-| Multimètre            | <img src="HOWTO-Electronique.assets/multimeter-523153_960_720-5768a8193df78ca6e45dc883.jpg" alt="What Is a Multimeter?" style="zoom:25%;" /> |
-| Câbles BNC ou coaxial | <img src="HOWTO-Electronique.assets/2249-C-12.jpg" alt="2249-C-12" style="zoom:25%;" /> |
-| Prises alligators     | <img src="HOWTO-Electronique.assets/71IFNUMDJML._AC_SL1500_.jpg" alt="img" style="zoom:12%;" /> |
-| Prises bananes        | <img src="HOWTO-Electronique.assets/1325-02.jpg" alt="1325-02" style="zoom:25%;" /> |
+| Description                                           |                          Apparence                           |
+| ----------------------------------------------------- | :----------------------------------------------------------: |
+| Multimètre                                            | <img src="HOWTO-Electronique.assets/multimeter-523153_960_720-5768a8193df78ca6e45dc883.jpg" alt="What Is a Multimeter?" style="zoom:15%;" /> |
+| Câbles BNC ou coaxial                                 | <img src="HOWTO-Electronique.assets/2249-C-12.jpg" alt="2249-C-12" style="zoom:12%;" /> |
+| Prises alligators                                     | <img src="HOWTO-Electronique.assets/71IFNUMDJML._AC_SL1500_.jpg" alt="img" style="zoom:12%;" /> |
+| Prises bananes                                        | <img src="HOWTO-Electronique.assets/1325-02.jpg" alt="1325-02" style="zoom:15%;" /> |
+| Résistances pour différentes dissipation de puissance | <img src="HOWTO-Electronique.assets/resistor-wattage.jpg" alt="resistor wattage" style="zoom:20%;" /> |
 
 
 
