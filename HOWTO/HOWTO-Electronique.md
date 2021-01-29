@@ -2,13 +2,17 @@
 
 
 
+Une version PDF de ce document [existe](https://github.com/dccote/Enseignement/blob/master/HOWTO/HOWTO-Electronique.pdf).
+
+Une version Markdown peut être lu avec les équations avec le logiciel gratuit [Typora](http://typora.io).
+
 [TOC]
 
 ## Prélude
 
 On ne s'en sort pas: la connaissance de l'électronique est essentielle pour accomplir les moindre tâches en optique: photodétection, numérisation, contrôle d'appareils, interface microprocesseur, gestion USB, etc... Il y a deux façons d'aborder ce domaine: 1) en devenant opérationnel ou 2) en comprenant[^1]. S'il y avait un seul conseil que je donnerais: les circuits, aussi complexes soient-ils, se séparent toujours en petits blocs fonctionnels. Savoir reconnaître les blocs représente 90% de la bataille.  J'espère avec ce document faire le premier aspect (vous rendre opérationnel) et avec un peu de chance, le deuxième (vous aider à comprendre).
 
-La meilleure façon d'apprendre l'électronique, c'est d'en faire d'être mauvais, et de s'améliorer. Pour citer Dave Grohl, c'est comme la musique :
+La meilleure façon d'apprendre l'électronique, c'est d'en faire, d'être mauvais, et de s'améliorer. Pour citer Dave Grohl, c'est comme la musique :
 
 > “When I think about kids watching a TV show like American Idol or The Voice, then they think, ‘Oh, OK, that’s how you become a musician, you stand in line for eight [...] hours with 800 people at a convention center and… then you sing your heart out for someone and then they tell you it’s not [...] good enough.’ Can you imagine?” he implores. “It’s destroying the next generation of musicians! Musicians should go to a yard sale and buy and old [...] drum set and get in their garage and just suck. And get their friends to come in and they’ll suck, too. And then they’ll [...] start playing and they’ll have the best time they’ve ever had in their lives and then all of a sudden they’ll become Nirvana. Because that’s exactly what happened with Nirvana. Just a bunch of guys that had some shitty old instruments and they got together and started playing some noisy-ass shit, and they became the biggest band in the world. That can happen again! You don’t need a [...] computer or the internet or The Voice or American Idol.” - Dave Grohl
 
@@ -30,8 +34,8 @@ Bon apprentissage.
 
 ## Commentaires généraux
 
-1. La perte de tension à travers une résistance est donnée par $V = RI$
-2. Le courant dans un circuit est donné par la tension aux bornes divisée par la résistance totale $I = {V}/{R_t}$
+1. La perte de tension à travers une résistance est donnée par le courant qui passe à travers multiplié par la résistance $V = RI$
+2. Le courant qui passe dans un circuit est donné par la tension aux bornes de ce circuit divisée par la résistance totale du circuit $I = {V}/{R_t}$
 3. La puissance dissipée par un élément est $P = VI $
 4. **On mesure des tensions, en Volts**. La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances) et si on le mesurait en série on devrait s'inclure dans le système.  Les deux options ne sont pas pratique.
    1. Un capteur qui retourne un courant devra être adapté pour s'intégrer au reste de notre circuit
@@ -60,6 +64,8 @@ Bon apprentissage.
   2. Une petite résistance résiduelle est de l'ordre de 1 à 10 Ω ou moins
   3. Une grande résistance d'entrée est de l'ordre de 1 à 10 MΩ.
   4. L'impédance d'une résistance est simplement $R$
+  5. Les résistances en série s'additionnent pour donner la résistance totale $R_t = R_1 + R_2$
+  6. En parallèle, on additionnent les inverses $R_t^{-1} = R_1^{-1} + R_2^{-1}$. Si ça vous surprend, c'est très simple: l'inverse de la résistance s'appelle la conductance.  Si j'ai deux "conduits" en parallèle, la "conductance" totale est la somme des deux, comme avec des tuyaux d'eau.
 - **Capacitance**
 1. Une capacitance moyenne est environ 1 µF
   2. Une capacitance ne laisse pas passer le courant continu. Son impédance diminue avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
@@ -71,7 +77,7 @@ Bon apprentissage.
   2. Une inductance s'oppose au courant qui varie vite, et pas du tout au courant qui n'oscille pas. Son impédance augmente avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
   3. L'impédance d'une inductance est $j 2 \pi f L$
 - **Batterie**
-1. Une batterie de maison AA contient 2000 mA-h (milli-ampère $\times$ heure).
+1. Une batterie de maison AA contient une charge de 2000 mA-h (milli-ampère $\times$ heure), c'est-à-dire qu'elle peut fournir 2000 mA pendant une heure, ou 100 mA pendant 20 heures. 
 - **Filtres**
   1. Un filtre RC a un temps caractéristique de $\tau = RC$ en  secondes
 
@@ -79,7 +85,7 @@ Bon apprentissage.
 
 ##Les appareils réels
 
-![image-20210128131736576](HOWTO-Electronique.assets/image-20210128131736576.png)
+![](HOWTO-Electronique.assets/image-20210129113556657.png)
 
 
 
