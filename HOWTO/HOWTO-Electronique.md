@@ -39,11 +39,11 @@ Bon apprentissage.
 3. La puissance dissipée par un élément est $P = VI $
 4. **On mesure des tensions, en Volts**. La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances) et si on le mesurait en série on devrait s'inclure dans le système.  Les deux options ne sont pas pratique.
    1. Un capteur qui retourne un courant devra être adapté pour s'intégrer au reste de notre circuit
-5. Si on retourne vraiment à la base de l'électromagnétisme, une différence de potentiel entre deux points (i.e. un gradient) nous dit qu'il y a un champ électrique entre ces deux points. Donc lorsque je mets une différence de potentiel entre deux points, les charges sont accélérées (i.e. il y a du courant).
+5. Si on retourne vraiment à la base de l'électromagnétisme, une différence de potentiel entre deux points (i.e. un gradient) nous dit qu'il y a un champ électrique entre ces deux points ($\nabla V \propto E$). Donc lorsque je mets une différence de potentiel entre deux points, les charges sont accélérées (i.e. il y a du courant).
 6. Les résistances, capacitances et inductance sont regroupés sous le terme général *impédance*, qui est une résistance complexe.
 7. Finalement, on décrira souvent les courants et les tensions en termes de fréquences d'oscillation.  On parle de DC pour les fréquences 0 Hz et AC pour les autres.
-   1. Ne pas confondre $f$ et $\omega = 2\pi f$.  
-8. Ainsi, puisque les circuits sont assez souvent linéaires, on décomposera en fréquences le courant et les tensions
+   1. Ne pas confondre la *fréquence* $f$ et la *fréquence radiale*  $\omega = 2\pi f$.  Personne n'utilise la fréquence radiale: on parle toujours en fréquence $f$.
+8. Ainsi, puisque les circuits sont assez souvent linéaires, on décomposera en fréquences le courant et les tensions, et c'est pour ça que les impédances imaginaires et réelles (ci-dessous) deviennent utiles
 
 
 
@@ -61,22 +61,25 @@ Bon apprentissage.
   3. Un courant très important est 1A
 
 - **Résistance**
-  1. Une résistance moyenne est de 10 kΩ.
-  2. Une petite résistance résiduelle est de l'ordre de 1 à 10 Ω ou moins
-  3. Une grande résistance d'entrée est de l'ordre de 1 à 10 MΩ.
-  4. L'impédance d'une résistance est simplement $R$
-  5. Les résistances en série s'additionnent pour donner la résistance totale $R_t = R_1 + R_2$
-  6. En parallèle, on additionnent les inverses $R_t^{-1} = R_1^{-1} + R_2^{-1}$. Si ça vous surprend, c'est très simple: l'inverse de la résistance s'appelle la conductance.  Si j'ai deux "conduits" en parallèle, la "conductance" totale est la somme des deux, comme avec des tuyaux d'eau.
+  1. Une résistance ralentit les électrons et dissipe l'énergie que les électrons obtiennent de la tension.
+  2. Une résistance moyenne est de 10 kΩ.
+  3. Une petite résistance résiduelle est de l'ordre de 1 à 10 Ω ou moins
+  4. Une grande résistance d'entrée est de l'ordre de 1 à 10 MΩ.
+  5. L'impédance d'une résistance est simplement $R$
+  6. On parle de **résistance de charge** pour désigner toute résistance à travers laquelle une source se décharge. Il s'agit d'un terme vraiment général.  On va dire: "*La charge pour la source de tension est de 50Ω*".
+  7. Les résistances en série s'additionnent pour donner la résistance totale $R_t = R_1 + R_2$
+  8. En parallèle, on additionnent les inverses $R_t^{-1} = R_1^{-1} + R_2^{-1}$. Si ça vous surprend, c'est très simple: l'inverse de la résistance s'appelle la conductance.  Si j'ai deux "conduits" en parallèle, la "conductance" totale est la somme des deux, comme avec des tuyaux d'eau.
 - **Capacitance**
-1. Une capacitance moyenne est environ 1 µF
-  2. Une capacitance ne laisse pas passer le courant continu. Son impédance diminue avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
-  3. L'impédance d'une capacitance est $\frac{1}{j 2\pi f C}$.
-  4. Les capacitances résiduelles de connecteurs sont de l'ordre de quelques pF.
-  5. Un câble "standard" a une capacitance de 30 pF/m
+  1. Une capacitance est une réservoir qui peut accumuler des charges.
+  2. Une capacitance moyenne est environ 1 µF
+  3. Une capacitance ne laisse pas passer le courant continu. Son impédance diminue avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
+  4. L'impédance d'une capacitance est $\frac{1}{j 2\pi f C}$. On voit que si $f=0$, alors l'impédance est infinie: le courrant continue ne passe pas dans un capaciteur.
+  5. Les capacitances résiduelles de connecteurs sont de l'ordre de quelques pF.
+  6. Un câble "standard" a une capacitance de 30 pF/m
 - **Inductance**
-  1. On travaille très peu avec les inductances
+  1. On travaille très peu avec les inductances. Peu de circuits utilisent les inductances, sauf les transformateurs.
   2. Une inductance s'oppose au courant qui varie vite, et pas du tout au courant qui n'oscille pas. Son impédance augmente avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
-  3. L'impédance d'une inductance est $j 2 \pi f L$
+  3. L'impédance d'une inductance est $j 2 \pi f L$.  On voit que si $f=\infty$, alors l'impédance est infinie: le courrant AC à haute fréquence ne passe pas dans un inducteur.
 - **Batterie**
   1. Une batterie de maison AA contient une charge de 2000 mA-h (milli-ampère $\times$ heure), c'est-à-dire qu'elle peut fournir 2000 mA pendant une heure, ou 100 mA pendant 20 heures. 
 - **Filtres**
@@ -103,12 +106,16 @@ Bon apprentissage.
 
 1. Elles ont des **valeurs standards** qui semblent bizarres (10, 12, 15, ... 82, etc...), mais il y a une raison: les valeurs par décade (entre 10 et 100, entre 100 et 1000, etc...) sont séparées de façon égales sur une échelle logarithmique, et toute combinaison de 2 résistances peut être à moins de 10% de n'importe quelle valeur désirée. Il existe plusieurs groupes: E12, E24, E48, E96 et E192 qui respectivement permettent une précision de 10% , 5%, 2%, 1% et 0.5%. De plus, il y a des valeurs standards de 10$\Omega$, 100$\Omega$, 1k$\Omega$, 10k$\Omega$, 100k$\Omega$ et 1M$\Omega$ parce que des fois, dans la vie, on aime les chiffres ronds.
 2. Elles peuvent être faites pour **dissiper la puissance** un peu, moyen, beaucoup, ou énormément. Les plus fréquentes en laboratoires sont de 0.5W.  Plus elles sont grosses, plus elles dissipent beaucoup de puissance.
-   <img src="HOWTO-Electronique.assets/resistor-wattage.jpg" alt="resistor wattage" style="zoom:25%;" />
-3. Il existe des résistances variables appelées *potentiomètres*. Certains peuvent se mettre directement sur un *breadboard* (souvent ils sont bleus), d'autre se mettent sur des panneaux de contrôles et ils ont un bouton. Avec un bouton ou avec un tournevis, on peut ajuster la valeur de la résistance.
+   <img src="HOWTO-Electronique.assets/resistor-wattage.jpg" alt="resistor wattage" style="zoom: 33%;" />
+3. Il existe des résistances variables appelées *potentiomètres*. Certains peuvent se mettre directement sur un *breadboard* (souvent ils sont bleus), d'autres se mettent sur des panneaux de contrôles et ils ont un bouton gradateur. Avec un bouton ou avec un tournevis, on ajuste la valeur de la résistance.
    <img src="HOWTO-Electronique.assets/3362P SERIES.jpg" alt="3362P Series" style="zoom:10%;" /> <img src="HOWTO-Electronique.assets/1200px-Electronic-Component-Potentiometer.jpg" alt="Potentiometer - Wikipedia" style="zoom:8%;" />
-4. Les résistances sont simplement des mauvais conducteurs, avec des obstacles en différentes concentration pour obtenir une résistance désirée.  Ainsi,  au niveau microscopique, une charge accélèrera jusqu'à ce qu'elle entre en collision, recommencera à accélérer, etc... Au niveau macroscopique (i.e. intégré sur un temps de µs par exemple), elle semble avoir une vitesse moyenne constante.
+4. Les résistances sont simplement des mauvais conducteurs, avec des obstacles en différentes concentrations pour obtenir une résistance désirée.  Ainsi,  au niveau microscopique, les charges accélèrent jusqu'à ce qu'elles entre en collision, recommencent à accélérer, etc... Au niveau macroscopique (i.e. intégré sur un temps de µs par exemple), elles semblent avoir une vitesse moyenne constante.
 
+## Les filtres passifs
 
+Un filtre $RC$ est un filtre passif (i.e., il n'y a pas de batterie) qui permet de filtrer soit les hautes fréquences ou les basses fréquences. On peut dire que la fréquence de coupure où l'atténuation est de 50% est $f_c = \frac{1}{2\pi RC}$. 
+
+![image-20210129150622991](HOWTO-Electronique.assets/image-20210129150622991.png)
 
 ## Les équivalences
 
