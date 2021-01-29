@@ -1,19 +1,25 @@
 # Les bases de l'électronique
 
-On ne s'en sort pas: la connaissance de l'électronique est essentielle pour accomplir les moindre tâches en optique: photodétection, numérisation, contrôle d'appareils, interface microprocesseur, gestion USB, etc... Il y a deux façons d'aborder ce domaine: 1) en devenant opérationnel[^1] ou 2) en comprenant[^1]. S'il y avait un seul conseil que je donnerais: les circuits, aussi complexes soient-ils, se séparent toujours en petits blocs fonctionnels. Savoir reconnaître les blocs représente 90% de la bataille.  J'espère avec ce document faire le premier et possiblement le deuxième.
 
-En terminant:
+
+[TOC]
+
+## Prélude
+
+On ne s'en sort pas: la connaissance de l'électronique est essentielle pour accomplir les moindre tâches en optique: photodétection, numérisation, contrôle d'appareils, interface microprocesseur, gestion USB, etc... Il y a deux façons d'aborder ce domaine: 1) en devenant opérationnel ou 2) en comprenant[^1]. S'il y avait un seul conseil que je donnerais: les circuits, aussi complexes soient-ils, se séparent toujours en petits blocs fonctionnels. Savoir reconnaître les blocs représente 90% de la bataille.  J'espère avec ce document faire le premier aspect (vous rendre opérationnel) et avec un peu de chance, le deuxième (vous aider à comprendre).
+
+La meilleure façon d'apprendre l'électronique, c'est d'en faire d'être mauvais, et de s'améliorer. Pour citer Dave Grohl, c'est comme la musique :
+
+> “When I think about kids watching a TV show like American Idol or The Voice, then they think, ‘Oh, OK, that’s how you become a musician, you stand in line for eight [...] hours with 800 people at a convention center and… then you sing your heart out for someone and then they tell you it’s not [...] good enough.’ Can you imagine?” he implores. “It’s destroying the next generation of musicians! Musicians should go to a yard sale and buy and old [...] drum set and get in their garage and just suck. And get their friends to come in and they’ll suck, too. And then they’ll [...] start playing and they’ll have the best time they’ve ever had in their lives and then all of a sudden they’ll become Nirvana. Because that’s exactly what happened with Nirvana. Just a bunch of guys that had some shitty old instruments and they got together and started playing some noisy-ass shit, and they became the biggest band in the world. That can happen again! You don’t need a [...] computer or the internet or The Voice or American Idol.” - Dave Grohl
+
+Expérimenter peut se faire pour apprendre de façon intelligente:
 
 1. Briser un fil, brûler une résistance, écraser un condensateur, brancher un transistor à l'envers, péter un chip à 10$ fait partie de l'apprentissage. Ce n'est pas grave: c'est quelques dollars. Voir 2.
 2. Brancher 100V dans un oscilloscope de 3000$ et le péter, mettre ses mains ou sa langue sur 1200V et finir à l'hôpital, brûler une puce à 200\$ qui a un temps de livraison de 8 semaines, faire sauter le microntrolleur d'un laser commercial, fait partie de la liste des choses qui font que les gens se font mettre dehors.  Apprenez la différence avec 1.
 
-La meilleure façon d'apprendre l'électronique, c'est d'en faire, c'est comme la musique :
+Bon apprentissage.
 
-> “When I think about kids watching a TV show like American Idol or The Voice, then they think, ‘Oh, OK, that’s how you become a musician, you stand in line for eight fucking hours with 800 people at a convention center and… then you sing your heart out for someone and then they tell you it’s not fuckin’ good enough.’ Can you imagine?” he implores. “It’s destroying the next generation of musicians! Musicians should go to a yard sale and buy and old fucking drum set and get in their garage and just suck. And get their friends to come in and they’ll suck, too. And then they’ll fucking start playing and they’ll have the best time they’ve ever had in their lives and then all of a sudden they’ll become Nirvana. Because that’s exactly what happened with Nirvana. Just a bunch of guys that had some shitty old instruments and they got together and started playing some noisy-ass shit, and they became the biggest band in the world. That can happen again! You don’t need a fucking computer or the internet or The Voice or American Idol.” - Dave Grohl
-
-
-
-## Vraiment: les bases
+## Les bases
 
 ![](HOWTO-Electronique.assets/image-20210128131705277.png)
 
@@ -22,32 +28,38 @@ La meilleure façon d'apprendre l'électronique, c'est d'en faire, c'est comme l
 3. Un voltmètre idéal a une résistance "infinie" et mesure la différence de potentiel entre ses bornes sans prendre de courant.
 4. Un ampèremètre idéal a une résistance nulle et mesure le courant qui passe entre ses bornes sans perte de potentiel.
 
-## Être opérationnel
-
-### Commentaires généraux
+## Commentaires généraux
 
 1. La perte de tension à travers une résistance est donnée par $V = RI$
-2. La puissance dissipée par un élément est $P = VI $
-3. **On mesure des tensions, en Volts**. La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances) et si on le mesurait en série on devrait s'inclure dans le système.  Les deux options ne sont pas pratique.
+2. Le courant dans un circuit est donné par la tension aux bornes divisée par la résistance totale $I = {V}/{R_t}$
+3. La puissance dissipée par un élément est $P = VI $
+4. **On mesure des tensions, en Volts**. La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances) et si on le mesurait en série on devrait s'inclure dans le système.  Les deux options ne sont pas pratique.
    1. Un capteur qui retourne un courant devra être adapté pour s'intégrer au reste de notre circuit
-4. Les résistances, capacitances et inductance sont regroupés sous le terme général *impédance*, qui est une résistance complexe.
-5. Une source de tension idéale a une impédance de sortie faible.
-6. Une source de courant idéale a une impédance de sortie élevée.
-7. On veut souvent qu'un appareil ait une impédance d'entrée de 50 Ω (s'il accepte du courant) ou élevé par exemple 1MΩ (s'il doit être en parallèle sans affecter le circuit).
-8. Finalement, on décrira souvent les courants et les tensions en termes de fréquences d'oscillation.  On parle de DC pour les fréquences 0 Hz et AC pour les autres.
+5. Les résistances, capacitances et inductance sont regroupés sous le terme général *impédance*, qui est une résistance complexe.
+6. Finalement, on décrira souvent les courants et les tensions en termes de fréquences d'oscillation.  On parle de DC pour les fréquences 0 Hz et AC pour les autres.
    1. Ne pas confondre $f$ et $\omega = 2\pi f$.  
+7. Ainsi, puisque les circuits sont assez souvent linéaires, on décomposera en fréquences le courant et les tensions
 
 
 
-### Règles du pouce
+### Règles (très) générales
 
-
+- **Tension**
+  1. Une tension moyenne dans un circuit simple est de l'ordre du Volt.
+  2. Une tension d'alimentation dans un circuit analogique est typiquement ±12V ou ±15V
+  3. Un circuit logique de type TTL (i.e. *Transistor-To-Transistor-Logic*) fonctionne avec 0 V et 5 V comme signaux.
+  4. Mesurer 1 Volt est facile.  Mesure 1 mV est difficile. Mesure 10 V est très facile.
+  5. Un bruit typique dans les circuits de Monsieur-tout-monde est de l'ordre de quelques mVs.
+- **Courant**
+  1. Un courant moyen est de l'ordre de 10 à 100 µA
+  2. Un très petit courant est en pA.
+  3. Un courant très important est 1A
 
 - **Résistance**
   1. Une résistance moyenne est de 10 kΩ.
-  2. Une petite résistance résiduelle est de l'ordre de 1 Ω ou moins
+  2. Une petite résistance résiduelle est de l'ordre de 1 à 10 Ω ou moins
   3. Une grande résistance d'entrée est de l'ordre de 1 à 10 MΩ.
-  4. L'impédance d'une résistance est de $R$
+  4. L'impédance d'une résistance est simplement $R$
 - **Capacitance**
 1. Une capacitance moyenne est environ 1 µF
   2. Une capacitance ne laisse pas passer le courant continu. Son impédance diminue avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
@@ -58,43 +70,29 @@ La meilleure façon d'apprendre l'électronique, c'est d'en faire, c'est comme l
   1. On travaille très peu avec les inductances
   2. Une inductance s'oppose au courant qui varie vite, et pas du tout au courant qui n'oscille pas. Son impédance augmente avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
   3. L'impédance d'une inductance est $j 2 \pi f L$
-- **Tension**
-
-  1. Une tension moyenne dans un circuit simple est entre de l'ordre du Volt.
-  2. Une tension d'alimentation dans un circuit est typiquement ±12V ou ±15V
-  3. Un circuit logique TTL fonctionne avec 0 V et 5 V comme signaux.
-  4. Mesurer 1 Volt est facile.  Mesure 1 mV est difficile. Mesure 10 V est très facile.
-  5. Un bruit typique dans un circuit est de l'ordre du 1 mV.
-- **Courant**
-
-  1. Un courant moyen est de l'ordre de 10 à 100 µA
-  2. Un très petit courant est en pA.
-  3. Un courant très important est 1A
 - **Batterie**
-  1. Une batterie de maison AA contient 2000 mA-h (milli-ampère $\times$ heure).
+1. Une batterie de maison AA contient 2000 mA-h (milli-ampère $\times$ heure).
 - **Filtres**
   1. Un filtre RC a un temps caractéristique de $\tau = RC$ en  secondes
 
 
 
-## Équipement
-
-
-
-| Description       |                          Apparence                           |
-| ----------------- | :----------------------------------------------------------: |
-| Multimètre        | <img src="HOWTO-Electronique.assets/multimeter-523153_960_720-5768a8193df78ca6e45dc883.jpg" alt="What Is a Multimeter?" style="zoom:25%;" /> |
-| Câbles BNC        | <img src="HOWTO-Electronique.assets/2249-C-12.jpg" alt="2249-C-12" style="zoom:25%;" /> |
-| Prises alligators | <img src="HOWTO-Electronique.assets/71IFNUMDJML._AC_SL1500_.jpg" alt="img" style="zoom:12%;" /> |
-| Prises bananes    | <img src="HOWTO-Electronique.assets/1325-02.jpg" alt="1325-02" style="zoom:25%;" /> |
-
-##Les imperfections
+##Les appareils réels
 
 ![image-20210128131736576](HOWTO-Electronique.assets/image-20210128131736576.png)
 
+
+
+1. Source de tension réelle: pour avoir la résistance interne d'une source de tension, c'est très simple:
+   1. On mesure la tension avec un voltmètre dans le **circuit ouvert**, c'est-à-dire sans courant, en connectant directement le voltmètre aux bornes de la source.  Puisque le voltmètre a une résistance très élevé, il n'y a pas de courant et donc aucune perte de potentiel à travers la résistance interne, et on mesure directement $V_s$.
+   2. Ensuite, on **ferme le circuit** avec une *résistance de charge*$R_c$ (pour que du courant passe) qu'on espère être proche de la résistance interne. On mesure la tension aux bornes de la résistance de charge. On l'appelera $V_c$, pour "tension aux bornes de la résistance de charge".  La tension mesurée sera plus faible que la tension $V_s$ car la résistance interne sera responsable d'une baisse de tension égale à $V_i = R_i I$, car maintenant, il y a du courant qui passe dans le circuit, contrairement à (1) où il n'y en avait pas.
+   3. Puisque l'on sait $V_c$ et $R_c$, on peut calculer **le courant** qui passe dans la résistance de charge, et donc dans le circuit, avec $I= V_c/R_c$.
+   4. Puisque la tension appliquée est $V_s$, et qu'une perte de tension de $V_c$ est mesurée à travers la résistance, on sait que la **perte de tension** dans la résistance interne est $V_i = V_s - V_c$ car la boucle doit passer de $V_c$ à 0V.
+   5. On sait la perte de tension dans la résistance interne et on sait le courant, donc la résistance interne est simplement $R_i = R_c(V_s - V_c)/V_c$.
+
 ## Les équivalences
 
-Équivalent de Norton:
+On peut prendre un circuit d'une source de tension avec une résistance et la changer en circuit avec une source de courant équivalente, ce qui s'appelle l'équivalent de Norton:
 
 $R_\text{Th} = R_\text{No}$
 
@@ -106,27 +104,32 @@ $I_\text{No} = \frac{V_\text{Th}}{R_\text{Th}}$
 
 ![img](HOWTO-Electronique.assets/260px-Norton-to-thevenin-20210128132127347.png)
 
-### Blocs fonctionnels à décrire
+
+
+## Équipement
+
+
+
+| Description           |                          Apparence                           |
+| --------------------- | :----------------------------------------------------------: |
+| Multimètre            | <img src="HOWTO-Electronique.assets/multimeter-523153_960_720-5768a8193df78ca6e45dc883.jpg" alt="What Is a Multimeter?" style="zoom:25%;" /> |
+| Câbles BNC ou coaxial | <img src="HOWTO-Electronique.assets/2249-C-12.jpg" alt="2249-C-12" style="zoom:25%;" /> |
+| Prises alligators     | <img src="HOWTO-Electronique.assets/71IFNUMDJML._AC_SL1500_.jpg" alt="img" style="zoom:12%;" /> |
+| Prises bananes        | <img src="HOWTO-Electronique.assets/1325-02.jpg" alt="1325-02" style="zoom:25%;" /> |
+
+
+
+## TODO: Reste à faire
 
 1. Voltage divider
 2. RC HP, LP
 3. Op-amp follower/buffer
 4. Op-amp gain
-5. Op-amp transimpedance
-6. Op-amp adder
-7. Numeriseur
-8. Instrumentaiton amplifier
+5. Op-amp adder
+6. Op-amp transimpedance
+7. Numériseur
+8. Instrumentation amplifier
 9. https://artofelectronics.net
-
-
-
-
-
-
-
-### Commentaires photodétection
-
-1. Les photodétecteurs produisent des courants de 0.5A/W.
 
 
 
