@@ -51,7 +51,7 @@ Bon apprentissage.
 
 - **Tension**
   1. Une tension moyenne dans un circuit simple est de l'ordre du Volt.
-  2. # Une tension d'alimentation dans un circuit analogique est typiquement ±12V ou ±15V
+  2. Une tension d'alimentation dans un circuit analogique est typiquement ±12V ou ±15V
   3. Un circuit logique de type TTL (i.e. *Transistor-To-Transistor-Logic*) fonctionne avec 0 V et 5 V comme signaux.
   4. Mesurer 1 Volt est facile.  Mesure 1 mV est difficile. Mesure 10 V est très facile.
   5. Un bruit typique dans les circuits de Monsieur-tout-monde est de l'ordre de quelques mVs.
@@ -91,7 +91,7 @@ Bon apprentissage.
 
 
 1. Source de tension réelle: pour avoir la résistance interne d'une source de tension, c'est très simple:
-   1. On mesure la tension avec un voltmètre dans le **circuit ouvert**, c'est-à-dire sans courant, en connectant directement le voltmètre aux bornes de la source.  Puisque le voltmètre a une résistance très élevé, il n'y a pas de courant et donc aucune perte de potentiel à travers la résistance interne, et on mesure directement $V_s$.
+   1. On mesure la tension avec un voltmètre dans le **circuit ouvert**, c'est-à-dire sans courant, en connectant directement le voltmètre aux bornes de la source.  Puisque le voltmètre a une résistance très élevée, il n'y a pas de courant et donc aucune perte de potentiel à travers la résistance interne, et on mesure directement $V_s$.
    2. Ensuite, on **ferme le circuit** avec une *résistance de charge*$R_c$ (pour que du courant passe) qu'on espère être proche de la résistance interne. On mesure la tension aux bornes de la résistance de charge. On l'appelera $V_c$, pour "tension aux bornes de la résistance de charge".  La tension mesurée sera plus faible que la tension $V_s$ car la résistance interne sera responsable d'une baisse de tension égale à $V_i = R_i I$, car maintenant, il y a du courant qui passe dans le circuit, contrairement à (1) où il n'y en avait pas.
    3. Puisque l'on sait $V_c$ et $R_c$, on peut calculer **le courant** qui passe dans la résistance de charge, et donc dans le circuit, avec $I= V_c/R_c$.
    4. Puisque la tension appliquée est $V_s$, et qu'une perte de tension de $V_c$ est mesurée à travers la résistance, on sait que la **perte de tension** dans la résistance interne est $V_i = V_s - V_c$ car la boucle doit passer de $V_c$ à 0V.
