@@ -82,8 +82,6 @@ Bon apprentissage.
   3. L'impédance d'une inductance est $j 2 \pi f L$.  On voit que si $f=\infty$, alors l'impédance est infinie: le courrant AC à haute fréquence ne passe pas dans un inducteur.
 - **Batterie**
   1. Une batterie de maison AA contient une charge de 2000 mA-h (milli-ampère $\times$ heure), c'est-à-dire qu'elle peut fournir 2000 mA pendant une heure, ou 100 mA pendant 20 heures. 
-- **Filtres**
-  1. Un filtre RC a un temps caractéristique de $\tau = RC$ en  secondes
 
 
 
@@ -113,9 +111,13 @@ Bon apprentissage.
 
 ## Les filtres passifs
 
-Un filtre $RC$ est un filtre passif (i.e., il n'y a pas de batterie) qui permet de filtrer soit les hautes fréquences ou les basses fréquences. On peut dire que la fréquence de coupure où l'atténuation est de 50% est $f_c = \frac{1}{2\pi RC}$. 
+Un filtre $RC$ est un filtre passif (i.e., il n'y a pas de batterie) qui permet de filtrer soit les hautes fréquences ou les basses fréquences. Un filtre RC a un temps caractéristique de $\tau = RC$ en  secondes.  On peut dire que la fréquence de coupure où l'atténuation est de 50% est $f_c = \frac{1}{2\pi RC}$. 
 
 ![image-20210129150622991](HOWTO-Electronique.assets/image-20210129150622991.png)
+
+On peut visualiser les filtres pour les basses (DC) et hautes (AC) fréquences pour voir le fonctionnement. Les basses fréquences ne passent pas dans un capaciteur (le circuit est ouvert), et les hautes fréquences voient un fil conducteur (le circuit est fermé):
+
+![image-20210129160358306](HOWTO-Electronique.assets/image-20210129160358306.png)
 
 ## Les équivalences
 
@@ -150,8 +152,7 @@ $I_\text{No} = \frac{V_\text{Th}}{R_\text{Th}}$
 ## TODO: Reste à faire
 
 1. Voltage divider
-2. RC HP, LP
-3. Op-amp follower/buffer
+2. Op-amp follower/buffer
 4. Op-amp gain
 5. Op-amp adder
 6. Op-amp transimpedance
