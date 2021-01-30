@@ -103,14 +103,16 @@ Bon apprentissage.
 
 1. Les condensateurs souvent souvent utilisés car ils accumulent des charges: ils servent dans les filtres passifs et aussi comme réservoirs de charges près des puces. Quand on voit un condensateur dans un circuit on pense "ralentir, basses fréquences, accumulation de charge". On ne pense pas à "vitesse, hautes fréquences".
 2. Les condensateurs ont une **capacitance** donnée. Ils viennent aussi en valeurs standards comme les résistances. Plus un condensateur est gros, plus il a une capacitance élevée.
-   <img src="HOWTO-Electronique.assets/Capacitors_(7189597135).jpg" alt="Capacitor - Wikipedia" style="zoom: 25%;" />
+   <img src="HOWTO-Electronique.assets/Capacitors_(7189597135).jpg" alt="Capacitor - Wikipedia" style="zoom: 15%;" />
 3. Les condensateurs ont une **tension maximale** qu'ils peuvent accepter à leur bornes. 16V, 35V, etc...
 4. Les condensateurs cylindriques ont souvent une **polarité**: on doit brancher le côté positif sur le potentiel plus élevé.  Les condensateurs de type *pastilles* n'ont pas de polarité.  
 5. Si un condensateur brûle, on le change. Souvent, c'est visible car on voit l'électrolyte (espèce de caramel brun) sur le dessus ou il a simplement l'air brûlé. Si ça vient juste d'arriver, ça sent encore le brulé. Ça coûte 10¢. On le change pour un condensateur de même valeur.
 
 ### Les inductances
 
-Le petit aimant enroulé autour des câbles de télé, USB ou autre, joue le rôle d'une inductance pour empêcher les très hautes fréquences de passer dans le fil (souvent du bruit ou dans le cas des télés, un "power surge" après une panne de courant qui peut briser la télé).<img src="HOWTO-Electronique.assets/e7314fc8-e837-4a4b-b7c4-4c5bdad81f98.jpg" alt="Cylinder or box on computer cords: What's it for?" style="zoom:33%;" />
+Le petit aimant enroulé autour des câbles de télé, USB ou autre, joue le rôle d'une inductance pour empêcher les très hautes fréquences de passer dans le fil (souvent du bruit ou dans le cas des télés, un "power surge" après une panne de courant qui peut briser la télé).
+
+<img src="HOWTO-Electronique.assets/e7314fc8-e837-4a4b-b7c4-4c5bdad81f98.jpg" alt="Cylinder or box on computer cords: What's it for?" style="zoom:33%;" />
 
 Sinon, j'ai utilisé une inductance une fois dans un circuit.  Je ne me rappelle plus ce que j'ai fait. Je pense que c'était au siècle précédent. Les inductances, ça ne sert pas vraiment.
 
