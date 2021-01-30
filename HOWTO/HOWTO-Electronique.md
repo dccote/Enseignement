@@ -34,7 +34,7 @@ Bon apprentissage.
 
 ## Commentaires généraux
 
-1. La perte de tension à travers une résistance est donnée par le courant qui passe à travers multiplié par la résistance $V = RI$
+1. La perte de tension à travers une résistance est donnée par le courant qui passe à travers multiplié par la résistance $V = RI$. On va souvent parler dans un français correct de la *drop* en tension dans une résistance.
 2. Le courant qui passe dans un circuit est donné par la tension aux bornes de ce circuit divisée par la résistance totale du circuit $I = {V}/{R_t}$
 3. La puissance dissipée par un élément est $P = VI $
 4. **On mesure des tensions, en Volts**. La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances) et si on le mesurait en série on devrait s'inclure dans le circuit.  Les deux options ne sont pas très pratique.
@@ -93,19 +93,32 @@ Bon apprentissage.
 À la base de plusieurs circuits, il y a les résistances.
 
 1. Elles ont des **valeurs standards** qui semblent bizarres (10, 12, 15, ... 82, etc...), mais il y a une raison: les valeurs par décade (entre 10 et 100, entre 100 et 1000, etc...) sont séparées de façon égales sur une échelle logarithmique, et toute combinaison de 2 résistances peut être à moins de 10% de n'importe quelle valeur désirée. Il existe plusieurs groupes: E12, E24, E48, E96 et E192 qui respectivement permettent une précision de 10% , 5%, 2%, 1% et 0.5%. De plus, il y a des valeurs standards de 10$\Omega$, 100$\Omega$, 1k$\Omega$, 10k$\Omega$, 100k$\Omega$ et 1M$\Omega$ parce que des fois, dans la vie, on aime les chiffres ronds.
+
 2. Elles peuvent être faites pour **dissiper la puissance** un peu, moyen, beaucoup, ou énormément. Les plus fréquentes en laboratoires sont de 0.5W.  Plus elles sont grosses, plus elles dissipent beaucoup de puissance. 1W c'est quand même beaucoup: cela permet de chauffer votre doigt de 1° en 1 seconde.  Si vous mettez votre doigt sur une resistance, ça risque d'être chaud.
+
    <img src="HOWTO-Electronique.assets/resistor-wattage.jpg" alt="resistor wattage" style="zoom: 33%;" />
+
 3. Il existe des résistances variables appelées *potentiomètres*. Certains peuvent se mettre directement sur un *breadboard* (souvent ils sont bleus), d'autres se mettent sur des panneaux de contrôles et ils ont un bouton gradateur. Avec un bouton ou avec un tournevis, on ajuste la valeur de la résistance.
-   <img src="HOWTO-Electronique.assets/3362P SERIES.jpg" alt="3362P Series" style="zoom:10%;" /> <img src="HOWTO-Electronique.assets/1200px-Electronic-Component-Potentiometer.jpg" alt="Potentiometer - Wikipedia" style="zoom:8%;" />
+   
+
+   <img src="HOWTO-Electronique.assets/3362P SERIES.jpg" alt="3362P Series" style="zoom:10%;" />
+
+   <img src="HOWTO-Electronique.assets/1200px-Electronic-Component-Potentiometer.jpg" alt="Potentiometer - Wikipedia" style="zoom:8%;" />
+
 4. Les résistances sont simplement des mauvais conducteurs, avec des obstacles en différentes concentrations pour obtenir une résistance désirée.  Ainsi,  au niveau microscopique, les charges accélèrent jusqu'à ce qu'elles entre en collision, recommencent à accélérer, etc... Au niveau macroscopique (i.e. intégré sur un temps de µs par exemple), elles semblent avoir une vitesse moyenne constante.
 
 ### Les condensateurs
 
 1. Les condensateurs souvent souvent utilisés car ils accumulent des charges: ils servent dans les filtres passifs et aussi comme réservoirs de charges près des puces. Quand on voit un condensateur dans un circuit on pense "ralentir, basses fréquences, accumulation de charge". On ne pense pas à "vitesse, hautes fréquences".
+
 2. Les condensateurs ont une **capacitance** donnée. Ils viennent aussi en valeurs standards comme les résistances. Plus un condensateur est gros, plus il a une capacitance élevée.
+
    <img src="HOWTO-Electronique.assets/Capacitors_(7189597135).jpg" alt="Capacitor - Wikipedia" style="zoom: 15%;" />
+
 3. Les condensateurs ont une **tension maximale** qu'ils peuvent accepter à leur bornes. 16V, 35V, etc...
+
 4. Les condensateurs cylindriques ont souvent une **polarité**: on doit brancher le côté positif sur le potentiel plus élevé.  Les condensateurs de type *pastilles* n'ont pas de polarité.  
+
 5. Si un condensateur brûle, on le change. Souvent, c'est visible car on voit l'électrolyte (espèce de caramel brun) sur le dessus ou il a simplement l'air brûlé. Si ça vient juste d'arriver, ça sent encore le brulé. Ça coûte 10¢. On le change pour un condensateur de même valeur.
 
 ### Les inductances
