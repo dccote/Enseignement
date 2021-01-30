@@ -118,11 +118,11 @@ Sinon, j'ai utilisé une inductance une fois dans un circuit.  Je ne me rappelle
 
 ### Les sources et appareils réels
 
-Les appareils réels ont des impédances internes qui ne sont pas nulles, ni infinies.  **C'est très important pour les sources de tension et de courant**: on doit souvent savoir. C'est d'importance mineure pour les voltmètres et les ampèremètres car c'est suffisamment "assez petit" ou "assez gros".
+Les appareils réels ont des impédances internes qui ne sont pas nulles, ni infinies.  **C'est assez important pour les sources de tension et de courant**: on doit souvent savoir. C'est d'importance mineure pour les voltmètres et les ampèremètres car c'est suffisamment "assez petit" ou "assez gros".
 
 * Il n'y a pas vraiment de règles pour les résistances internes des sources: quand on s'en préoccupe, il faut la mesurer (ou lire les spécifications).
-* Un voltmètre a une résistance typiquement de 1M$\Omega$ ou 10M$\Omega$. Un voltmètre est utilisée **très souvent** parce qu'on le met en paralleèle dans le circuit, donc c'est facile. Un oscilloscope est un voltmètre résolu dans le temps.
-* Un ampèremètre a une résistance typiquement de moins de 100$\Omega$, mais j'ai déjà vu 1k$\Omega$. On utilise **rarement** un ampèremètre en passant parce qu'on doit le mettre en série dans le circuit pour l'utiliser, et c'est souvent impossible. À la place, on met un voltmètre en parallèle sur une résistance connue, et on fait le caclul savant: $I = V/R$ pour avoir le courant.
+* Un voltmètre a une résistance typiquement de 1M$\Omega$ ou 10M$\Omega$. Un voltmètre est utilisée **très souvent** parce qu'on le met en parallèle dans le circuit, donc c'est facile. Un oscilloscope est un voltmètre avec résolution temporelle.
+* Un ampèremètre a une résistance typiquement de moins de 100$\Omega$, mais j'ai déjà vu 1k$\Omega$. On utilise **rarement** un ampèremètre parce qu'on doit le mettre en série dans le circuit pour l'utiliser, et c'est souvent impossible. À la place, on met un voltmètre en parallèle sur une résistance connue, et on fait le caclul savant: $I = V/R$ pour avoir le courant et c'est 100% équivalent tout en étant 1530% plus simple.
 
 
 
