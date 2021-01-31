@@ -227,8 +227,8 @@ On doit évidemment choisir le bon connecteur parce qu'un branchement simple, c'
 
 ### Achat
 
-* Au Canada, on achète des pièces chez [Digi-key](www.digikey,ca), [Mouser](www.mouser.ca) ou [Electrosonic](https://www.e-sonic.com) (dans cet ordre).
-* À Québec, on achète des pièces chez [Electro-Mike](https://www.electromike.com) (composantes) et [Access Électronique](https://acceselectronique.ca/) (l'autre côté de la rue, pour les pièces de puissance).
+* En ligne au Canada, on achète des pièces chez [Digi-key](www.digikey,ca), [Mouser](www.mouser.ca) ou [Electrosonic](https://www.e-sonic.com) (dans cet ordre).
+* À Québec quand on les veut vraiment tout de suite, on achète des pièces chez [Electro-Mike](https://www.electromike.com) (composantes) et [Access Électronique](https://acceselectronique.ca/) (l'autre côté de la rue, pour les pièces de puissance).
 
 ## Lien entre électromagnétisme et circuits
 
