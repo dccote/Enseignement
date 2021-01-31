@@ -34,25 +34,21 @@ Bon apprentissage.
 
 ## Commentaires généraux
 
-1. La perte de tension à travers une résistance est donnée par le courant qui passe à travers multiplié par la résistance $V = RI$. On va souvent parler dans un français correct de la *drop* en tension dans une résistance.
+1. Loi de Kirchoff: La perte de tension à travers une résistance est donnée par le courant qui passe à travers  celle-ci multiplié par la résistance $V = RI$. On va souvent parler de la baisse, la perte ou même la *drop* en tension dans une résistance.
 2. Le courant qui passe dans un circuit est donné par la tension aux bornes de ce circuit divisée par la résistance totale du circuit $I = {V}/{R_t}$
-3. La puissance dissipée par un élément est $P = VI $
-4. **On mesure des tensions, en Volts**. La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances) et si on le mesurait en série on devrait s'inclure dans le circuit.  Les deux options ne sont pas très pratique.
+3. La puissance dissipée par un élément est $P = VI $, avec $V$ la tension à ses bornes et $I$ le courant qui passe à travers.
+4. **On mesure des tensions.  On travaille en Volts.**. La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants en parallèle, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances). Si on le mesurait en série on devrait l'inclure dans le circuit, ce qui n'est vraiment pas souvent possible.  Les deux options ne sont pas très pratique: on travaille en tension.
 5. Si on retourne vraiment à la base de l'électromagnétisme, une différence de potentiel entre deux points (i.e. un gradient) nous dit qu'il y a un champ électrique entre ces deux points ($\nabla V \propto E$). Donc lorsque je mets une différence de potentiel entre deux points, les charges sont accélérées (i.e. il y a du courant).
-6. Les résistances, capacitances et inductances sont regroupés sous le terme général *impédance*, qui est une résistance complexe.
-7. Finalement, on décrira souvent les courants et les tensions en termes de fréquences d'oscillation.  On parle de DC pour les fréquences 0 Hz et AC pour les autres.
-   1. Ne pas confondre la *fréquence* $f$ et la *fréquence radiale*  $\omega = 2\pi f$.  Personne n'utilise la fréquence radiale: on parle toujours en fréquence $f$.
-8. Ainsi, puisque les circuits sont assez souvent linéaires, on décomposera en fréquences le courant et les tensions, et c'est pour ça que les impédances imaginaires et réelles (ci-dessous) deviennent utiles
-
-
+6. Puisque les circuits sont assez souvent linéaires, on décomposera toujours en fréquences le courant et les tensions, et c'est pour ça que les impédances imaginaires et réelles (ci-dessous) deviennent utiles. On parle de DC pour les fréquences 0 Hz et AC pour les autres. Ne pas confondre la *fréquence* $f$ (en Hz) et la *fréquence radiale*  $\omega = 2\pi f$ (en rad•Hz).  Personne n'utilise la fréquence radiale: on parle toujours en fréquence $f$, en Hertz.
+7. Les résistances, capacitances et inductances sont regroupés sous le terme général *impédance*, qui est une résistance complexe valide pour une fréquence donnée.
 
 ## Règles (très) générales
 
 - **Tension**
   1. Une tension moyenne dans un circuit simple est de l'ordre du Volt.
-  2. Voltage est un anglicisme, même si tout le monde le dit. Même moi.
+  2. Voltage est un anglicisme, même si tout le monde le dit.
   3. Une tension d'alimentation dans un circuit analogique est typiquement ±12V ou ±15V
-  4. Un circuit logique de type TTL (i.e. *Transistor-To-Transistor-Logic*) fonctionne avec 0 V et 5 V comme signaux.
+  4. Un circuit logique de type TTL (i.e. *Transistor-to-Transistor-Logic*) fonctionne avec 0 V et 5 V comme signaux.
   5. Mesurer 1 Volt est facile.  Mesure 1 mV est difficile. Mesure 10 V est très facile.
   6. Un bruit typique dans les circuits de Monsieur-tout-monde est de l'ordre de quelques mVs.
   7. 1 électron qui est accéléré par 1 volt aura une énergie de 1 eV (l'électron-volt) à la fin.  Oui, c'est de là que ça vient et c'est pratique.
@@ -61,7 +57,6 @@ Bon apprentissage.
   1. Un courant moyen est de l'ordre de 10 à 100 µA
   2. Un très petit courant est en pA.
   3. Un courant très important est 1A
-
 - **Résistance**
   1. Une résistance ralentit les électrons et dissipe l'énergie que les électrons obtiennent de la tension.
   2. Une résistance moyenne est de 10 kΩ.
@@ -80,12 +75,16 @@ Bon apprentissage.
   6. Un câble "standard" a une capacitance de 30 pF/m
 - **Inductance**
   1. On travaille très peu avec les inductances. Peu de circuits utilisent les inductances, sauf les transformateurs.
-  2. Une inductance s'oppose au courant qui varie vite, et pas du tout au courant qui n'oscille pas. Son impédance augmente avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
-  3. L'impédance d'une inductance est $j 2 \pi f L$.  On voit que si $f=\infty$, alors l'impédance est infinie: le courrant AC à haute fréquence ne passe pas dans un inducteur.
+  2. On mesure l'inductance $L$ en Henry.
+  3. Une inductance s'oppose au courant qui varie vite, et pas du tout au courant qui n'oscille pas. Son impédance augmente donc avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
+  4. L'impédance d'une inductance est $j 2 \pi f L$.  On voit que si $f=\infty$, alors l'impédance est infinie: le courrant AC à haute fréquence ne passe pas dans un inducteur.
 - **Batterie**
-  1. Une batterie de maison AA contient une charge de 2000 mA-h (milli-ampère $\times$ heure), c'est-à-dire qu'elle peut fournir 2000 mA pendant une heure, ou 100 mA pendant 20 heures. 
-
-
+  1. Une batterie de maison AA contient une charge de 2000 mA-h (milli-ampère $\times$ heure), c'est-à-dire qu'elle peut fournir 2000 mA pendant une heure, ou 100 mA pendant 20 heures.
+  2. Dans un circuit à batterie, on tentera toujours de limiter le courant pour préserver la vie de la batterie.
+- **Breadboard**
+  1. Une plaque blanche pour travailler s'appelle un *breadboard* ou parfois *practice board*.
+  2. On peut mettre les composantes directement dessus sans soudure.
+  3. 
 
 ## Les composantes
 ### Les résistances
@@ -98,8 +97,8 @@ Bon apprentissage.
 
    <img src="HOWTO-Electronique.assets/resistor-wattage.jpg" alt="resistor wattage" style="zoom: 33%;" />
 
-3. Il existe des résistances variables appelées *potentiomètres*. Certains peuvent se mettre directement sur un *breadboard* (souvent ils sont bleus), d'autres se mettent sur des panneaux de contrôles et ils ont un bouton gradateur. Avec un bouton ou avec un tournevis, on ajuste la valeur de la résistance.
-   
+3. Il existe des résistances variables appelées *potentiomètres*. Certaines peuvent se mettre directement sur un *breadboard* (souvent ils sont bleus), d'autres se mettent sur des panneaux de contrôles et ils ont un bouton gradateur. Avec un bouton ou avec un tournevis, on ajuste la valeur de la résistance.
+  
 
    <img src="HOWTO-Electronique.assets/3362P SERIES.jpg" alt="3362P Series" style="zoom:10%;" />
 
@@ -109,21 +108,23 @@ Bon apprentissage.
 
 ### Les condensateurs
 
-1. Les condensateurs souvent souvent utilisés car ils accumulent des charges: ils servent dans les filtres passifs et aussi comme réservoirs de charges près des puces. Quand on voit un condensateur dans un circuit on pense "ralentir, basses fréquences, accumulation de charge". On ne pense pas à "vitesse, hautes fréquences".
+1. Les condensateurs souvent souvent utilisés car ils accumulent des charges: ils servent dans les filtres passifs et aussi comme réservoirs de charges près des puces (*chips*). Quand on voit un condensateur dans un circuit on pense "ralentir, basses fréquences, accumulation de charges". On ne pense pas à "vitesse, hautes fréquences".
 
-2. Les condensateurs ont une **capacitance** donnée. Ils viennent aussi en valeurs standards comme les résistances. Plus un condensateur est gros, plus il a une capacitance élevée.
+2. Le circuit le plus simple avec un condensateur est un condensateur $C$ branché directement sur une batterie en série avec une résistance $R$.  Le condensateur se chargera jusqu'à ce qu'il soit plein. Cela prendra $RC$ secondes.
+
+3. Les condensateurs ont une **capacitance** donnée. Ils viennent aussi en valeurs standards comme les résistances. Plus un condensateur est gros, plus il a une capacitance élevée.
 
    <img src="HOWTO-Electronique.assets/Capacitors_(7189597135).jpg" alt="Capacitor - Wikipedia" style="zoom: 15%;" />
 
-3. Les condensateurs ont une **tension maximale** qu'ils peuvent accepter à leur bornes. 16V, 35V, etc...
+4. Les condensateurs ont une **tension maximale** qu'ils peuvent accepter à leur bornes. 16V, 35V, etc...
 
-4. Les condensateurs cylindriques ont souvent une **polarité**: on doit brancher le côté positif sur le potentiel plus élevé.  Les condensateurs de type *pastilles* n'ont pas de polarité.  
+5. Les condensateurs cylindriques ont souvent une **polarité**: on doit brancher le côté positif sur le potentiel plus élevé.  Les condensateurs de type *pastilles* n'ont pas de polarité.  
 
-5. Si un condensateur brûle, on le change. Souvent, c'est visible car on voit l'électrolyte (espèce de caramel brun) sur le dessus ou il a simplement l'air brûlé. Si ça vient juste d'arriver, ça sent encore le brulé. Ça coûte 10¢. On le change pour un condensateur de même valeur.
+6. Si un condensateur brûle, on le change. Souvent, c'est visible car on voit l'électrolyte (espèce de caramel brun) sur le dessus ou il a simplement l'air brûlé. Si ça vient juste d'arriver, ça sent encore le brulé. Ça coûte 10¢. On le change pour un condensateur de même valeur.
 
 ### Les inductances
 
-Le petit aimant enroulé autour des câbles de télé, USB ou autre, joue le rôle d'une inductance pour empêcher les très hautes fréquences de passer dans le fil (souvent du bruit ou dans le cas des télés, un "power surge" après une panne de courant qui peut briser la télé).
+Le petit aimant enroulé autour des câbles de télé, câbles USB ou autres, joue le rôle d'une inductance pour empêcher les très hautes fréquences de passer dans le fil (souvent du bruit ou dans le cas des télés, un "power surge" après une panne de courant qui peut briser la télé).
 
 <img src="HOWTO-Electronique.assets/e7314fc8-e837-4a4b-b7c4-4c5bdad81f98.jpg" alt="Cylinder or box on computer cords: What's it for?" style="zoom:33%;" />
 
@@ -153,9 +154,11 @@ Source de tension réelle: pour avoir la résistance interne d'une source de ten
 
 ### Les équivalences
 
-Donc il y a des sources de *courants* et des sources de *tension*.  Vous vous demandez sûrement: "Oui mais ce qui sort d'une batterie, c'est un courant **ET** une tension!  Qu'est-ce que je suis supposé(e) dire: c'est une source de courant ou de tension!? Je peux passer de tension à courant ou courant à tension comme je veux! Donc, c'est quoi?".
+Donc il y a des sources de *courants* et des sources de *tension*.  Vous vous demandez sûrement: 
 
-La différence est extrêment simple: une source de puissance (i.e. un bloc d'alimentation) avec un résistance interne très faible se comportera comme une source de tension parce que toute résistance de charge connectée sera dominante par rapport à la résistance interne, et la perte de tension aux bornes de la résistance de charge sera la tension de la source (et sera donc toujours la même). Au contraire, une source avec un résistance interne très élevée se comportera comme une source de courant car la résistance de charge sera négligeable par rapport à la résistance interne et le courant sera dicté par la résistance interne (et sera donc toutjours le même).
+> Oui mais ce qui sort d'une batterie, c'est un courant **et** une tension!  Qu'est-ce que je suis supposé(e) dire: c'est une source de courant ou de tension!? Je peux passer de tension à courant ou courant à tension comme je veux avec $V=RI$ ! Donc, c'est quoi l'affaire?!
+
+La différence est extrêmement simple: une source de puissance (i.e. un bloc d'alimentation) avec un résistance interne très faible se comportera comme une source de tension parce que toute résistance de charge connectée sera dominante par rapport à la résistance interne, et la perte de tension aux bornes de la résistance de charge sera la tension de la source (et sera donc toujours la même). Au contraire, une source avec un résistance interne très élevée se comportera comme une source de courant car la résistance de charge sera négligeable par rapport à la résistance interne et le courant sera dicté par la résistance interne (et sera donc toutjours le même).
 
 On peut prendre un circuit d'une source de tension avec une résistance et la changer en circuit avec une source de courant équivalente, ce qui s'appelle l'équivalent de Norton:
 
@@ -171,19 +174,33 @@ $I_\text{No} = \frac{V_\text{Th}}{R_\text{Th}}$
 
 ## Les circuits
 
+### Le diviseur de potentiel
+
+Si j'ai une source de tension $V_o$ avec une résistance $R_c$ à ses bornes, j'aurai une baisse de potentiel de $V_o$ à travers  la résistance (car le courant est $I=V_o/R_c$).  Si on met deux résistances égales, on aura $V_o/2$ à travers chacune. De façon générale, si on prend $R_1$ et $R_2$, on aura un courant $I = V_o/(R_1+R_2)$, et une baisse de potentiel à travers $R_1$ de  $V_o R_1/(R_1+R_2)$ et de $V_o R_2 /(R_1+R_2)$ à travers $R_2$. 
+
+![circuit](HOWTO-Electronique.assets/circuit.png)
+
+* On appelle ce petit circuit un diviseur de potentiel (ou *voltage divider* en anglais). 
+* Typiquement on prendrait la tension à la connexion entre les deux résistances et la mise à la terre.
+* C'est une façon rapide de réduire la tension d'entrée ou de sortie d'un circuit, par exemple pour accommoder nos besoins.  On gaspille une partie de la puissance qui se dissipe dans la résistance qu'on utilise pas, mais c'est très utile et très fréquent. Dans un circuit à batterie, on n'essaierait d'éviter à l'entrée, mais dans un circuit avec un bloc d'alimentation, c'est tout a fait acceptable (même s'il existe d'autres méthodes pour obtenir les tensions voulues de façon plus efficace).
+
 ### Les filtres passifs
 
-Un filtre $RC$ est un filtre passif (i.e., il n'y a pas de batterie) qui permet de filtrer soit les hautes fréquences ou les basses fréquences. Un filtre RC a un temps caractéristique de $\tau = RC$ en  secondes.  On peut dire que la fréquence de coupure où l'atténuation est de 50% est $f_c = \frac{1}{2\pi RC}$. 
+Un filtre $RC$ est un filtre passif (i.e., il n'y a pas de batterie) est composé d'une résistance $R$ et d'un condensateur $C$ qui permet de filtrer soit les hautes fréquences ou les basses fréquences. Un filtre RC a un temps caractéristique de $\tau = RC$ en  secondes.  On peut dire que la fréquence de coupure où l'atténuation est de 50% est $f_c = \frac{1}{2\pi RC}$. 
 
 ![image-20210129150622991](HOWTO-Electronique.assets/image-20210129150622991.png)
 
-On peut visualiser les filtres pour les basses (DC) et hautes (AC) fréquences pour voir le fonctionnement. Les basses fréquences ne passent pas dans un capaciteur (le circuit est ouvert), et les hautes fréquences voient un fil conducteur (le circuit est fermé):
+Le filtre passif est très utile et très fréquent: on le reconnait dans plusieurs circuits pour enlever le bruit (filtre passe-bas, souvent appelé simplement filtre AC) ou pour enlever la composante de tension constante (filtre passe-haut, souvent appelé filtre DC).
+
+On peut visualiser les filtres pour les basses (DC) et hautes (AC) fréquences pour voir le fonctionnement. Les basses fréquences ne passent pas dans un condensateur (le circuit est ouvert), et les hautes fréquences voient un fil conducteur (le circuit est fermé):
 
 ![image-20210129160358306](HOWTO-Electronique.assets/image-20210129160358306.png)
 
 
 
-## Équipement
+## Pieces
+
+### Apparence
 
 
 
@@ -198,25 +215,33 @@ On peut visualiser les filtres pour les basses (DC) et hautes (AC) fréquences p
 
 
 
-## TODO: Reste à faire
+### Lire des feuilles de spécifications
 
-1. Voltage divider
-2. Op-amp follower/buffer
-4. Op-amp gain
-5. Op-amp adder
-6. Op-amp transimpedance
-7. Numériseur
-8. Instrumentation amplifier
-9. https://artofelectronics.net
+Les blocs d'alimentation ont une tension de sortie (DC ou AC).  AC veut toujours dire 60 Hz au Canada et Etats-Unis, et 50 Hz partout ailleurs dans le monde. Ils sont "capables" de fournir un certain courant maximal (donc une puissance maximale). Par exemple le LDS12B, 12 Vdc, 250 mA veut dire 3W maximum donc c'est une bloc pour petit électronique (détecteurs par exemple). À l'extrême, KCH601, 15VDC et 10A, donc 150W maximum est bon pour des moteurs ou des lasers.
 
+Notez qu'on ne sait pas la résistance interne (appelé *output impedance*) car elle est faible (c'est une source de tension après tout).
 
+On doit évidemment choisir le bon connecteur parce qu'un branchement simple, c'est pratique. On doit se renseigner sur les différents connecteurs, c'est facile de se tromper.
 
+![image-20210130190521538](HOWTO-Electronique.assets/image-20210130190521538.png)
 
+### Achat
 
+* Au Canada, on achète des pièces chez [Digi-key](www.digikey,ca), [Mouser](www.mouser.ca) ou [Electrosonic](https://www.e-sonic.com) (dans cet ordre).
+* À Québec, on achète des pièces chez [Electro-Mike](https://www.electromike.com) (composantes) et [Access Électronique](https://acceselectronique.ca/) (l'autre côté de la rue, pour les pièces de puissance).
 
+## Lien entre électromagnétisme et circuits
 
-
-
+* **Loi de Kirchoff $V = RI$.**  Les électrons dans les matériaux accélèrent s'il y a un champ électrique, mais ils entrent en collision avec les (très nombreux!) atomes/molécules qui forment le solide: il y en a un à tous les 1nm, donc les électrons n'ont pas vraiment beaucoup d'espace ou de temps pour accélérer.  On laisse tomber les détails de la physique de l'état solide et on peut montrer que les électrons ont une vitesse moyenne (*drift velocity*) donnée par $v_d = \mu E$ où $\mu$ est la mobilité du matériel. Cette vitesse est très faible: quelques mm par seconde. Ce n'est pas la vitesse du courant: un electron qui avance en "pousse" un autre (ce sont des fermions, ils ne peuvent être deux au même endroit) et c'est cette vague-de-poussage qui se propage à la vitesse de la lumière (ou presque).
+  
+  <img src="HOWTO-Electronique.assets/image-20210130210319086.png" alt="image-20210130210319086" style="zoom:50%;" />
+  On peut montrer que la densité de courant est donnée par $J = \sigma E$ (où $\sigma$ est la conductivité du matériel) et que c'est équivalent à la loi de Kirchoff.
+* **Le condensateur le plus simple**: si deux plaques conductrices parallèles (et infinies) sont séparées par une distance $d$ et ont une différence de potentiel $\Delta V$ , alors le champ électrique entre les deux est **constant** et est simplement $E = \Delta V/d$.  Les plaques agissent comme un condensateur de **capacitance** $C = \epsilon A/d$. Oubliez les détails: cette approximation est suffisante pour comprendre bien des choses.
+  
+  * Toute structure où un conducteur A est proche d'un conducteur B et à différents potentiels agira comme un condensateur. À moins que ça ne soit voulu, on parlera de "capacitance résiduelle". Les câbles coaxiaux ont une capacitance de 30 pF/m car le centre (le signal) est a un potentiel alors que l'extérieur (le *shield*) est à 0V. Une connexion BNC a une capacitance résiduelle de quelques pF.  (On prononce "pof" pour les experts).
+  * Pour avoir plus de capacitance, on doit avoir une plus grande surface (un condensateur plus gros).
+  * Pour avoir une plus grande capacitance pour une surface donnée, on ajoute un diélectrique ou un électrolyte entre les plaques pour augmenter $\epsilon$.
+  * Pour *réduire* la capacitance résiduelle des éléments (puisque cela ralentit les circuits), on doit diminuer la grosseurs des éléments.
 
 [^1]: J'étais nul en électronique au bacc. Nul. Zéro.  J'ai eu un déclic dans le cours Physique Expérimentale III en 1994 avec [Normand Balaux](https://www.coopfuneraire2rives.com/avis-de-deces/normand-balaux-147920/#ecrire) (que j'aimais beaucoup même s'il était extrêmement discret).  Par la suite, un stage d'été à Toronto en compagnie de l'excellent étudiant [Gary Allan](https://www.linkedin.com/in/gary-allan-6250a210/) m'a convaincu de l'importance d'apprendre l'électronique au moins pour être opérationnel au laboratoire. Pour graduer, j'ai dû faire beaucoup d'électronique, réparer des choses, en construire des nouvelles, automatiser mes montages, etc... À force d'en faire, les automatismes de laboratoire se sont transformés en connaissances.
 
