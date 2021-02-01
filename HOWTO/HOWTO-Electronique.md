@@ -159,15 +159,11 @@ Donc il y a des sources de *courants* et des sources de *tension*.  Vous vous de
 
 > Oui mais ce qui sort d'une batterie, c'est un courant **et** une tension!  Qu'est-ce que je suis supposé(e) dire: c'est une source de courant ou de tension!? Je peux passer de tension à courant ou courant à tension comme je veux avec $V=RI$ ! Donc, c'est quoi l'affaire?!
 
-La différence est extrêmement simple: une source de puissance (i.e. un bloc d'alimentation) avec une résistance interne très faible se comportera comme une source de tension parce que toute résistance de charge connectée sera dominante par rapport à la résistance interne, et la perte de tension aux bornes de la résistance de charge sera la tension de la source (et sera donc toujours la même). Au contraire, une source avec un résistance interne très élevée se comportera comme une source de courant car la résistance de charge sera négligeable par rapport à la résistance interne et le courant sera dicté par la résistance interne (et sera donc toujours le même).
+La différence est extrêmement simple: une source de puissance (i.e. un bloc d'alimentation) avec une résistance interne très faible se comporte comme une source de tension parce que toute résistance de charge connectée est dominante par rapport à la résistance interne, et la perte de tension aux bornes de la résistance de charge sera la tension de la source (et sera donc toujours la même). Au contraire, une source avec un résistance interne très élevée se comporte comme une source de courant car la résistance de charge est négligeable par rapport à la résistance interne et le courant est dicté par la résistance interne (et sera donc toujours le même).
 
-Donc dans les faits, on n'a pas vraiment besoin de parler de "source de tension" ou 'source de courant", on peut simplement parler de "source" parce que la seule différence, c'est la résistance interne même si, 99% du temps, on a une source de tension. De plus, on peut prendre un circuit d'une source de tension avec une résistance et la changer en circuit avec une source de courant équivalente (ou vice-versa), ce qui s'appelle l'équivalent de Norton:
+Donc dans les faits, on n'a pas vraiment besoin de parler de "source de tension" ou "source de courant", on peut simplement parler de "source" parce que la seule différence, c'est la résistance interne même si, 99% du temps, on a une source de tension. De plus, on peut prendre un circuit d'une source de tension avec une résistance et la changer en circuit avec une source de courant équivalente (ou vice-versa), ce qui s'appelle l'équivalent de Norton:
 
-$R_\text{Th} = R_\text{No}$
-
-$V_\text{Th} = I_\text{No} R_\text{No}$
-
-$I_\text{No} = \frac{V_\text{Th}}{R_\text{Th}}$
+$R_\text{Th} = R_\text{No}$,  $V_\text{Th} = I_\text{No} R_\text{No}$ et $I_\text{No} = \frac{V_\text{Th}}{R_\text{Th}}$
 
 ![img](HOWTO-Electronique.assets/260px-Norton-to-thevenin-20210128132127347.png)
 
@@ -183,7 +179,7 @@ Si j'ai une source de tension $V_o$ avec une résistance $R_c$ à ses bornes, j'
 
 * On appelle ce petit circuit un diviseur de potentiel (ou *voltage divider* en anglais). 
 * Typiquement on prendrait la tension à la connexion entre les deux résistances et la mise à la terre.
-* C'est une façon rapide de réduire la tension d'entrée ou de sortie d'un circuit, par exemple pour accommoder nos besoins.  On gaspille une partie de la puissance qui se dissipe dans la résistance qu'on utilise pas, mais c'est très utile et très fréquent. Dans un circuit à batterie, on n'essaierait d'éviter à l'entrée, mais dans un circuit avec un bloc d'alimentation, c'est tout a fait acceptable (même s'il existe d'autres méthodes pour obtenir les tensions voulues de façon plus efficace).
+* C'est une façon rapide de réduire la tension d'entrée ou de sortie d'un circuit, par exemple pour accommoder nos besoins.  On gaspille une partie de la puissance qui se dissipe dans la résistance qu'on n'utilise pas, mais c'est très utile et très fréquent. Dans un circuit à batterie, on n'essaierait d'éviter à l'entrée, mais dans un circuit avec un bloc d'alimentation, c'est tout a fait acceptable (même s'il existe d'autres méthodes pour obtenir les tensions voulues de façon plus efficace).
 
 ### Les filtres passifs
 
@@ -208,17 +204,17 @@ On peut visualiser les filtres pour les basses (DC) et hautes (AC) fréquences p
 | Description                                           | Symbole                                                      |                          Apparence                           |
 | ----------------------------------------------------- | ------------------------------------------------------------ | :----------------------------------------------------------: |
 | Multimètre                                            | <img src="HOWTO-Electronique.assets/image-20210131114625752.png" alt="image-20210131114625752" style="zoom:33%;" /> | <img src="HOWTO-Electronique.assets/multimeter-523153_960_720-5768a8193df78ca6e45dc883.jpg" alt="What Is a Multimeter?" style="zoom:15%;" /> |
+| Résistances pour différentes dissipation de puissance | <img src="HOWTO-Electronique.assets/image-20210131114650958.png" alt="image-20210131114650958" style="zoom:33%;" /> | <img src="HOWTO-Electronique.assets/resistor-wattage.jpg" alt="resistor wattage" style="zoom:20%;" /> |
+| Condensateurs                                         | <img src="HOWTO-Electronique.assets/image-20210131114700164.png" alt="image-20210131114700164" style="zoom:33%;" /> | <img src="HOWTO-Electronique.assets/Capacitors_(7189597135).jpg" alt="Capacitor - Wikipedia" style="zoom: 10%;" /> |
 | Câbles BNC ou coaxial                                 |                                                              | <img src="HOWTO-Electronique.assets/2249-C-12.jpg" alt="2249-C-12" style="zoom:12%;" /> |
 | Prises alligators                                     |                                                              | <img src="HOWTO-Electronique.assets/71IFNUMDJML._AC_SL1500_.jpg" alt="img" style="zoom:12%;" /> |
 | Prises bananes                                        |                                                              | <img src="HOWTO-Electronique.assets/1325-02.jpg" alt="1325-02" style="zoom:15%;" /> |
-| Résistances pour différentes dissipation de puissance | <img src="HOWTO-Electronique.assets/image-20210131114650958.png" alt="image-20210131114650958" style="zoom:33%;" /> | <img src="HOWTO-Electronique.assets/resistor-wattage.jpg" alt="resistor wattage" style="zoom:20%;" /> |
-| Condensateurs                                         | <img src="HOWTO-Electronique.assets/image-20210131114700164.png" alt="image-20210131114700164" style="zoom:33%;" /> | <img src="HOWTO-Electronique.assets/Capacitors_(7189597135).jpg" alt="Capacitor - Wikipedia" style="zoom: 10%;" /> |
 
 
 
 ### Lire des feuilles de spécifications
 
-Les blocs d'alimentation ont une tension de sortie (DC ou AC).  AC veut toujours dire 60 Hz au Canada et Etats-Unis, et 50 Hz partout ailleurs dans le monde. Ils sont "capables" de fournir un certain courant maximal (donc une puissance maximale). Par exemple le LDS12B, 12 Vdc, 250 mA veut dire 3W maximum donc c'est une bloc pour petit électronique (détecteurs par exemple). À l'extrême, KCH601, 15VDC et 10A, donc 150W maximum est bon pour des moteurs ou des lasers.
+Les blocs d'alimentation ont une tension de sortie (DC ou AC).  AC veut toujours dire 60 Hz au Canada et États-Unis, et 50 Hz partout ailleurs dans le monde. Ils sont "capables" de fournir un certain courant maximal (donc une puissance maximale). Par exemple le LDS12B, 12 Vdc, 250 mA veut dire 3W maximum donc c'est une bloc pour petit électronique (détecteurs par exemple). À l'extrême, KCH601, 15VDC et 10A, donc 150W maximum est bon pour des moteurs ou des lasers.
 
 Notez qu'on ne sait pas la résistance interne (appelé *output impedance*) car elle est faible (c'est une source de tension après tout).
 
