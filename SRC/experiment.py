@@ -139,7 +139,7 @@ class XYGraph:
         plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
         self.curves = []
-        self.linewidth = 2
+        self.linewidth = 0 # Set to 1 or 2 to connect the dots
         self.markersize= 7
         (self.fig, self.axes) = plt.subplots(figsize=(6, 5))
         self.axes.set(xlabel="X [arb. u]", ylabel="Y [arb. u]", title="")
@@ -168,11 +168,21 @@ class XYGraph:
         self.axes.set_ylabel(label)
         
     def show(self):
-        for curve in self.curves:
+        symbols = [{"marker":'o','color':'k'},
+                   {"marker":'o','color':'k',"markerfacecolor":'none'},
+                   {"marker":'s','color':'k'},
+                   {"marker":'s','color':'k',"markerfacecolor":'none'}]
+        for i, curve in enumerate(self.curves):
             if not curve.hasXErrorBars and not curve.hasYErrorBars:
-                self.axes.plot(curve.x, curve.y, 'ko', markersize=self.markersize)
+                self.axes.plot(curve.x, curve.y, **symbols[i],
+                               markersize=self.markersize, 
+                               linestyle='-', 
+                               linewidth=self.linewidth)
             elif curve.hasYErrorBars:
-                self.axes.errorbar(curve.x, curve.y, 'ko', markersize=self.markersize)
+                self.axes.errorbar(curve.x, curve.y, **(symbols[i]),
+                               markersize=self.markersize,
+                               linestyle='-',
+                               linewidth=self.linewidth)
 
         plt.show()
 
