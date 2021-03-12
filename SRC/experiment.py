@@ -43,7 +43,7 @@ class Data:
         return "{0} {1} {2} {3}".format(self.x, self.dx, self.y, self.dy)
 
 class DataFile:
-    def __init__(self, filepath):
+    def __init__(self, filepath, roles=None):
         self.filepath = filepath
         self.rows = []
 
@@ -56,10 +56,11 @@ class DataFile:
             for row in fileReader:
                 self.rows.append(row)
 
-        if len(self.rows[0]) == 2:
+        self.assignments = [None]*len(self.rows[0])
+        if roles is not None:
+            self.assignAll(roles)
+        elif len(self.rows[0]) == 2:
             self.assignments = ['x0','y0']
-        else:
-            self.assignments = [None]*len(self.rows[0])
 
     @property
     def x(self):
@@ -83,14 +84,14 @@ class DataFile:
 
         return columns
 
-    def assignAll(self, roles=None):
-        # Split on space or comma
-        return 
-
     def assign(self, column, role):
         possibilities = [r"x\d+",r"y\d+",r"dx\d+",r"dy\d+"]
 
         self.assignments[column] = role
+
+    def assignAll(self, roles=None):
+        for i, role in enumerate(roles.split()):
+            self.assign(i, role)
 
     def column(self, pattern=None, index=None):
         for i, a in enumerate(self.assignments):
@@ -101,13 +102,15 @@ class DataFile:
 
     def curve(self, index):
         data = Data()
-        data.x = self.column(pattern="x{0}".format(index))
-        if data.x is None:
-            data.x = self.column(pattern="x0")
 
         data.y = self.column(pattern="y{0}".format(index))
         if data.y is None:
             return None
+
+        data.x = self.column(pattern="x{0}".format(index))
+        if data.x is None:
+            data.x = self.column(pattern="x0")
+
         data.dx = self.column(pattern="dx{0}".format(index))
         data.dy = self.column(pattern="dy{0}".format(index))
         return data
@@ -179,10 +182,10 @@ class XYGraph:
 # class Histogram:
 
 if __name__ == "__main__":
-    data = DataFile('data.csv')
-    data.assign(column=0, role='x0')
-    data.assign(column=1, role='y0')
-    data.assign(column=2, role='y1')
+    data = DataFile('data.csv', "x0 y0 y1")
+    # data.assign(column=0, role='x0')
+    # data.assign(column=1, role='y0')
+    # data.assign(column=2, role='y1')
     print(data.curves)
     # print(data.columns[0]) #Premiere colonne
     # print(data.columns[1]) #Deuxieme colonne...
