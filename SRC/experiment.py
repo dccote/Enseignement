@@ -24,6 +24,24 @@ graph.save('test.pdf')
 
 """
 
+class Data:
+    def __init__(self, x=None, y=None, dx=None, dy=None):
+        self.x: [float] = x
+        self.y: [float] = y
+        self.dx: [float] = dx
+        self.dy: [float] = dy
+
+    @property
+    def hasXErrorBars(self):
+        return self.dx is not None
+
+    @property
+    def hasYErrorBars(self):
+        return self.dy is not None
+    
+    def __repr__(self):
+        return "{0} {1} {2} {3}".format(self.x, self.dx, self.y, self.dy)
+
 class DataFile:
     def __init__(self, filepath):
         self.filepath = filepath
@@ -45,17 +63,11 @@ class DataFile:
 
     @property
     def x(self):
-        index = self.columnIndex('x0')
-        if index is not None:
-            return self.columns[index]
-        return self.columns[0]
+        return self.column('x0')
 
     @property
     def y(self):
-        index = self.columnIndex('y0')
-        if index is not None:
-            return self.columns[index]
-        return self.columns[1]
+        return self.column('y0')
 
     @property
     def columns(self):
@@ -71,35 +83,46 @@ class DataFile:
 
         return columns
 
+    def assignAll(self, roles=None):
+        # Split on space or comma
+        return 
+
     def assign(self, column, role):
         possibilities = [r"x\d+",r"y\d+",r"dx\d+",r"dy\d+"]
 
         self.assignments[column] = role
 
-    def columnIndex(self, pattern):
+    def column(self, pattern=None, index=None):
         for i, a in enumerate(self.assignments):
-            result = re.match(pattern, a)
-            if result is not None:
-                return i
+            if a is not None:
+                if re.match(pattern, a) is not None:
+                    return self.columns[i]
         return None
 
-    # @property
-    # def curves(self):
-    #     curves = []
-    #     if len(self.xVectors) == 1:
+    def curve(self, index):
+        data = Data()
+        data.x = self.column(pattern="x{0}".format(index))
+        if data.x is None:
+            data.x = self.column(pattern="x0")
 
+        data.y = self.column(pattern="y{0}".format(index))
+        if data.y is None:
+            return None
+        data.dx = self.column(pattern="dx{0}".format(index))
+        data.dy = self.column(pattern="dy{0}".format(index))
+        return data
 
-class DataCurve:
-    def __init__(self, x=None, y=None, dx=None, dy=None):
-        self.x = x
-        self.y = y
-        self.dx = dx
-        self.dy = dy
-
+    @property
+    def curves(self):
+        curves = []
+        for c in range(10) :
+            curve = self.curve(index=c)
+            if curve is not None:
+                curves.append(curve)
+        return curves
 
 class XYGraph:
-    def __init__(self, x=None, y=None, dx=None, dy=None):
-
+    def __init__(self):
         SMALL_SIZE = 11
         MEDIUM_SIZE = 13
         BIGGER_SIZE = 36
@@ -112,21 +135,18 @@ class XYGraph:
         plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
         plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
-        self.x = x
-        self.y = y
-        self.dx = dx
-        self.dy = dy
+        self.curves = []
         self.linewidth = 2
         self.markersize= 7
         (self.fig, self.axes) = plt.subplots(figsize=(6, 5))
         self.axes.set(xlabel="X [arb. u]", ylabel="Y [arb. u]", title="")
-        if dx is None and dy is None:
-            self.axes.plot(x, y, 'ko', markersize=self.markersize)
-        elif dy is not None:
-            self.axes.errorbar(x, y, 'ko', markersize=self.markersize)
 
-    def addCurve(self, x=None, y=None, dx=None, dy=None):
-        return
+    def addCurve(self, curve):
+        self.curves.append(curve)
+
+    def addCurves(self, curves):
+        for curve in curves:
+            self.curves.append(curve)
 
     @property
     def xlabel(self):
@@ -145,7 +165,12 @@ class XYGraph:
         self.axes.set_ylabel(label)
         
     def show(self):
-        plt.ioff()
+        for curve in self.curves:
+            if not curve.hasXErrorBars and not curve.hasYErrorBars:
+                self.axes.plot(curve.x, curve.y, 'ko', markersize=self.markersize)
+            elif curve.hasYErrorBars:
+                self.axes.errorbar(curve.x, curve.y, 'ko', markersize=self.markersize)
+
         plt.show()
 
     def save(self, filepath):
@@ -157,12 +182,16 @@ if __name__ == "__main__":
     data = DataFile('data.csv')
     data.assign(column=0, role='x0')
     data.assign(column=1, role='y0')
-    print(data.columns[0]) #Premiere colonne
-    print(data.columns[1]) #Deuxieme colonne...
-    print(data.x) #Synonyme de columns[0]
-    print(data.y) #Synonyme de columns[1]
+    data.assign(column=2, role='y1')
+    print(data.curves)
+    # print(data.columns[0]) #Premiere colonne
+    # print(data.columns[1]) #Deuxieme colonne...
+    # print(data.x) #Synonyme de columns[0]
+    # print(data.y) #Synonyme de columns[1]
 
-    g = XYGraph(data.x, data.y)
+    g = XYGraph()
+    g.addCurves(data.curves)
+
     g.ylabel = "Intensity"
     g.xlabel = "Current"
     g.show()
