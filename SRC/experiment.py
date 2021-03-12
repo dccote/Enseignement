@@ -1,5 +1,6 @@
 import csv
 import matplotlib.pyplot as plt
+import re
 
 """ Une classe DataFile pour lire les données de fichiers CSV et
 une class Graph pour voir et sauvegarder un graphique. A utiliser
@@ -37,12 +38,23 @@ class DataFile:
             for row in fileReader:
                 self.rows.append(row)
 
+        if len(self.rows[0]) == 2:
+            self.assignments = ['x0','y0']
+        else:
+            self.assignments = [None]*len(self.rows[0])
+
     @property
     def x(self):
+        index = self.columnIndex('x0')
+        if index is not None:
+            return self.columns[index]
         return self.columns[0]
 
     @property
     def y(self):
+        index = self.columnIndex('y0')
+        if index is not None:
+            return self.columns[index]
         return self.columns[1]
 
     @property
@@ -59,11 +71,33 @@ class DataFile:
 
         return columns
 
+    def assign(self, column, role):
+        possibilities = [r"x\d+",r"y\d+",r"dx\d+",r"dy\d+"]
+
+        self.assignments[column] = role
+
+    def columnIndex(self, pattern):
+        for i, a in enumerate(self.assignments):
+            result = re.match(pattern, a)
+            if result is not None:
+                return i
+        return None
+
+    # @property
+    # def curves(self):
+    #     curves = []
+    #     if len(self.xVectors) == 1:
+
+
 class DataCurve:
-	def __init__(self, x=None, y=None, dx=None, dy=None):
+    def __init__(self, x=None, y=None, dx=None, dy=None):
+        self.x = x
+        self.y = y
+        self.dx = dx
+        self.dy = dy
 
 
-class Graph:
+class XYGraph:
     def __init__(self, x=None, y=None, dx=None, dy=None):
 
         SMALL_SIZE = 11
@@ -87,12 +121,12 @@ class Graph:
         (self.fig, self.axes) = plt.subplots(figsize=(6, 5))
         self.axes.set(xlabel="X [arb. u]", ylabel="Y [arb. u]", title="")
         if dx is None and dy is None:
-	        self.axes.plot(x, y, 'ko', markersize=self.markersize)
-	    elif dy is not None:
-	    	self.axes.errorbar(x, y, 'ko', markersize=self.markersize)
+            self.axes.plot(x, y, 'ko', markersize=self.markersize)
+        elif dy is not None:
+            self.axes.errorbar(x, y, 'ko', markersize=self.markersize)
 
-	def addCurve(self, x=None, y=None, dx=None, dy=None):
-		return
+    def addCurve(self, x=None, y=None, dx=None, dy=None):
+        return
 
     @property
     def xlabel(self):
@@ -117,10 +151,19 @@ class Graph:
     def save(self, filepath):
         self.fig.savefig(filepath, dpi=600)
 
+# class Histogram:
 
 if __name__ == "__main__":
-	data = Exp.DataFile('data.csv')
-	print(data.columns[0]) #Premiere colonne
-	print(data.columns[1]) #Deuxieme colonne...
-	print(data.x) #Synonyme de columns[0]
-	print(data.y) #Synonyme de columns[1]
+    data = DataFile('data.csv')
+    data.assign(column=0, role='x0')
+    data.assign(column=1, role='y0')
+    print(data.columns[0]) #Premiere colonne
+    print(data.columns[1]) #Deuxieme colonne...
+    print(data.x) #Synonyme de columns[0]
+    print(data.y) #Synonyme de columns[1]
+
+    g = XYGraph(data.x, data.y)
+    g.ylabel = "Intensity"
+    g.xlabel = "Current"
+    g.show()
+    g.save("figure.pdf")
