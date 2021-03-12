@@ -1,6 +1,8 @@
 import csv
 import matplotlib.pyplot as plt
 import re
+import numpy
+from numpy.polynomial import Polynomial
 
 """ Une classe DataFile pour lire les données de fichiers CSV et
 une class Graph pour voir et sauvegarder un graphique. A utiliser
@@ -30,6 +32,7 @@ class Data:
         self.y: [float] = y
         self.dx: [float] = dx
         self.dy: [float] = dy
+        self.isFunction = False
 
     @property
     def hasXErrorBars(self):
@@ -41,6 +44,18 @@ class Data:
     
     def __repr__(self):
         return "{0} {1} {2} {3}".format(self.x, self.dx, self.y, self.dy)
+
+    def polynomialFit(self, degree):
+        N = 100
+        xs = numpy.linspace(min(self.x), max(self.x), N)
+
+        polynomial = Polynomial.fit(self.x, self.y, deg=degree)
+        ys = polynomial(xs)
+
+        data = Data(xs, ys)
+        data.isFunction = True
+        return data
+         
 
 class DataFile:
     def __init__(self, filepath, roles=None):
@@ -139,7 +154,7 @@ class XYGraph:
         plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
         self.curves = []
-        self.linewidth = 0 # Set to 1 or 2 to connect the dots
+        self.linewidth = 1 # Set to 1 or 2 to connect the dots
         self.markersize= 7
         (self.fig, self.axes) = plt.subplots(figsize=(6, 5))
         self.axes.set(xlabel="X [arb. u]", ylabel="Y [arb. u]", title="")
@@ -174,10 +189,17 @@ class XYGraph:
                    {"marker":'s','color':'k',"markerfacecolor":'none'}]
         for i, curve in enumerate(self.curves):
             if not curve.hasXErrorBars and not curve.hasYErrorBars:
-                self.axes.plot(curve.x, curve.y, **symbols[i],
-                               markersize=self.markersize, 
-                               linestyle='-', 
-                               linewidth=self.linewidth)
+                if curve.isFunction:
+                    self.axes.plot(curve.x, curve.y,
+                                   color='k', 
+                                   linestyle='-', 
+                                   linewidth=self.linewidth)
+                else:
+                    self.axes.plot(curve.x, curve.y, **symbols[i],
+                                   markersize=self.markersize, 
+                                   linestyle='-', 
+                                   linewidth=0)
+
             elif curve.hasYErrorBars:
                 self.axes.errorbar(curve.x, curve.y, **(symbols[i]),
                                markersize=self.markersize,
@@ -196,14 +218,14 @@ if __name__ == "__main__":
     # data.assign(column=0, role='x0')
     # data.assign(column=1, role='y0')
     # data.assign(column=2, role='y1')
-    print(data.curves)
+    #print(data.curves)
     # print(data.columns[0]) #Premiere colonne
     # print(data.columns[1]) #Deuxieme colonne...
     # print(data.x) #Synonyme de columns[0]
     # print(data.y) #Synonyme de columns[1]
-
     g = XYGraph()
     g.addCurves(data.curves)
+    g.addCurve(data.curves[1].polynomialFit(degree=2))
 
     g.ylabel = "Intensity"
     g.xlabel = "Current"
