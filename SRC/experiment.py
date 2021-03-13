@@ -85,11 +85,12 @@ class Fit(Curve):
         self.N = N
 
     def latexPolynomial(self, coefficients):
-        formatStrings = ["{0:.2g}","{0:.2g}x", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}"]
-        formatStringsWhenCoefIs1 = ["{0:.2g}","x","x^{1}","x^{1}","x^{1}","x^{1}","x^{1}","x^{1}"]
+        formatStrings = ["{0:.2g}", "{0:.2g}x", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}",
+                         "{0:.2g}x^{1}", "{0:.2g}x^{1}"]
+        formatStringsWhenCoefIs1 = ["{0:.2g}", "x", "x^{1}", "x^{1}", "x^{1}", "x^{1}", "x^{1}", "x^{1}"]
         terms = []
         for i, a in enumerate(coefficients):
-            if abs(a-1) > 1e-3:
+            if abs(a - 1) > 1e-3:
                 terms.append(formatStrings[i].format(a, i))
             else:
                 terms.append(formatStringsWhenCoefIs1[i].format(a, i))
@@ -222,10 +223,53 @@ class XYGraph:
         self.markersize = 7
         self.fig, self.axes = plt.subplots(figsize=(6, 5))
         self.axes.set(xlabel="X [arb. u]", ylabel="Y [arb. u]", title="")
+        self.xlim = None
 
         self.curves = []
         if datafile is not None:
             self.addCurves(datafile.curves)
+
+        self.useColors = False
+        self.symbolsBlackAndWhite = [{"marker": 'o', 'color': 'k'},
+                   {"marker": 'o', 'color': 'k', "markerfacecolor": 'none'},
+                   {"marker": 's', 'color': 'k'},
+                   {"marker": 's', 'color': 'k', "markerfacecolor": 'none'},
+                   {"marker": 'v', 'color': 'k'},
+                   {"marker": 'v', 'color': 'k', "markerfacecolor": 'none'},
+                   {"marker": 'D', 'color': 'k'},
+                   {"marker": 'D', 'color': 'k', "markerfacecolor": 'none'}
+                   ]
+        self.symbolsColors = [{"marker": 'o', 'color': 'k'},
+                   {"marker": 'o', 'color': 'r'},
+                   {"marker": 'o', 'color': 'b'},
+                   {"marker": 's', 'color': 'g'},
+                   {"marker": 'o', 'color': 'k', "markerfacecolor": 'none'},
+                   {"marker": 'o', 'color': 'r', "markerfacecolor": 'none'},
+                   {"marker": 's', 'color': 'b', "markerfacecolor": 'none'},
+                   {"marker": 's', 'color': 'g', "markerfacecolor": 'none'}
+                   ]
+
+        self.linesBlackAndWhite = [{"linestyle": '-', 'color': 'k'},
+                   {"linestyle": '--', 'color': 'k'},
+                   {"linestyle": '-.', 'color': 'k'},
+                   {"linestyle": 'dotted', 'color': 'k'},
+                   {"linestyle": ':', 'color': 'k', "markerfacecolor": 'none'},
+                   {"linestyle": '--', 'color': 'k', "markerfacecolor": 'none'},
+                   {"linestyle": '-.', 'color': 'k', "markerfacecolor": 'none'},
+                   {"linestyle": '-', 'color': 'k', "markerfacecolor": 'none'}
+                   ]
+
+        self.linesColors = [{"linestyle": '-', 'color': 'k'},
+                   {"linestyle": '-', 'color': 'r'},
+                   {"linestyle": '-', 'color': 'b'},
+                   {"linestyle": '-', 'color': 'g'},
+                   {"linestyle": '--', 'color': 'k', "markerfacecolor": 'none'},
+                   {"linestyle": '--', 'color': 'r', "markerfacecolor": 'none'},
+                   {"linestyle": '--', 'color': 'b', "markerfacecolor": 'none'},
+                   {"linestyle": '--', 'color': 'g', "markerfacecolor": 'none'}
+                   ]
+
+
 
     def add(self, x, y, dx=None, dy=None):
         self.curves.append(Curve(x, y, dx, dy))
@@ -254,10 +298,13 @@ class XYGraph:
         self.axes.set_ylabel(label)
 
     def createFigure(self):
-        symbols = [{"marker": 'o', 'color': 'k'},
-                   {"marker": 'o', 'color': 'k', "markerfacecolor": 'none'},
-                   {"marker": 's', 'color': 'k'},
-                   {"marker": 's', 'color': 'k', "markerfacecolor": 'none'}]
+        if self.useColors:
+            symbols = self.symbolsColors
+            lines = self.linesColors
+        else:
+            symbols = self.symbolsBlackAndWhite
+            lines = self.linesBlackAndWhite
+
         for i, curve in enumerate(self.curves):
             if not curve.isVisible:
                 continue
@@ -265,8 +312,7 @@ class XYGraph:
             if not curve.hasXErrorBars and not curve.hasYErrorBars:
                 if curve.connectPoints:
                     self.axes.plot(curve.x, curve.y,
-                                   color='k',
-                                   linestyle='-',
+                                   **lines[i],markersize=0,
                                    linewidth=self.linewidth,
                                    label=curve.label)
                 else:
@@ -302,6 +348,8 @@ class XYGraph:
                                    linewidth=1,
                                    label=curve.label,
                                    capsize=self.markersize / 2)
+        if self.xlim is not None:
+            plt.xlim(self.xlim)
 
         if len(self.curves) >= 2:
             self.axes.legend()
@@ -315,11 +363,10 @@ class XYGraph:
         self.fig.savefig(filepath, dpi=600)
 
 
-
 if __name__ == "__main__":
-
     data = DataFile('data.csv', columnId="x0 y0 y1 dx0 dy0")
     curve0, curve1 = data.curves
+
     # curve0.hide()
     # curve1.hide()
     graph = XYGraph(data)
