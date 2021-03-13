@@ -36,10 +36,10 @@ class Curve:
         self.label = ""
         self.connectPoints = False
         self.isVisible = True
-        self.x = x
-        self.y = y
-        self.dx = dx
-        self.dy = dy
+        self.x = Column(x) if x is not None else None
+        self.y = Column(y) if y is not None else None
+        self.dx = Column(dx) if dx is not None else None
+        self.dy = Column(dy) if dy is not None else None
 
     def hide(self):
         self.isVisible = False
@@ -236,8 +236,9 @@ class XYGraph:
         self.linewidth = 1  # Set to 1 or 2 to connect the dots
         self.markersize = 7
         self.fig, self.axes = plt.subplots(figsize=(6, 5))
-        self.axes.set(xlabel="X [arb. u]", ylabel="Y [arb. u]", title="")
         self.xlim = None
+        self.xlabel = "X"
+        self.ylabel = "Y"
 
         self.curves = []
         if datafile is not None:
@@ -291,23 +292,10 @@ class XYGraph:
         for curve in curves:
             self.curves.append(curve)
 
-    @property
-    def xlabel(self):
-        return self.axes.get_xlabel()
-
-    @xlabel.setter
-    def xlabel(self, label):
-        self.axes.set_xlabel(label)
-
-    @property
-    def ylabel(self):
-        return self.axes.get_ylabel()
-
-    @ylabel.setter
-    def ylabel(self, label):
-        self.axes.set_ylabel(label)
-
     def createFigure(self):
+        self.axes.cla()
+        self.axes.set(xlabel=self.xlabel, ylabel=self.ylabel, title="")
+
         if self.useColors:
             symbols = self.symbolsColors
             lines = self.linesColors
