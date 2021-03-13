@@ -1,5 +1,6 @@
 import csv
 import re
+from typing import List
 
 import matplotlib.pyplot as plt
 import numpy
@@ -32,11 +33,17 @@ class Curve:
     def __init__(self, x=None, y=None, dx=None, dy=None):
         self.label = ""
         self.connectPoints = False
-        self.show = True
+        self.isVisible = True
         self.x = x
         self.y = y
         self.dx = dx
         self.dy = dy
+
+    def hide(self):
+        self.isVisible = False
+
+    def show(self):
+        self.isVisible = True
 
     @property
     def hasXErrorBars(self):
@@ -142,94 +149,78 @@ class Column:
 
 
 class DataFile:
-    def __init__(self, filepath, relationships=None):
+    def __init__(self, filepath, identification=None):
         self.filepath = filepath
-        self.rows = []
-        self.columns = []
-        self.curves = []
 
-        self.readRows(self.filepath)
-        self.extractColumns(self.rows)
-        self.identifyColumns(relationships)
-        self.extractCurves(self.columns)
+        self.rows = self.readRows(self.filepath)
+        self.columns = self.extractColumns(self.rows)
+        self.dictionary = self.classifyColumns(identification)
+        self.curves = self.extractCurves(self.columns)
 
         self.iteration = 0
 
     def readRows(self, filepath):
+        rows = []
         with open(filepath) as csvfile:
             dialect = csv.Sniffer().sniff(csvfile.read(1024))
             csvfile.seek(0)
             fileReader = csv.reader(csvfile, dialect,
                                     quoting=csv.QUOTE_NONNUMERIC)
-
             for row in fileReader:
-                self.rows.append(row)
+                rows.append(row)
+        return rows
 
     def extractColumns(self, rows):
         nColumns = len(rows[0])
-        self.columns = []
+        columns = []
         for index in range(nColumns):
             data = []
             for row in rows:
                 element = row[index]
                 data.append(element)
-            self.columns.append(Column(data))
+            columns.append(Column(data))
+        return columns
 
-    def identifyColumns(self, relationships):
-        for i, role in enumerate(relationships.split()):
+    def classifyColumns(self, identification):
+        dict = {}
+        for i, role in enumerate(identification.split()):
             self.columns[i].role = role
             if len(self.columns[i].label) == 0:
                 self.columns[i].label = role
+            dict[role] = self.columns[i]
+        return dict
 
     def extractCurves(self, cols):
-        self.curves = []
+        curves: List[Curve] = []
         for c in range(10):
             curve = self.buildCurve(c)
             if curve is not None:
-                self.curves.append(curve)
-
-    def __iter__(self):
-        self.iteration = 0
-        return self
-
-    def __next__(self):
-        try:
-            c = self.curves[self.iteration]
-            self.iteration += 1
-            return c
-        except Exception:
-            raise StopIteration()
-
-    # Column manipulation
-    @property
-    def x(self):
-        return self.findColumn('x0')
-
-    @property
-    def y(self):
-        return self.findColumn('y0')
-
-    def findColumn(self, pattern=None):
-        for column in self.columns:
-            if re.match(pattern, column.role) is not None:
-                return column
-        return None
+                curves.append(curve)
+        return curves
 
     def buildCurve(self, index):
         curve = Curve()
-
-        curve.y = self.findColumn(pattern="y{0}".format(index))
+        curve.y = self.dictionary.get("y{0}".format(index))
         if curve.y is None:
             return None
 
-        curve.x = self.findColumn(pattern="x{0}".format(index))
+        curve.x = self.dictionary.get("x{0}".format(index))
         if curve.x is None:
-            curve.x = self.findColumn(pattern="x0")
+            curve.x = self.dictionary.get("x0")
 
-        curve.dx = self.findColumn(pattern="dx{0}".format(index))
-        curve.dy = self.findColumn(pattern="dy{0}".format(index))
-        curve.label = curve.y.label
+        curve.dx = self.dictionary.get("dx{0}".format(index))
+        curve.dy = self.dictionary.get("dy{0}".format(index))
+        curve.label = "{0} vs {1}".format(curve.y.label, curve.x.label)
+
         return curve
+
+    @property
+    def x(self):
+        return self.dictionary.get('x0')
+
+    @property
+    def y(self):
+        return self.dictionary.get('y0')
 
 
 class XYGraph:
@@ -281,30 +272,30 @@ class XYGraph:
     def ylabel(self, label):
         self.axes.set_ylabel(label)
 
-    def show(self):
+    def createFigure(self):
         symbols = [{"marker": 'o', 'color': 'k'},
                    {"marker": 'o', 'color': 'k', "markerfacecolor": 'none'},
                    {"marker": 's', 'color': 'k'},
                    {"marker": 's', 'color': 'k', "markerfacecolor": 'none'}]
         for i, curve in enumerate(self.curves):
-            if not self.show:
+            if not curve.isVisible:
                 continue
 
             if not curve.hasXErrorBars and not curve.hasYErrorBars:
                 if curve.connectPoints:
-                    self.axes.plot(list(curve.x), list(curve.y),
+                    self.axes.plot(curve.x, curve.y,
                                    color='k',
                                    linestyle='-',
                                    linewidth=self.linewidth,
                                    label=curve.label)
                 else:
-                    self.axes.plot(list(curve.x), list(curve.y), **symbols[i],
+                    self.axes.plot(curve.x, curve.y, **symbols[i],
                                    markersize=self.markersize,
                                    linestyle='',
                                    linewidth=1,
                                    label=curve.label)
             elif curve.hasXErrorBars and curve.hasYErrorBars:
-                self.axes.errorbar(list(curve.x), list(curve.y),
+                self.axes.errorbar(curve.x, curve.y,
                                    xerr=list(curve.dx), yerr=list(curve.dy),
                                    **(symbols[i]),
                                    markersize=self.markersize,
@@ -313,7 +304,7 @@ class XYGraph:
                                    label=curve.label,
                                    capsize=self.markersize / 2)
             elif curve.hasYErrorBars:
-                self.axes.errorbar(list(curve.x), list(curve.y),
+                self.axes.errorbar(curve.x, curve.y,
                                    yerr=list(curve.dy),
                                    **(symbols[i]),
                                    markersize=self.markersize,
@@ -322,7 +313,7 @@ class XYGraph:
                                    label=curve.label,
                                    capsize=self.markersize / 2)
             elif curve.hasXErrorBars:
-                self.axes.errorbar(list(curve.x), list(curve.y),
+                self.axes.errorbar(curve.x, curve.y,
                                    xerr=list(curve.dx),
                                    **(symbols[i]),
                                    markersize=self.markersize,
@@ -334,19 +325,28 @@ class XYGraph:
         if len(self.curves) >= 2:
             self.axes.legend()
 
+    def show(self):
+        self.createFigure()
         plt.show()
 
     def save(self, filepath):
+        self.createFigure()
         self.fig.savefig(filepath, dpi=600)
 
 
 if __name__ == "__main__":
-    data = DataFile('data.csv', relationships="x0 y0 y1 dx0 dy0")
-    data.curves[0].label = "Some parabola"
-    data.curves[1].label = "Some data with errors"
+    data = DataFile('data.csv', identification="x0 y0 y1 dx0 dy0")
+    curve0, curve1 = data.curves
+    # curve0.hide()
+    # curve1.hide()
     graph = XYGraph(data)
+
     graph.addCurve(Fit(data.curves[1], degree=2))
     graph.ylabel = "Intensity"
     graph.xlabel = "Current"
     graph.show()
-    # graph.save("figure.pdf")
+    graph.save("figure.pdf")
+    data.curves[0].label = "Some parabola"
+    data.curves[1].label = "Some data with errors"
+    graph.show()
+    graph.save("figure.pdf")
