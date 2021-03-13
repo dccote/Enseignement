@@ -1,26 +1,29 @@
 import csv
 import re
-from typing import List
+from typing import List, Any, Tuple
 
 import matplotlib.pyplot as plt
 import numpy
 from numpy.polynomial import Polynomial
 
 """ Une classe DataFile pour lire les données de fichiers CSV et
-une class Graph pour voir et sauvegarder un graphique. A utiliser
+une class XYGraph pour voir et sauvegarder un graphique. A utiliser
 comme suit:
 
 import experiment as Exp
 
 # La classe DataFile permet de rapidement lire des données .csv
-data = Exp.DataFile('data.csv')
+# On utilise columnsId pour rapidement assigner quelle colonne va
+# avec quelle autre colonne pour les graphiques. On aura donc 
+# rapidement accès à curves[0],curves[1],etc...
+data = Exp.DataFile('data.csv', columnsId='x0 y0 y1 dy0 dy1')
 print(data.columns[0]) #Premiere colonne
 print(data.columns[1]) #Deuxieme colonne...
 print(data.x) #Synonyme de columns[0]
 print(data.y) #Synonyme de columns[1]
 
-# La classe Graph permet de rapidement faire un graphique raisonnable
-graph = Exp.Graph(x=data.x, y=data.y)
+# La classe XYGraph permet de rapidement faire un graphique raisonnable
+graph = Exp.XYGraph(data)
 graph.xlabel = "Courant [mA]"
 graph.ylabel = "Intensité [arb. u]"
 graph.show()
@@ -149,12 +152,12 @@ class Column:
 
 
 class DataFile:
-    def __init__(self, filepath, identification=None):
+    def __init__(self, filepath, columnId=None):
         self.filepath = filepath
 
         self.rows = self.readRows(self.filepath)
         self.columns = self.extractColumns(self.rows)
-        self.dictionary = self.classifyColumns(identification)
+        self.dictionary = self.classifyColumns(columnId)
         self.curves = self.extractCurves(self.columns)
 
         self.iteration = 0
@@ -335,7 +338,7 @@ class XYGraph:
 
 
 if __name__ == "__main__":
-    data = DataFile('data.csv', identification="x0 y0 y1 dx0 dy0")
+    data = DataFile('data.csv', columnId="x0 y0 y1 dx0 dy0")
     curve0, curve1 = data.curves
     # curve0.hide()
     # curve1.hide()
@@ -344,9 +347,5 @@ if __name__ == "__main__":
     graph.addCurve(Fit(data.curves[1], degree=2))
     graph.ylabel = "Intensity"
     graph.xlabel = "Current"
-    graph.show()
-    graph.save("figure.pdf")
-    data.curves[0].label = "Some parabola"
-    data.curves[1].label = "Some data with errors"
     graph.show()
     graph.save("figure.pdf")
