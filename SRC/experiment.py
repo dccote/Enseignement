@@ -1,6 +1,5 @@
 import csv
-import re
-from typing import List, Any, Tuple
+from typing import List
 
 import matplotlib.pyplot as plt
 import numpy
@@ -81,42 +80,21 @@ class Fit(Curve):
         Curve.__init__(self, x=xs, y=ys)
 
         self.connectPoints = True
-        self.label = self.latexString(polynomial)
+        self.label = self.latexPolynomial(polynomial.coef)
         self.degree = degree
         self.N = N
 
-    def latexString(self, p):
-        """ Small function to print nicely the polynomial p as we write it in maths, in LaTeX code. Obtained from:
-        https://perso.crans.org/besson/publis/notebooks/Demonstration%20of%20numpy.polynomial.Polynomial%20and%20nice
-        %20display%20with%20LaTeX%20and%20MathJax%20(python3).html
-        """
-        coefs = p.coef  # List of coefficient, sorted by increasing degrees
-        res = ""  # The resulting string
-        for i, a in enumerate(coefs):
-            if int(a) == a:  # Remove the trailing .0
-                a = int(a)
-            if i == 0:  # First coefficient, no need for X
-                if a > 0:
-                    res += "{a:.2g} + ".format(a=a)
-                elif a < 0:  # Negative a is printed like (a)
-                    res += "({a:.2g}) + ".format(a=a)
-                # a = 0 is not displayed
-            elif i == 1:  # Second coefficient, only X and not X**i
-                if a == 1:  # a = 1 does not need to be displayed
-                    res += "x + "
-                elif a > 0:
-                    res += "{a:.2g}x + ".format(a=a)
-                elif a < 0:
-                    res += "({a:.2g})x + ".format(a=a)
+    def latexPolynomial(self, coefficients):
+        formatStrings = ["{0:.2g}","{0:.2g}x", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}"]
+        formatStringsWhenCoefIs1 = ["{0:.2g}","x","x^{1}","x^{1}","x^{1}","x^{1}","x^{1}","x^{1}"]
+        terms = []
+        for i, a in enumerate(coefficients):
+            if abs(a-1) > 1e-3:
+                terms.append(formatStrings[i].format(a, i))
             else:
-                if a == 1:
-                    # A special care needs to be addressed to put the exponent in {..} in LaTeX
-                    res += "x^{i} + ".format(i="{%d}" % i)
-                elif a > 0:
-                    res += "{a:.2g}x^{i} + ".format(a=a, i="{%d}" % i)
-                elif a < 0:
-                    res += "({a:.2g})x^{i} + ".format(a=a, i="{%d}" % i)
-        return "$" + res[:-3] + "$" if res else ""
+                terms.append(formatStringsWhenCoefIs1[i].format(a, i))
+
+        return "${0}$".format("+".join(terms))
 
 
 class Column:
@@ -337,7 +315,9 @@ class XYGraph:
         self.fig.savefig(filepath, dpi=600)
 
 
+
 if __name__ == "__main__":
+
     data = DataFile('data.csv', columnId="x0 y0 y1 dx0 dy0")
     curve0, curve1 = data.curves
     # curve0.hide()
