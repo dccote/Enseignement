@@ -26,10 +26,11 @@ graph.save('test.pdf')
 
 """
 
-class Relation:
+class Curve:
     def __init__(self, x=None, y=None, dx=None, dy=None):
         self.label = "Data"
         self.isFunction = False
+        self.show = True
         self.x = x
         self.y = y
         self.dx = dx
@@ -43,36 +44,81 @@ class Relation:
     def hasYErrorBars(self):
         return self.dy is not None
     
+    def setXErrorTo(self, percent=None, value=None):
+        if percent is not None:
+            self.dx = (self.x)*percent
+        elif value is not None:
+            self.dx = [value]*len(self.x)
+
+    def setYErrorTo(self, percent=None, value=None):
+        if percent is not None:
+            self.dy = (self.x)*percent
+        elif value is not None:
+            self.dy = [value]*len(self.y)
+
     def __repr__(self):
         return "{0}±{1} {2}±{3}".format(self.x, self.dx, self.y, self.dy)
 
-class Fit(Relation):
+class Fit(Curve):
     def __init__(self, relation, degree):
         N = 100
         xs = numpy.linspace(min(relation.x), max(relation.x), N)
         polynomial = Polynomial.fit(relation.x, relation.y, deg=degree)
         ys = polynomial(xs)
-        Relation.__init__(self, x=xs, y=ys)
+        Curve.__init__(self, x=xs, y=ys)
 
         self.isFunction = True
         self.label = "Polynomial fit"
         self.degree = degree
         self.N = N
 
+class Column:
+    def __init__(self, values):
+        self.values = values
+        self.label = ""
+        self.role = None
+        self.iteration = 0
+
+    def __repr__(self):
+        return "{0}".format(self.values)
+
+    def __len__(self):
+        return len(self.values)
+
+    def __getitem__(self, index):
+        return self.values[index]
+
+    def __setitem__(self, value, index):
+        self.values[index] = value
+
+    def __iter__(self):
+        self.iteration = 0
+        return self
+
+    def __next__(self):
+        try:
+            v = self.values[self.iteration]
+            self.iteration += 1
+            return v
+        except:
+            raise StopIteration()
+
 class DataFile:
     def __init__(self, filepath, relationships=None):
         self.filepath = filepath
         self.rows = []
+        self.columns = []
+        self.curves = []
+
+        self.readRows(self.filepath)
+        self.extractColumns(self.rows)
+        for i, role in enumerate(relationships.split()):
+            self.columns[i].role = role
+        self.extractCurves(self.columns)
+
         self.iteration = 0
-        self.relationships = []
-        self.readFile(filepath)
 
-        if relationships is not None:
-            self.assign(relationships)
-        elif len(self.rows[0]) == 2:
-            self.relationships = ['x0','y0']
-
-    def readFile(self, filepath):
+    def readRows(self, filepath):
         with open(filepath) as csvfile:
             dialect = csv.Sniffer().sniff(csvfile.read(1024))
             csvfile.seek(0)
@@ -82,9 +128,25 @@ class DataFile:
             for row in fileReader:
                 self.rows.append(row)
 
-        self.relationships = [None]*len(self.rows[0])
+    def extractColumns(self, rows):
+        nColumns = len(rows[0])
+        self.columns = []
+        for index in range(nColumns):
+            data = []
+            for row in rows:
+                element = row[index]
+                data.append(element)
+            self.columns.append(Column(data))
+
+    def extractCurves(self, cols):
+        self.curves = []
+        for c in range(10) :
+            curve = self.buildCurve(c)
+            if curve is not None:
+                self.curves.append(curve)
 
     def __iter__(self):
+        self.iteration = 0
         return self
 
     def __next__(self):
@@ -95,66 +157,47 @@ class DataFile:
         except:
             raise StopIteration()
 
-    def assign(self, relationships):
-        for i, role in enumerate(relationships.split()):
-            self.relationships[i] = role
-
     # Column manipulation
     @property
     def x(self):
-        return self.column('x0')
+        return self.findColumn('x0')
 
     @property
     def y(self):
-        return self.column('y0')
+        return self.findColumn('y0')
 
-    @property
-    def columns(self):
-        nColumns = len(self.rows[0])
-
-        columns = []
-        for index in range(nColumns):
-            column = []
-            for row in self.rows:
-                element = row[index]
-                column.append(element)
-            columns.append(column)
-
-        return columns
-
-    def column(self, pattern=None, index=None):
-        for i, a in enumerate(self.relationships):
-            if a is not None:
-                if re.match(pattern, a) is not None:
-                    return self.columns[i]
+    def findColumn(self, pattern=None, index=None):
+        for column in self.columns:
+            if re.match(pattern, column.role) is not None:
+                return column
         return None
 
-    def relation(self, index):
-        relation = Relation()
+    def buildCurve(self, index):
+        curve = Curve()
 
-        relation.y = self.column(pattern="y{0}".format(index))
-        if relation.y is None:
+        curve.y = self.findColumn(pattern="y{0}".format(index))
+        if curve.y is None:
             return None
 
-        relation.x = self.column(pattern="x{0}".format(index))
-        if relation.x is None:
-            relation.x = self.column(pattern="x0")
+        curve.x = self.findColumn(pattern="x{0}".format(index))
+        if curve.x is None:
+            curve.x = self.findColumn(pattern="x0")
 
-        relation.dx = self.column(pattern="dx{0}".format(index))
-        relation.dy = self.column(pattern="dy{0}".format(index))
-        return relation
+        curve.dx = self.findColumn(pattern="dx{0}".format(index))
+        curve.dy = self.findColumn(pattern="dy{0}".format(index))
+        return curve
 
-    @property
-    def relations(self):
-        relations = []
-        for c in range(10) :
-            relation = self.relation(index=c)
-            if relation is not None:
-                relations.append(relation)
-        return relations
+    # @property
+    # def curves(self):
+    #     curves = []
+    #     for c in range(10) :
+    #         curve = self.curve(index=c)
+    #         if curve is not None:
+    #             curves.append(relation)
+    #     return curves
 
 class XYGraph:
-    def __init__(self, datafile):
+    def __init__(self, datafile=None):
         SMALL_SIZE = 11
         MEDIUM_SIZE = 13
         BIGGER_SIZE = 36
@@ -167,23 +210,24 @@ class XYGraph:
         plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
         plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
-        self.curves = []
         self.linewidth = 1 # Set to 1 or 2 to connect the dots
         self.markersize= 7
-        (self.fig, self.axes) = plt.subplots(figsize=(6, 5))
+        self.fig, self.axes = plt.subplots(figsize=(6, 5))
         self.axes.set(xlabel="X [arb. u]", ylabel="Y [arb. u]", title="")
 
-        self.addCurves(datafile.relations)
+        self.curves = []
+        if datafile is not None:
+            self.addCurves(datafile.curves)
 
     def add(self, x, y, dx=None, dy=None):
-        self.curves.append(Relation(x,y,dx,dy))
+        self.curves.append(Curve(x,y,dx,dy))
 
-    def addCurve(self, relation):
-        self.curves.append(relation)
+    def addCurve(self, curve):
+        self.curves.append(curve)
 
-    def addCurves(self, relations):
-        for relation in relations:
-            self.curves.append(relation)
+    def addCurves(self, curves):
+        for curve in curves:
+            self.curves.append(curve)
 
     @property
     def xlabel(self):
@@ -207,26 +251,32 @@ class XYGraph:
                    {"marker":'s','color':'k'},
                    {"marker":'s','color':'k',"markerfacecolor":'none'}]
         for i, curve in enumerate(self.curves):
+            if not self.show:
+                continue
+
             if not curve.hasXErrorBars and not curve.hasYErrorBars:
                 if curve.isFunction:
-                    self.axes.plot(curve.x, curve.y,
+                    self.axes.plot(list(curve.x), list(curve.y),
                                    color='k', 
                                    linestyle='-', 
                                    linewidth=self.linewidth,
                                    label=curve.label)
                 else:
-                    self.axes.plot(curve.x, curve.y, **symbols[i],
+                    self.axes.plot(list(curve.x), list(curve.y), **symbols[i],
                                    markersize=self.markersize, 
-                                   linestyle='-', 
-                                   linewidth=0,
+                                   linestyle='', 
+                                   linewidth=1,
                                    label=curve.label)
 
             elif curve.hasYErrorBars:
-                self.axes.errorbar(curve.x, curve.y, **(symbols[i]),
+                self.axes.errorbar(list(curve.x), list(curve.y), 
+                               yerr=list(curve.dy), xerr=list(curve.dx),
+                               **(symbols[i]),
                                markersize=self.markersize,
-                               linestyle='-',
-                               linewidth=self.linewidth,
-                               label=curve.label)
+                               linestyle='',
+                               linewidth=1,
+                               label=curve.label,
+                               capsize=2)
 
         if len(self.curves) >= 2:
             self.axes.legend()
@@ -237,10 +287,11 @@ class XYGraph:
         self.fig.savefig(filepath, dpi=600)
 
 if __name__ == "__main__":
-    data = DataFile('data.csv', relationships="x0 y0 y1")
-    graph = XYGraph(data)
-    graph.addCurve( Fit(data.relations[1], degree=2))
+    data = DataFile('data.csv', relationships="x0 y0 y1 y2 y3")
+    graph = XYGraph()
+    graph.addCurve( data.curves[0])
+    graph.addCurve( data.curves[1])
     graph.ylabel = "Intensity"
     graph.xlabel = "Current"
     graph.show()
-    graph.save("figure.pdf")
+    # graph.save("figure.pdf")
