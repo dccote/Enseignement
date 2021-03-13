@@ -1,6 +1,7 @@
 import csv
-import matplotlib.pyplot as plt
 import re
+
+import matplotlib.pyplot as plt
 import numpy
 from numpy.polynomial import Polynomial
 
@@ -26,6 +27,7 @@ graph.save('test.pdf')
 
 """
 
+
 class Curve:
     def __init__(self, x=None, y=None, dx=None, dy=None):
         self.label = ""
@@ -43,21 +45,22 @@ class Curve:
     @property
     def hasYErrorBars(self):
         return self.dy is not None
-    
+
     def setXErrorTo(self, percent=None, value=None):
         if percent is not None:
-            self.dx = (self.x)*percent
+            self.dx = self.x * percent
         elif value is not None:
-            self.dx = [value]*len(self.x)
+            self.dx = [value] * len(self.x)
 
     def setYErrorTo(self, percent=None, value=None):
         if percent is not None:
-            self.dy = (self.x)*percent
+            self.dy = self.x * percent
         elif value is not None:
-            self.dy = [value]*len(self.y)
+            self.dy = [value] * len(self.y)
 
     def __repr__(self):
         return "{0}±{1} {2}±{3}".format(self.x, self.dx, self.y, self.dy)
+
 
 class Fit(Curve):
     def __init__(self, relation, degree):
@@ -73,8 +76,9 @@ class Fit(Curve):
         self.N = N
 
     def latexString(self, p):
-        """ Small function to print nicely the polynomial p as we write it in maths, in LaTeX code.
-        Obtained from: https://perso.crans.org/besson/publis/notebooks/Demonstration%20of%20numpy.polynomial.Polynomial%20and%20nice%20display%20with%20LaTeX%20and%20MathJax%20(python3).html
+        """ Small function to print nicely the polynomial p as we write it in maths, in LaTeX code. Obtained from:
+        https://perso.crans.org/besson/publis/notebooks/Demonstration%20of%20numpy.polynomial.Polynomial%20and%20nice
+        %20display%20with%20LaTeX%20and%20MathJax%20(python3).html
         """
         coefs = p.coef  # List of coefficient, sorted by increasing degrees
         res = ""  # The resulting string
@@ -104,6 +108,7 @@ class Fit(Curve):
                     res += "({a:.2g})x^{i} + ".format(a=a, i="{%d}" % i)
         return "$" + res[:-3] + "$" if res else ""
 
+
 class Column:
     def __init__(self, values):
         self.values = values
@@ -132,8 +137,9 @@ class Column:
             v = self.values[self.iteration]
             self.iteration += 1
             return v
-        except:
+        except Exception:
             raise StopIteration()
+
 
 class DataFile:
     def __init__(self, filepath, relationships=None):
@@ -154,7 +160,7 @@ class DataFile:
             dialect = csv.Sniffer().sniff(csvfile.read(1024))
             csvfile.seek(0)
             fileReader = csv.reader(csvfile, dialect,
-                quoting=csv.QUOTE_NONNUMERIC)
+                                    quoting=csv.QUOTE_NONNUMERIC)
 
             for row in fileReader:
                 self.rows.append(row)
@@ -177,7 +183,7 @@ class DataFile:
 
     def extractCurves(self, cols):
         self.curves = []
-        for c in range(10) :
+        for c in range(10):
             curve = self.buildCurve(c)
             if curve is not None:
                 self.curves.append(curve)
@@ -191,7 +197,7 @@ class DataFile:
             c = self.curves[self.iteration]
             self.iteration += 1
             return c
-        except:
+        except Exception:
             raise StopIteration()
 
     # Column manipulation
@@ -203,7 +209,7 @@ class DataFile:
     def y(self):
         return self.findColumn('y0')
 
-    def findColumn(self, pattern=None, index=None):
+    def findColumn(self, pattern=None):
         for column in self.columns:
             if re.match(pattern, column.role) is not None:
                 return column
@@ -225,22 +231,23 @@ class DataFile:
         curve.label = curve.y.label
         return curve
 
+
 class XYGraph:
     def __init__(self, datafile=None):
         SMALL_SIZE = 11
         MEDIUM_SIZE = 13
         BIGGER_SIZE = 36
 
-        plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
-        plt.rc('axes', titlesize=SMALL_SIZE)     # fontsize of the axes title
-        plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
-        plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
-        plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
-        plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
+        plt.rc('font', size=SMALL_SIZE)  # controls default text sizes
+        plt.rc('axes', titlesize=SMALL_SIZE)  # fontsize of the axes title
+        plt.rc('axes', labelsize=MEDIUM_SIZE)  # fontsize of the x and y labels
+        plt.rc('xtick', labelsize=SMALL_SIZE)  # fontsize of the tick labels
+        plt.rc('ytick', labelsize=SMALL_SIZE)  # fontsize of the tick labels
+        plt.rc('legend', fontsize=SMALL_SIZE)  # legend fontsize
         plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
-        self.linewidth = 1 # Set to 1 or 2 to connect the dots
-        self.markersize= 7
+        self.linewidth = 1  # Set to 1 or 2 to connect the dots
+        self.markersize = 7
         self.fig, self.axes = plt.subplots(figsize=(6, 5))
         self.axes.set(xlabel="X [arb. u]", ylabel="Y [arb. u]", title="")
 
@@ -249,7 +256,7 @@ class XYGraph:
             self.addCurves(datafile.curves)
 
     def add(self, x, y, dx=None, dy=None):
-        self.curves.append(Curve(x,y,dx,dy))
+        self.curves.append(Curve(x, y, dx, dy))
 
     def addCurve(self, curve):
         self.curves.append(curve)
@@ -273,12 +280,12 @@ class XYGraph:
     @ylabel.setter
     def ylabel(self, label):
         self.axes.set_ylabel(label)
-        
+
     def show(self):
-        symbols = [{"marker":'o','color':'k'},
-                   {"marker":'o','color':'k',"markerfacecolor":'none'},
-                   {"marker":'s','color':'k'},
-                   {"marker":'s','color':'k',"markerfacecolor":'none'}]
+        symbols = [{"marker": 'o', 'color': 'k'},
+                   {"marker": 'o', 'color': 'k', "markerfacecolor": 'none'},
+                   {"marker": 's', 'color': 'k'},
+                   {"marker": 's', 'color': 'k', "markerfacecolor": 'none'}]
         for i, curve in enumerate(self.curves):
             if not self.show:
                 continue
@@ -286,43 +293,43 @@ class XYGraph:
             if not curve.hasXErrorBars and not curve.hasYErrorBars:
                 if curve.connectPoints:
                     self.axes.plot(list(curve.x), list(curve.y),
-                                   color='k', 
-                                   linestyle='-', 
+                                   color='k',
+                                   linestyle='-',
                                    linewidth=self.linewidth,
                                    label=curve.label)
                 else:
                     self.axes.plot(list(curve.x), list(curve.y), **symbols[i],
-                                   markersize=self.markersize, 
-                                   linestyle='', 
+                                   markersize=self.markersize,
+                                   linestyle='',
                                    linewidth=1,
                                    label=curve.label)
             elif curve.hasXErrorBars and curve.hasYErrorBars:
                 self.axes.errorbar(list(curve.x), list(curve.y),
-                               xerr=list(curve.dx), yerr=list(curve.dy),
-                               **(symbols[i]),
-                               markersize=self.markersize,
-                               linestyle='',
-                               linewidth=1,
-                               label=curve.label,
-                               capsize=self.markersize/2)
+                                   xerr=list(curve.dx), yerr=list(curve.dy),
+                                   **(symbols[i]),
+                                   markersize=self.markersize,
+                                   linestyle='',
+                                   linewidth=1,
+                                   label=curve.label,
+                                   capsize=self.markersize / 2)
             elif curve.hasYErrorBars:
-                self.axes.errorbar(list(curve.x), list(curve.y), 
-                               yerr=list(curve.dy),
-                               **(symbols[i]),
-                               markersize=self.markersize,
-                               linestyle='',
-                               linewidth=1,
-                               label=curve.label,
-                               capsize=self.markersize/2)
+                self.axes.errorbar(list(curve.x), list(curve.y),
+                                   yerr=list(curve.dy),
+                                   **(symbols[i]),
+                                   markersize=self.markersize,
+                                   linestyle='',
+                                   linewidth=1,
+                                   label=curve.label,
+                                   capsize=self.markersize / 2)
             elif curve.hasXErrorBars:
                 self.axes.errorbar(list(curve.x), list(curve.y),
-                               xerr=list(curve.dx),
-                               **(symbols[i]),
-                               markersize=self.markersize,
-                               linestyle='',
-                               linewidth=1,
-                               label=curve.label,
-                               capsize=self.markersize/2)
+                                   xerr=list(curve.dx),
+                                   **(symbols[i]),
+                                   markersize=self.markersize,
+                                   linestyle='',
+                                   linewidth=1,
+                                   label=curve.label,
+                                   capsize=self.markersize / 2)
 
         if len(self.curves) >= 2:
             self.axes.legend()
@@ -331,6 +338,7 @@ class XYGraph:
 
     def save(self, filepath):
         self.fig.savefig(filepath, dpi=600)
+
 
 if __name__ == "__main__":
     data = DataFile('data.csv', relationships="x0 y0 y1 dx0 dy0")
