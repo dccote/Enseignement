@@ -99,9 +99,9 @@ class Fit(Curve):
 
 
 class Column:
-    def __init__(self, values):
-        self.values = values
-        self.label = ""
+    def __init__(self, values, label=None):
+        self.values = numpy.array(values)
+        self.label = label
         self.role = None
         self.iteration = 0
 
@@ -129,6 +129,9 @@ class Column:
         except Exception:
             raise StopIteration()
 
+    def normalize(self):
+        maxValue = max(self.values)
+        self.values = numpy.array(self.values)/maxValue
 
 class DataFile:
     def __init__(self, filepath, columnId=None):
@@ -138,7 +141,7 @@ class DataFile:
         self.columns = self.extractColumns(self.rows)
         self.dictionary = self.classifyColumns(columnId)
         self.curves = self.extractCurves(self.columns)
-
+        self.headers = []
         self.iteration = 0
 
     def readRows(self, filepath):
@@ -146,8 +149,13 @@ class DataFile:
         with open(filepath) as csvfile:
             dialect = csv.Sniffer().sniff(csvfile.read(1024))
             csvfile.seek(0)
+            if csv.Sniffer().has_header(csvfile.read(1024)):
+                csvfile.seek(0)
+                self.headers = csvfile.readline().split(',')
+
             fileReader = csv.reader(csvfile, dialect,
                                     quoting=csv.QUOTE_NONNUMERIC)
+
             for row in fileReader:
                 rows.append(row)
         return rows
@@ -157,10 +165,16 @@ class DataFile:
         columns = []
         for index in range(nColumns):
             data = []
+            label = None
             for row in rows:
-                element = row[index]
-                data.append(element)
-            columns.append(Column(data))
+                data.append(row[index])
+
+            if self.headers is not None:
+                label = self.headers[index]
+
+            column = Column(data,label=label)
+
+            columns.append(column)
         return columns
 
     def classifyColumns(self, identification):
@@ -192,7 +206,7 @@ class DataFile:
 
         curve.dx = self.dictionary.get("dx{0}".format(index))
         curve.dy = self.dictionary.get("dy{0}".format(index))
-        curve.label = "{0} vs {1}".format(curve.y.label, curve.x.label)
+        curve.label = "{0}".format(curve.y.label)
 
         return curve
 
@@ -206,7 +220,7 @@ class DataFile:
 
 
 class XYGraph:
-    def __init__(self, datafile=None):
+    def __init__(self, datafile=None, useColors=False):
         SMALL_SIZE = 11
         MEDIUM_SIZE = 13
         BIGGER_SIZE = 36
@@ -229,7 +243,7 @@ class XYGraph:
         if datafile is not None:
             self.addCurves(datafile.curves)
 
-        self.useColors = False
+        self.useColors = useColors
         self.symbolsBlackAndWhite = [{"marker": 'o', 'color': 'k'},
                    {"marker": 'o', 'color': 'k', "markerfacecolor": 'none'},
                    {"marker": 's', 'color': 'k'},
@@ -248,7 +262,6 @@ class XYGraph:
                    {"marker": 's', 'color': 'b', "markerfacecolor": 'none'},
                    {"marker": 's', 'color': 'g', "markerfacecolor": 'none'}
                    ]
-
         self.linesBlackAndWhite = [{"linestyle": '-', 'color': 'k'},
                    {"linestyle": '--', 'color': 'k'},
                    {"linestyle": '-.', 'color': 'k'},
@@ -258,7 +271,6 @@ class XYGraph:
                    {"linestyle": '-.', 'color': 'k', "markerfacecolor": 'none'},
                    {"linestyle": '-', 'color': 'k', "markerfacecolor": 'none'}
                    ]
-
         self.linesColors = [{"linestyle": '-', 'color': 'k'},
                    {"linestyle": '-', 'color': 'r'},
                    {"linestyle": '-', 'color': 'b'},
@@ -268,8 +280,6 @@ class XYGraph:
                    {"linestyle": '--', 'color': 'b', "markerfacecolor": 'none'},
                    {"linestyle": '--', 'color': 'g', "markerfacecolor": 'none'}
                    ]
-
-
 
     def add(self, x, y, dx=None, dy=None):
         self.curves.append(Curve(x, y, dx, dy))
