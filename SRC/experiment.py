@@ -98,40 +98,31 @@ class Fit(Curve):
         return "${0}$".format("+".join(terms))
 
 
-class Column:
-    def __init__(self, values, label=None):
-        self.values = numpy.array(values)
-        self.label = label
-        self.role = None
-        self.iteration = 0
 
-    def __repr__(self):
-        return "{0}".format(self.values)
+class Column(numpy.ndarray):
+    """
+    We want to have an array but with a few extra properties (role and label). For this, we subclass
+    numpy.array.  This requires some care and is explained here: https://numpy.org/doc/stable/user/basics.subclassing.html
+    """
+    def __new__(cls, input_array, label=None, role=None):
+        # Input array is an already formed ndarray instance
+        # We first cast to be our class type
+        obj = numpy.asarray(input_array).view(cls)
+        # add the new attribute to the created instance
+        obj.label = label
+        obj.role = role
+        # Finally, we must return the newly created object:
+        return obj
 
-    def __len__(self):
-        return len(self.values)
-
-    def __getitem__(self, index):
-        return self.values[index]
-
-    def __setitem__(self, value, index):
-        self.values[index] = value
-
-    def __iter__(self):
-        self.iteration = 0
-        return self
-
-    def __next__(self):
-        try:
-            v = self.values[self.iteration]
-            self.iteration += 1
-            return v
-        except Exception:
-            raise StopIteration()
+    def __array_finalize__(self, obj):
+        if obj is None: return
+        self.label = getattr(obj, 'label', None)
+        self.role = getattr(obj, 'role', None)
 
     def normalize(self):
-        maxValue = max(self.values)
-        self.values = numpy.array(self.values)/maxValue
+        maxValue = max(self)
+        self /= maxValue
+
 
 class DataFile:
     def __init__(self, filepath, columnId=None):
