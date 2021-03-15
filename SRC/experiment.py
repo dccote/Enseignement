@@ -2,7 +2,7 @@ import csv
 from typing import List
 
 import matplotlib.pyplot as plt
-import numpy
+import numpy as np
 from numpy.polynomial import Polynomial
 
 """ Une classe DataFile pour lire les données de fichiers CSV et
@@ -36,10 +36,10 @@ class Curve:
         self.label = ""
         self.connectPoints = False
         self.isVisible = True
-        self.x = x
-        self.y = y
-        self.dx = dx
-        self.dy = dy
+        self.x = Column(x) if x is not None else None
+        self.y = Column(y) if y is not None else None
+        self.dx = Column(dx) if dx is not None else None
+        self.dy = Column(dy) if dy is not None else None
 
     def hide(self):
         self.isVisible = False
@@ -74,7 +74,7 @@ class Curve:
 class Fit(Curve):
     def __init__(self, relation, degree):
         N = 100
-        xs = numpy.linspace(min(relation.x), max(relation.x), N)
+        xs = np.linspace(min(relation.x), max(relation.x), N)
         polynomial = Polynomial.fit(relation.x, relation.y, deg=degree)
         ys = polynomial(xs)
         Curve.__init__(self, x=xs, y=ys)
@@ -85,59 +85,60 @@ class Fit(Curve):
         self.N = N
 
     def latexPolynomial(self, coefficients):
-        formatStrings = ["{0:.2g}","{0:.2g}x", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}"]
-        formatStringsWhenCoefIs1 = ["{0:.2g}","x","x^{1}","x^{1}","x^{1}","x^{1}","x^{1}","x^{1}"]
+        formatStrings = ["{0:.2g}", "{0:.2g}x", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}", "{0:.2g}x^{1}",
+                         "{0:.2g}x^{1}", "{0:.2g}x^{1}"]
+        formatStringsWhenCoefIs1 = ["{0:.2g}", "x", "x^{1}", "x^{1}", "x^{1}", "x^{1}", "x^{1}", "x^{1}"]
         terms = []
         for i, a in enumerate(coefficients):
-            if abs(a-1) > 1e-3:
+            if abs(a - 1) > 1e-3:
                 terms.append(formatStrings[i].format(a, i))
             else:
                 terms.append(formatStringsWhenCoefIs1[i].format(a, i))
 
         return "${0}$".format("+".join(terms))
 
+class Function(Curve):
+    def __init__(self, xs, function, label=None):
+        ys = function(xs)
+        Curve.__init__(self, x=xs, y=ys)
+        self.function = function
+        self.connectPoints = True
+        self.label = label
 
-class Column:
-    def __init__(self, values):
-        self.values = values
-        self.label = ""
-        self.role = None
-        self.iteration = 0
 
-    def __repr__(self):
-        return "{0}".format(self.values)
+class Column(np.ndarray):
+    """
+    We want to have an array but with a few extra properties (role and label). For this, we subclass
+    np.array.  This requires some care and is explained here: https://np.org/doc/stable/user/basics.subclassing.html
+    """
+    def __new__(cls, input_array, label=None, role=None):
+        # Input array is an already formed ndarray instance
+        # We first cast to be our class type
+        obj = np.asarray(input_array).view(cls)
+        # add the new attribute to the created instance
+        obj.label = label if label is not None else ""
+        obj.role = role
+        # Finally, we must return the newly created object:
+        return obj
 
-    def __len__(self):
-        return len(self.values)
+    def __array_finalize__(self, obj):
+        if obj is None: return
+        self.label = getattr(obj, 'label', None)
+        self.role = getattr(obj, 'role', None)
 
-    def __getitem__(self, index):
-        return self.values[index]
-
-    def __setitem__(self, value, index):
-        self.values[index] = value
-
-    def __iter__(self):
-        self.iteration = 0
-        return self
-
-    def __next__(self):
-        try:
-            v = self.values[self.iteration]
-            self.iteration += 1
-            return v
-        except Exception:
-            raise StopIteration()
+    def normalize(self):
+        maxValue = max(self)
+        self /= maxValue
 
 
 class DataFile:
     def __init__(self, filepath, columnId=None):
         self.filepath = filepath
-
+        self.headers = []
         self.rows = self.readRows(self.filepath)
         self.columns = self.extractColumns(self.rows)
         self.dictionary = self.classifyColumns(columnId)
         self.curves = self.extractCurves(self.columns)
-
         self.iteration = 0
 
     def readRows(self, filepath):
@@ -145,8 +146,14 @@ class DataFile:
         with open(filepath) as csvfile:
             dialect = csv.Sniffer().sniff(csvfile.read(1024))
             csvfile.seek(0)
+            if csv.Sniffer().has_header(csvfile.read(1024)):
+                csvfile.seek(0)
+                self.headers = csvfile.readline().split(',')
+            else:
+                csvfile.seek(0)
             fileReader = csv.reader(csvfile, dialect,
                                     quoting=csv.QUOTE_NONNUMERIC)
+
             for row in fileReader:
                 rows.append(row)
         return rows
@@ -156,10 +163,16 @@ class DataFile:
         columns = []
         for index in range(nColumns):
             data = []
+            label = None
             for row in rows:
-                element = row[index]
-                data.append(element)
-            columns.append(Column(data))
+                data.append(row[index])
+
+            if len(self.headers) != 0:
+                label = self.headers[index]
+
+            column = Column(data,label=label)
+
+            columns.append(column)
         return columns
 
     def classifyColumns(self, identification):
@@ -191,7 +204,7 @@ class DataFile:
 
         curve.dx = self.dictionary.get("dx{0}".format(index))
         curve.dy = self.dictionary.get("dy{0}".format(index))
-        curve.label = "{0} vs {1}".format(curve.y.label, curve.x.label)
+        curve.label = "{0}".format(curve.y.label)
 
         return curve
 
@@ -205,7 +218,7 @@ class DataFile:
 
 
 class XYGraph:
-    def __init__(self, datafile=None):
+    def __init__(self, datafile=None, useColors=False):
         SMALL_SIZE = 11
         MEDIUM_SIZE = 13
         BIGGER_SIZE = 36
@@ -221,11 +234,51 @@ class XYGraph:
         self.linewidth = 1  # Set to 1 or 2 to connect the dots
         self.markersize = 7
         self.fig, self.axes = plt.subplots(figsize=(6, 5))
-        self.axes.set(xlabel="X [arb. u]", ylabel="Y [arb. u]", title="")
+        self.xlim = None
+        self.xlabel = "X"
+        self.ylabel = "Y"
 
         self.curves = []
         if datafile is not None:
-            self.addCurves(datafile.curves)
+            self.curves.extend(datafile.curves)
+
+        self.useColors = useColors
+        self.symbolsBlackAndWhite = [{"marker": 'o', 'color': 'k'},
+                   {"marker": 'o', 'color': 'k', "markerfacecolor": 'none'},
+                   {"marker": 's', 'color': 'k'},
+                   {"marker": 's', 'color': 'k', "markerfacecolor": 'none'},
+                   {"marker": 'v', 'color': 'k'},
+                   {"marker": 'v', 'color': 'k', "markerfacecolor": 'none'},
+                   {"marker": 'D', 'color': 'k'},
+                   {"marker": 'D', 'color': 'k', "markerfacecolor": 'none'}
+                   ]
+        self.symbolsColors = [{"marker": 'o', 'color': 'k'},
+                   {"marker": 'o', 'color': 'r'},
+                   {"marker": 'o', 'color': 'b'},
+                   {"marker": 's', 'color': 'g'},
+                   {"marker": 'o', 'color': 'k', "markerfacecolor": 'none'},
+                   {"marker": 'o', 'color': 'r', "markerfacecolor": 'none'},
+                   {"marker": 's', 'color': 'b', "markerfacecolor": 'none'},
+                   {"marker": 's', 'color': 'g', "markerfacecolor": 'none'}
+                   ]
+        self.linesBlackAndWhite = [{"linestyle": '-', 'color': 'k'},
+                   {"linestyle": '--', 'color': 'k'},
+                   {"linestyle": '-.', 'color': 'k'},
+                   {"linestyle": 'dotted', 'color': 'k'},
+                   {"linestyle": ':', 'color': 'k', "markerfacecolor": 'none'},
+                   {"linestyle": '--', 'color': 'k', "markerfacecolor": 'none'},
+                   {"linestyle": '-.', 'color': 'k', "markerfacecolor": 'none'},
+                   {"linestyle": '-', 'color': 'k', "markerfacecolor": 'none'}
+                   ]
+        self.linesColors = [{"linestyle": '-', 'color': 'k'},
+                   {"linestyle": '-', 'color': 'r'},
+                   {"linestyle": '-', 'color': 'b'},
+                   {"linestyle": '-', 'color': 'g'},
+                   {"linestyle": '--', 'color': 'k', "markerfacecolor": 'none'},
+                   {"linestyle": '--', 'color': 'r', "markerfacecolor": 'none'},
+                   {"linestyle": '--', 'color': 'b', "markerfacecolor": 'none'},
+                   {"linestyle": '--', 'color': 'g', "markerfacecolor": 'none'}
+                   ]
 
     def add(self, x, y, dx=None, dy=None):
         self.curves.append(Curve(x, y, dx, dy))
@@ -234,30 +287,19 @@ class XYGraph:
         self.curves.append(curve)
 
     def addCurves(self, curves):
-        for curve in curves:
-            self.curves.append(curve)
-
-    @property
-    def xlabel(self):
-        return self.axes.get_xlabel()
-
-    @xlabel.setter
-    def xlabel(self, label):
-        self.axes.set_xlabel(label)
-
-    @property
-    def ylabel(self):
-        return self.axes.get_ylabel()
-
-    @ylabel.setter
-    def ylabel(self, label):
-        self.axes.set_ylabel(label)
+        self.curves.extend(curves)
 
     def createFigure(self):
-        symbols = [{"marker": 'o', 'color': 'k'},
-                   {"marker": 'o', 'color': 'k', "markerfacecolor": 'none'},
-                   {"marker": 's', 'color': 'k'},
-                   {"marker": 's', 'color': 'k', "markerfacecolor": 'none'}]
+        self.axes.cla()
+        self.axes.set(xlabel=self.xlabel, ylabel=self.ylabel, title="")
+
+        if self.useColors:
+            symbols = self.symbolsColors
+            lines = self.linesColors
+        else:
+            symbols = self.symbolsBlackAndWhite
+            lines = self.linesBlackAndWhite
+
         for i, curve in enumerate(self.curves):
             if not curve.isVisible:
                 continue
@@ -265,8 +307,7 @@ class XYGraph:
             if not curve.hasXErrorBars and not curve.hasYErrorBars:
                 if curve.connectPoints:
                     self.axes.plot(curve.x, curve.y,
-                                   color='k',
-                                   linestyle='-',
+                                   **lines[i],markersize=0,
                                    linewidth=self.linewidth,
                                    label=curve.label)
                 else:
@@ -302,6 +343,8 @@ class XYGraph:
                                    linewidth=1,
                                    label=curve.label,
                                    capsize=self.markersize / 2)
+        if self.xlim is not None:
+            plt.xlim(self.xlim)
 
         if len(self.curves) >= 2:
             self.axes.legend()
@@ -315,16 +358,25 @@ class XYGraph:
         self.fig.savefig(filepath, dpi=600)
 
 
-
 if __name__ == "__main__":
-
     data = DataFile('data.csv', columnId="x0 y0 y1 dx0 dy0")
     curve0, curve1 = data.curves
+    curve0.label = "First curve"
+    curve1.label = "Other curve"
     # curve0.hide()
     # curve1.hide()
     graph = XYGraph(data)
+    curveFit = Fit(data.curves[1], degree=2)
+    graph.addCurve(curveFit)
 
-    graph.addCurve(Fit(data.curves[1], degree=2))
+    x = Column(np.linspace(0,20,500))
+    curveFct = Function(x, (lambda x: np.sin(x*x/10) + 3), label="$x^2-x+ 1$")
+
+    graph.addCurve(curveFct)
+    # curveFct2 = Curve(data.x, [x*x/10-6*x+40 for x in data.x])
+    # curveFct2.connectPoints = True
+    # graph.addCurve(curveFct2)
+
     graph.ylabel = "Intensity"
     graph.xlabel = "Current"
     graph.show()
