@@ -12,10 +12,10 @@ comme suit:
 import experiment as Exp
 
 # La classe DataFile permet de rapidement lire des données .csv
-# On utilise columnsId pour rapidement assigner quelle colonne va
+# On utilise columnId pour rapidement assigner quelle colonne va
 # avec quelle autre colonne pour les graphiques. On aura donc 
 # rapidement accès à curves[0],curves[1],etc...
-data = Exp.DataFile('data.csv', columnsId='x0 y0 y1 dy0 dy1')
+data = Exp.DataFile('data.csv', columnId='x0 y0 y1 dy0 dy1')
 print(data.columns[0]) #Premiere colonne
 print(data.columns[1]) #Deuxieme colonne...
 print(data.x) #Synonyme de columns[0]
