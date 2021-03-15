@@ -2,7 +2,7 @@ import csv
 from typing import List
 
 import matplotlib.pyplot as plt
-import numpy
+import numpy as np
 from numpy.polynomial import Polynomial
 
 """ Une classe DataFile pour lire les données de fichiers CSV et
@@ -74,7 +74,7 @@ class Curve:
 class Fit(Curve):
     def __init__(self, relation, degree):
         N = 100
-        xs = numpy.linspace(min(relation.x), max(relation.x), N)
+        xs = np.linspace(min(relation.x), max(relation.x), N)
         polynomial = Polynomial.fit(relation.x, relation.y, deg=degree)
         ys = polynomial(xs)
         Curve.__init__(self, x=xs, y=ys)
@@ -97,19 +97,26 @@ class Fit(Curve):
 
         return "${0}$".format("+".join(terms))
 
+class Function(Curve):
+    def __init__(self, xs, function, label=None):
+        ys = function(xs)
+        Curve.__init__(self, x=xs, y=ys)
+        self.function = function
+        self.connectPoints = True
+        self.label = label
 
 
-class Column(numpy.ndarray):
+class Column(np.ndarray):
     """
     We want to have an array but with a few extra properties (role and label). For this, we subclass
-    numpy.array.  This requires some care and is explained here: https://numpy.org/doc/stable/user/basics.subclassing.html
+    np.array.  This requires some care and is explained here: https://np.org/doc/stable/user/basics.subclassing.html
     """
     def __new__(cls, input_array, label=None, role=None):
         # Input array is an already formed ndarray instance
         # We first cast to be our class type
-        obj = numpy.asarray(input_array).view(cls)
+        obj = np.asarray(input_array).view(cls)
         # add the new attribute to the created instance
-        obj.label = label
+        obj.label = label if label is not None else ""
         obj.role = role
         # Finally, we must return the newly created object:
         return obj
@@ -127,12 +134,11 @@ class Column(numpy.ndarray):
 class DataFile:
     def __init__(self, filepath, columnId=None):
         self.filepath = filepath
-
+        self.headers = []
         self.rows = self.readRows(self.filepath)
         self.columns = self.extractColumns(self.rows)
         self.dictionary = self.classifyColumns(columnId)
         self.curves = self.extractCurves(self.columns)
-        self.headers = []
         self.iteration = 0
 
     def readRows(self, filepath):
@@ -143,7 +149,8 @@ class DataFile:
             if csv.Sniffer().has_header(csvfile.read(1024)):
                 csvfile.seek(0)
                 self.headers = csvfile.readline().split(',')
-
+            else:
+                csvfile.seek(0)
             fileReader = csv.reader(csvfile, dialect,
                                     quoting=csv.QUOTE_NONNUMERIC)
 
@@ -160,7 +167,7 @@ class DataFile:
             for row in rows:
                 data.append(row[index])
 
-            if self.headers is not None:
+            if len(self.headers) != 0:
                 label = self.headers[index]
 
             column = Column(data,label=label)
@@ -233,7 +240,7 @@ class XYGraph:
 
         self.curves = []
         if datafile is not None:
-            self.addCurves(datafile.curves)
+            self.curves.extend(datafile.curves)
 
         self.useColors = useColors
         self.symbolsBlackAndWhite = [{"marker": 'o', 'color': 'k'},
@@ -280,8 +287,7 @@ class XYGraph:
         self.curves.append(curve)
 
     def addCurves(self, curves):
-        for curve in curves:
-            self.curves.append(curve)
+        self.curves.extend(curves)
 
     def createFigure(self):
         self.axes.cla()
@@ -355,12 +361,22 @@ class XYGraph:
 if __name__ == "__main__":
     data = DataFile('data.csv', columnId="x0 y0 y1 dx0 dy0")
     curve0, curve1 = data.curves
-
+    curve0.label = "First curve"
+    curve1.label = "Other curve"
     # curve0.hide()
     # curve1.hide()
     graph = XYGraph(data)
+    curveFit = Fit(data.curves[1], degree=2)
+    graph.addCurve(curveFit)
 
-    graph.addCurve(Fit(data.curves[1], degree=2))
+    x = Column(np.linspace(0,20,500))
+    curveFct = Function(x, (lambda x: np.sin(x*x/10) + 3), label="$x^2-x+ 1$")
+
+    graph.addCurve(curveFct)
+    # curveFct2 = Curve(data.x, [x*x/10-6*x+40 for x in data.x])
+    # curveFct2.connectPoints = True
+    # graph.addCurve(curveFct2)
+
     graph.ylabel = "Intensity"
     graph.xlabel = "Current"
     graph.show()
