@@ -359,25 +359,43 @@ class XYGraph:
 
 
 if __name__ == "__main__":
+    # A Comma-separated vairable file (CSV) can be read easily.
+    # Use columnId to identify the columns and assign the curves: you determine
+    # which column is x for curve 0, x for curve 1, etc...
+    # For each curve, you have x0 y0 dx0 dy0 for x,y and uncertainty (x1 y1 dx1 dy1, etc...).
+    # If you don't define x1, x2, x3.... with y1, y2 and y3, it will use the same x0
     data = DataFile('data.csv', columnId="x0 y0 y1 dx0 dy0")
+
+    # You can easily access the curves from the data file, and then change their properties
     curve0, curve1 = data.curves
     curve0.label = "First curve"
     curve1.label = "Other curve"
-    # curve0.hide()
-    # curve1.hide()
-    graph = XYGraph(data)
+    # curve0.hide() # You can choose to hide a certain curve
+    # curve0.show()
+
+    # You can fit a polynomial to your data
     curveFit = Fit(data.curves[1], degree=2)
+
+    # You create a XYGraph to plot your curves.  By passing a DataFile,
+    # you automatically add all curves to the graph
+    graph = XYGraph(data)
+
+    # You can then add a separate curve fit
     graph.addCurve(curveFit)
 
-    x = Column(np.linspace(0,20,500))
-    curveFct = Function(x, (lambda x: np.sin(x*x/10) + 3), label="$x^2-x+ 1$")
-
-    graph.addCurve(curveFct)
-    # curveFct2 = Curve(data.x, [x*x/10-6*x+40 for x in data.x])
-    # curveFct2.connectPoints = True
-    # graph.addCurve(curveFct2)
-
+    # Change some properties
     graph.ylabel = "Intensity"
     graph.xlabel = "Current"
     graph.show()
-    graph.save("figure.pdf")
+    graph.save("figure1.pdf")
+
+    # Create another graph
+    graph2 = XYGraph()
+    # Create a function curve: no data popints, just a function
+    x = Column(np.linspace(0,20,500))
+    curveFct = Function(x, (lambda x: np.sin(x*x/10) + 3), label="$x^2-x+ 1$")
+    graph2.addCurve(curveFct)
+    graph2.ylabel = "Electric field [a.u.]"
+    graph2.xlabel = "Time [s]"
+    graph2.show()
+    graph2.save("figure2.pdf")
