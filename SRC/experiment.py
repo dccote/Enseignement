@@ -358,6 +358,9 @@ class XYGraph:
         self.fig.savefig(filepath, dpi=600)
 
 
+def someFunction(x):
+    return (x/10-1)**2
+
 if __name__ == "__main__":
     # A Comma-separated vairable file (CSV) can be read easily.
     # Use columnId to identify the columns and assign the curves: you determine
@@ -391,10 +394,18 @@ if __name__ == "__main__":
 
     # Create another graph
     graph2 = XYGraph()
-    # Create a function curve: no data popints, just a function
+    # Create a function curve: no data points, just a function.
     x = Column(np.linspace(0,20,500))
-    curveFct = Function(x, (lambda x: np.sin(x*x/10) + 3), label="$x^2-x+ 1$")
-    graph2.addCurve(curveFct)
+    # You can use a lambda function
+    curveFct1 = Function(x, (lambda x: np.sin(x*x/10) + 3), label="$x^2-x+ 1$")
+    graph2.addCurve(curveFct1)
+    # You can use a single function defined by the system,
+    curveFct2 = Function(x, np.sqrt, label="$\sqrt{x}$")
+    graph2.addCurve(curveFct2)
+    # You can use your own custom function that accepts a single argument
+    curveFct3 = Function(x, someFunction, label="$(x-10)^2$")
+    graph2.addCurve(curveFct3)
+
     graph2.ylabel = "Electric field [a.u.]"
     graph2.xlabel = "Time [s]"
     graph2.show()
