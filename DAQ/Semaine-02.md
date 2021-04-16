@@ -69,7 +69,7 @@ Pour commencer, il faut se procurer le fameux module UM232R.  La façon la plus 
 
 ![image-20181015004148259](assets/image-20181015004148259.png)
 
-Pour l'instant, mes instructions seront pour macOS/Linux car c'est ce que j'utilise. D'autres instructions devraient suivre pour les autres plateformes, même si la tâche me donne plutôt le goût d'aller chez le dentiste me faire enlever la totalité des dents d'en bas. Sans anesthésie.
+Pour l'instant, mes instructions seront pour macOS/Linux car c'est ce que j'utilise. D'autres instructions devraient suivre pour les autres plateformes (Windows 10, Windows Vista, Windows 8, Windows 7, Windows 2000, Windows XP, Windows 95, Windows NT), même si la tâche me donne plutôt le goût d'aller chez le dentiste me faire enlever la totalité des dents d'en bas. Sans anesthésie. Avec une fourchette.
 
 ### Expérience 1: brancher
 
