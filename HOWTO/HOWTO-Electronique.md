@@ -239,7 +239,7 @@ On apprend l'électromagnétisme en classe et les circuits en laboratoire. Il es
   
   <img src="HOWTO-Electronique.assets/image-20210130210319086.png" alt="image-20210130210319086" style="zoom:50%;" />
   
-  On peut montrer que la densité de courant est donnée par $J = \sigma E$ (où $\sigma$ est la conductivité du matériel) et que c'est équivalent à la loi de Kirchoff.
+  On peut montrer que la densité de courant est donnée par $J = \sigma E$ (où $\sigma$ est la conductivité du matériel) et que c'est équivalent à la loi de Ohm.
 * **Le condensateur le plus simple**: si deux plaques conductrices parallèles (très grandes et de surfaces $A$) sont séparées par une petite distance $d$ et ont une différence de potentiel $\Delta V$ , alors il y aura un champ électrique **constant** entre les deux qui est donné par $E = \Delta V/d$, et qui est le résultat de l'accumulation de charges sur chaque plaque.  Les plaques agissent donc comme un condensateur de **capacitance** $C = \epsilon A/d$ ($\epsilon$ est la permittivité entre les plaques). Oubliez les détails de géométrie: cette approximation est suffisante pour comprendre bien des choses.
   
   * Toute structure où un conducteur 1 est proche d'un conducteur 2 et où les deux sont à différents potentiels agira comme un condensateur, c'est-à-dire qu'il aura tendance à "accumuler, retenir des charges". À moins que ça ne soit voulu, on parlera de "capacitance résiduelle". Les câbles coaxiaux ont une capacitance de 30 pF/m car le centre (le signal) est à un potentiel non nul alors que l'extérieur (le *shield*) est à 0V. Le connecteur BNC dans un oscilloscope par exemple a une capacitance résiduelle de quelques pF[^2].
