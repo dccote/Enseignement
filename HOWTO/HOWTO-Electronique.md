@@ -31,16 +31,17 @@ Bon apprentissage.
 2. Une source de courant idéale donne un courant constant quelle que soit la résistance connectée entre ses bornes.
 3. Un voltmètre idéal a une résistance "infinie" et mesure la différence de potentiel entre ses bornes sans prendre de courant.
 4. Un ampèremètre idéal a une résistance nulle et mesure le courant qui passe entre ses bornes sans perte de potentiel.
+5. Les limites des sources et appareils seront discutées plus loin.
 
 ## Commentaires généraux
 
-1. Loi de Kirchoff: La perte de tension à travers une résistance est donnée par le courant qui passe à travers  celle-ci multiplié par la résistance $V = RI$. On va souvent parler de la baisse, la perte ou même la *drop* en tension dans une résistance.
+1. Loi de Ohm: La perte de tension à travers une résistance est donnée par le courant qui passe à travers  celle-ci multiplié par la résistance $V = RI$. On va souvent parler de la baisse, la perte ou même la *drop* en tension dans une résistance.
 2. Le courant qui passe dans un circuit est donné par la tension aux bornes de ce circuit divisée par la résistance totale du circuit $I = {V}/{R_t}$
 3. La puissance dissipée par un élément est $P = VI $, avec $V$ la tension à ses bornes et $I$ le courant qui passe à travers.
-4. **On mesure des tensions.  On travaille en Volts.** La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants en parallèle, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances). Si on le mesurait en série on devrait l'inclure dans le circuit, ce qui n'est vraiment pas souvent possible.  Les deux options ne sont pas très pratique: on travaille donc en tension.
+4. **On mesure des tensions.  On travaille en Volts.** Les osscilloscopes mesurent des tensions. La raison pourquoi on travaille en tension plutôt qu'en courant est qu'une mesure en parallèle d'une tension n'affecte pas le système et est égale à la mesure qui nous intéresse. Si on mesurait des courants en parallèle, on devrait faire un calcul pour obtenir le courant du système à partir de notre mesure (car les courants se séparent selon les résistances). Si on le mesurait en série on devrait l'inclure dans le circuit, ce qui n'est vraiment pas souvent possible.  Les deux options ne sont pas très pratique: on travaille donc en tension.
 5. Si on retourne vraiment à la base de l'électromagnétisme, une différence de potentiel entre deux points (i.e. un gradient) nous dit qu'il y a un champ électrique entre ces deux points ($\nabla V \propto E$). Donc lorsque je mets une différence de potentiel entre deux points, je créé vraiment un champ électrique et les charges sont accélérées (i.e. il y a du courant).
-6. Puisque les circuits sont assez souvent linéaires, on décomposera toujours en fréquences le courant et les tensions, et c'est pour ça que les impédances imaginaires et réelles (ci-dessous) deviennent utiles. On parle de DC pour les fréquences 0 Hz et AC pour les autres. Ne pas confondre la *fréquence* $f$ (en Hz) et la *fréquence radiale*  $\omega = 2\pi f$ (en rad•Hz).  Personne n'utilise la fréquence radiale: on parle toujours en fréquence $f$, en Hertz.
-7. Les résistances, capacitances et inductances sont regroupés sous le terme général *impédance*, qui est une résistance complexe valide pour une fréquence donnée.
+6. Puisque les circuits sont assez souvent linéaires, on décomposera toujours en fréquences le courant et les tensions, et c'est pour ça que les impédances imaginaires et réelles (ci-dessous) deviennent utiles. On parle de DC pour une fréquence de 0 Hz et AC pour les autres. Ne pas confondre la *fréquence* $f$ (en Hz) et la *fréquence angulaire*  $\omega = 2\pi f$ (en rad•Hz).  Personne n'utilise la fréquence radiale: on parle toujours en fréquence $f$, en Hertz. Cependant, les formules utilisent souvent $\omega$ et non $f$.
+7. Les résistances, capacitances et inductances sont regroupés sous le terme général *impédance*, qui est une résistance complexe qui dépend de la fréquence.
 
 ## Règles (très) générales
 
@@ -49,14 +50,13 @@ Bon apprentissage.
   2. Voltage est un anglicisme, même si tout le monde le dit.
   3. Une tension d'alimentation dans un circuit analogique est typiquement ±12V ou ±15V
   4. Un circuit logique de type TTL (i.e. *Transistor-to-Transistor-Logic*) fonctionne avec 0 V et 5 V comme signaux.
-  5. Mesurer 1 Volt est facile.  Mesure 1 mV est difficile. Mesure 10 V est très facile.
+  5. Mesurer 1 Volt est facile.  Mesurer 1 mV est difficile. Mesurer 10 V est très facile. Mesurer 100V - 1kV est dangereux.
   6. Un bruit typique dans les circuits de Monsieur-tout-monde est de l'ordre de quelques mVs.
-  7. 1 électron qui est accéléré par 1 volt aura une énergie de 1 eV (l'électron-volt) à la fin.  Oui, c'est de là que ça vient et c'est pratique.
-     1. 1 eV est $1.6 \times 10^{-19} J$
+  7. 1 électron qui est accéléré par 1 volt aura une énergie de 1 eV (l'électron-volt) à la fin.  Oui, c'est de là que ça vient et c'est pratique. La conversion: 1 eV est $1.6 \times 10^{-19} J$
 - **Courant**
-  1. Un courant moyen est de l'ordre de 10 à 100 µA
+  1. Un courant moyen est de l'ordre de 10 à 100 µA.
   2. Un très petit courant est en pA.
-  3. Un courant très important est 1A
+  3. Un courant très important est 1A.
 - **Résistance**
   1. Une résistance $R$ ralentit les électrons et dissipe l'énergie que les électrons obtiennent de la tension.
   2. Une résistance moyenne est de 10 kΩ.
@@ -68,15 +68,15 @@ Bon apprentissage.
   8. En parallèle, on additionnent les inverses $R_t^{-1} = R_1^{-1} + R_2^{-1}$. Si ça vous surprend, c'est très simple: l'inverse de la résistance s'appelle la conductance.  Si j'ai deux "conduits" en parallèle, la "conductance" totale est la somme des deux, comme avec des tuyaux d'eau.
 - **Condensateur** (ou capaciteur)
   1. Un condensateur est un réservoir qui peut accumuler des charges. 
-  2. On mesure sa valeur $C$ (capacitance) en Farads. Une capacitance moyenne est environ 1 µF
-  4. L'impédance d'un condensateur est $\frac{1}{j 2\pi f C}$. On voit que si $f=0$, alors l'impédance est infinie: le courant continue ne passe pas dans un condensateur. Son impédance diminue avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
+  2. On mesure sa valeur $C$ (capacitance) en Farads. Une capacitance moyenne est environ 1 µF.
+  4. L'impédance d'un condensateur est $\frac{1}{j 2\pi f C}$, avec $j\equiv\sqrt{-1}$. On voit que si $f=0$, alors l'impédance est infinie: le courant continue ne passe pas dans un condensateur. Son impédance diminue avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
   5. Les capacitances résiduelles de connecteurs sont de l'ordre de quelques pF.
   6. Un câble "standard" a une capacitance de 30 pF/m
 - **Inductance**
   1. On travaille très peu avec les inductances. Peu de circuits utilisent les inductances, sauf les transformateurs.
   2. On mesure l'inductance $L$ en Henry.
   3. Une inductance s'oppose au courant qui varie vite, et pas du tout au courant qui n'oscille pas. Son impédance augmente donc avec l'augmentation de la fréquence d'oscillation du courant ou de la tension.
-  4. L'impédance d'une inductance est $j 2 \pi f L$.  On voit que si $f=\infty$, alors l'impédance est infinie: le courrant AC à haute fréquence ne passe pas dans un inducteur.
+  4. L'impédance d'une inductance est $j 2 \pi f L$.  On voit que si $f=\infty$, alors l'impédance est infinie: le courant AC à haute fréquence ne passe pas dans une inductance.
 - **Batterie**
   1. Une batterie de maison AA contient une charge de 2000 mA-h (milli-ampère $\times$ heure), c'est-à-dire qu'elle peut fournir 2000 mA pendant une heure, ou 100 mA pendant 20 heures.
   2. Dans un circuit à batterie, on tentera toujours de limiter le courant pour préserver la vie de la batterie.
@@ -94,7 +94,7 @@ Bon apprentissage.
 
 1. Elles ont des **valeurs standards** qui semblent bizarres (10, 12, 15, ... 82, etc...), mais il y a une raison: les valeurs par décade (entre 10 et 100, entre 100 et 1000, etc...) sont séparées de façon égales sur une échelle logarithmique, et toute combinaison de 2 résistances peut être à moins de 10% de n'importe quelle valeur désirée. Il existe plusieurs groupes: E12, E24, E48, E96 et E192 qui respectivement permettent une précision de 10% , 5%, 2%, 1% et 0.5%. De plus, il y a des valeurs standards de 10$\Omega$, 100$\Omega$, 1k$\Omega$, 10k$\Omega$, 100k$\Omega$ et 1M$\Omega$ parce que des fois, dans la vie, on aime les chiffres ronds.
 
-2. Elles peuvent être faites pour **dissiper la puissance** un peu, moyen, beaucoup, ou énormément. Les plus fréquentes en laboratoires sont de 0.5W.  Plus elles sont grosses, plus elles dissipent beaucoup de puissance. 1W c'est quand même beaucoup: cela permet de chauffer votre doigt de 1° en 1 seconde.  Si vous mettez votre doigt sur une resistance, ça risque d'être chaud.
+2. Elles peuvent être faites pour **dissiper la puissance** un peu, moyen, beaucoup, ou énormément. Les plus fréquentes en laboratoires sont de ¼ W.  Plus elles sont grosses, plus elles dissipent beaucoup de puissance. 1W c'est quand même beaucoup: cela permet de chauffer votre doigt de 1° en 1 seconde.  Si vous mettez votre doigt sur une resistance, ça risque d'être chaud.
 
    <img src="HOWTO-Electronique.assets/resistor-wattage.jpg" alt="resistor wattage" style="zoom: 33%;" />
 
@@ -105,7 +105,9 @@ Bon apprentissage.
 
    <img src="HOWTO-Electronique.assets/1200px-Electronic-Component-Potentiometer.jpg" alt="Potentiometer - Wikipedia" style="zoom:8%;" />
 
-4. Les résistances sont simplement des mauvais conducteurs, avec des obstacles en différentes concentrations pour obtenir une résistance désirée.  Ainsi,  au niveau microscopique, les charges accélèrent jusqu'à ce qu'elles entre en collision, recommencent à accélérer, etc... Au niveau macroscopique (i.e. intégré sur un temps de µs par exemple), elles semblent avoir une vitesse moyenne constante. Voir plus loin "Liens avec électromagnétisme"
+4. Les résistances sont simplement des mauvais conducteurs, avec des obstacles en différentes concentrations pour obtenir une résistance désirée.  Ainsi,  au niveau microscopique, les charges accélèrent jusqu'à ce qu'elles entre en collision, recommencent à accélérer, etc... Au niveau macroscopique (i.e. intégré sur un temps de µs par exemple), elles semblent avoir une vitesse moyenne constante. Voir plus loin "Liens avec électromagnétisme".
+
+5. Les résistances n'ont pas de polarité, on peut les brancher dans n'importe quel sens.
 
 ### Les condensateurs
 
@@ -129,7 +131,7 @@ Le petit aimant enroulé autour des câbles de télé, câbles USB ou autres, jo
 
 <img src="HOWTO-Electronique.assets/e7314fc8-e837-4a4b-b7c4-4c5bdad81f98.jpg" alt="Cylinder or box on computer cords: What's it for?" style="zoom:33%;" />
 
-Sinon, j'ai utilisé une inductance une fois dans un circuit.  Je ne me rappelle plus ce que j'ai fait. Je pense que c'était au siècle précédent. Les inductances, ça ne sert pas vraiment souvent.
+Les inductances sont utilisés dans les transformateurs, génératrices et électroaimants, souvent dans l'électronique de puissance. Sinon, j'ai utilisé une inductance une fois dans un circuit.  Je ne me rappelle plus ce que j'ai fait. Je pense que c'était au siècle précédent. Les inductances, ça sert pas beaucoup moins que les condensateurs et résistances.
 
 ## Les sources
 
@@ -140,6 +142,7 @@ Les appareils réels ont des impédances internes qui ne sont pas nulles, ni inf
 * Il n'y a pas vraiment de règles pour les résistances internes des sources: quand on s'en préoccupe, il faut la mesurer (ou lire les spécifications).
 * Un voltmètre a une résistance typiquement de 1M$\Omega$ ou 10M$\Omega$. Un voltmètre est utilisée **très souvent** parce qu'on le met en parallèle dans le circuit, donc c'est facile. Un oscilloscope est un voltmètre avec résolution temporelle.
 * Un ampèremètre a une résistance typiquement de moins de 100$\Omega$, mais j'ai déjà vu 1k$\Omega$. On utilise **rarement** un ampèremètre parce qu'on doit le mettre en série dans le circuit pour l'utiliser, et c'est souvent impossible. À la place, on met un voltmètre en parallèle sur une résistance connue, et on fait le caclul savant: $I = V/R$ pour avoir le courant et c'est 100% équivalent tout en étant 1530% plus simple.
+* Une source de tension a un courant maximale qu'elle peut fournir, une source de courant a une tension maximale qu'elle peut fournir.
 
 
 
@@ -207,7 +210,7 @@ On peut visualiser les filtres pour les basses (DC) et hautes (AC) fréquences p
 | Résistances pour différentes dissipation de puissance | <img src="HOWTO-Electronique.assets/image-20210131114650958.png" alt="image-20210131114650958" style="zoom:33%;" /> | <img src="HOWTO-Electronique.assets/resistor-wattage.jpg" alt="resistor wattage" style="zoom:20%;" /> |
 | Condensateurs                                         | <img src="HOWTO-Electronique.assets/image-20210131114700164.png" alt="image-20210131114700164" style="zoom:33%;" /> | <img src="HOWTO-Electronique.assets/Capacitors_(7189597135).jpg" alt="Capacitor - Wikipedia" style="zoom: 10%;" /> |
 | Câbles BNC ou coaxial                                 |                                                              | <img src="HOWTO-Electronique.assets/2249-C-12.jpg" alt="2249-C-12" style="zoom:12%;" /> |
-| Prises alligators                                     |                                                              | <img src="HOWTO-Electronique.assets/71IFNUMDJML._AC_SL1500_.jpg" alt="img" style="zoom:12%;" /> |
+| Pinces alligators                                     |                                                              | <img src="HOWTO-Electronique.assets/71IFNUMDJML._AC_SL1500_.jpg" alt="img" style="zoom:12%;" /> |
 | Prises bananes                                        |                                                              | <img src="HOWTO-Electronique.assets/1325-02.jpg" alt="1325-02" style="zoom:15%;" /> |
 
 
@@ -231,7 +234,7 @@ On doit évidemment choisir le bon connecteur parce qu'un branchement simple, c'
 
 On apprend l'électromagnétisme en classe et les circuits en laboratoire. Il est parfois difficile de faire le lien entre les deux. Voici quelques commentaires pour vous aider.
 
-* **Loi de Kirchoff $V = RI$.**  Les électrons dans les matériaux accélèrent s'il y a un champ électrique, mais ils entrent en collision avec les (très nombreux!) atomes/molécules qui forment le solide: il y en a un à tous les 1nm, donc les électrons n'ont pas vraiment beaucoup d'espace ou de temps pour accélérer.  On laisse tomber les détails de la physique de l'état solide et on peut montrer que les électrons ont une vitesse moyenne (*drift velocity*) donnée par $v_d = \mu E$ où $\mu$ est la mobilité du matériel. Cette vitesse est très faible: quelques mm par seconde. Ce n'est pas la vitesse du courant: un électron qui avance en "pousse" un autre (ce sont des fermions, ils ne peuvent être deux au même endroit) et c'est cette vague-de-poussage qui se propage à la vitesse de la lumière (ou presque).
+* **Loi de Ohm $V = RI$.**  Les électrons dans les matériaux accélèrent s'il y a un champ électrique, mais ils entrent en collision avec les (très nombreux!) atomes/molécules qui forment le solide: il y en a un à tous les 1nm, donc les électrons n'ont pas vraiment beaucoup d'espace ou de temps pour accélérer.  On laisse tomber les détails de la physique de l'état solide et on peut montrer que les électrons ont une vitesse moyenne (*drift velocity*) donnée par $v_d = \mu E$ où $\mu$ est la mobilité du matériel. Cette vitesse est très faible: quelques mm par seconde. Ce n'est pas la vitesse du courant: un électron qui avance en "pousse" un autre (ce sont des fermions, ils ne peuvent être deux au même endroit) et c'est cette vague-de-poussage qui se propage à la vitesse de la lumière (ou presque).
   
   
   <img src="HOWTO-Electronique.assets/image-20210130210319086.png" alt="image-20210130210319086" style="zoom:50%;" />
@@ -248,4 +251,5 @@ On apprend l'électromagnétisme en classe et les circuits en laboratoire. Il es
   * Pour *réduire* la capacitance résiduelle des éléments (puisque cela ralentit les circuits), on doit diminuer la grosseurs des éléments. Plus les puces sont petites, plus elles peuvent opérer rapidement.
 
 [^1]: J'étais nul en électronique au bacc. Nul. Zéro.  J'ai eu un déclic dans le cours Physique Expérimentale III en 1994 avec [Normand Balaux](https://www.coopfuneraire2rives.com/avis-de-deces/normand-balaux-147920/#ecrire) (que j'aimais beaucoup même s'il était extrêmement discret).  Par la suite, un stage d'été à Toronto en compagnie de l'excellent étudiant [Gary Allan](https://www.linkedin.com/in/gary-allan-6250a210/) m'a convaincu de l'importance d'apprendre l'électronique au moins pour être opérationnel au laboratoire. Pour graduer, j'ai dû faire beaucoup d'électronique, réparer des choses, en construire des nouvelles, automatiser mes montages, etc... À force d'en faire, les automatismes de laboratoire se sont transformés en connaissances.
+
 [^2]:  pF se prononce "pof" par les experts.
