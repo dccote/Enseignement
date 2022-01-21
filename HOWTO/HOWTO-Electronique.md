@@ -96,7 +96,7 @@ Bon apprentissage.
 
    <img src="HOWTO-Electronique.assets/resistor-wattage.jpg" alt="resistor wattage" style="zoom: 33%;" />
 
-3. Il existe des résistances variables appelées *potentiomètres*. Certaines peuvent se mettre directement sur un *breadboard* (souvent ils sont bleus), d'autres se mettent sur des panneaux de contrôles et ils ont un bouton gradateur. Avec un bouton ou avec un tournevis, on ajuste la valeur de la résistance.
+3. Il existe des résistances variables appelées *potentiomètres*. Certaines peuvent se mettre directement sur un *breadboard* (souvent elles sont bleus), d'autres se mettent sur des panneaux de contrôles et ils ont un bouton gradateur. Avec un bouton ou avec un tournevis, on ajuste la valeur de la résistance.
   
 
    <img src="HOWTO-Electronique.assets/3362P SERIES.jpg" alt="3362P Series" style="zoom:10%;" />
