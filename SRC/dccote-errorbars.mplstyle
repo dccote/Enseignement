@@ -1,7 +1,10 @@
+# Cette feuille correspond au style matplotlib pour des graphiques de points avec ou sans
+# barre d'erreur. Elle est disponible: 
+# https://raw.githubusercontent.com/dccote/Enseignement/master/SRC/dccote-errorbars.mplstyle
 # La feuille complète avec tous les paramètres ajustables est disponible ici:
 # https://matplotlib.org/stable/tutorials/introductory/customizing.html#customizing-with-style-sheets
 
-# On veut voir les tick mineurs sur les deux axes, vers l'intérieur
+# On veut voir les ticks mineurs sur les deux axes, pointant vers l'intérieur
 
 xtick.minor.visible : True
 xtick.direction : in
@@ -11,37 +14,40 @@ ytick.direction : in
 ytick.labelsize : large
 
 # Le texte pour les axes est trop petit par défaut: on l'augmente
-# et on ajoute un peu de padding pour qu'il ne soit pas par dessus le texte
-# des valeurs numeriques
+# et on ajoute un peu de padding pour qu'il ne soit pas par-dessus le texte
+# des valeurs numériques
 
 axes.labelsize : xx-large
 axes.labelpad : 10
 
+# On ajoute un peu d'espace pour me pas couper notre xlabel xx-large qui est un peu
+# plus grand que par défaut
+figure.subplot.bottom: 0.15
 
 # Les symboles et couleurs: lorsqu'on peut, on essaie de rester en noir et blanc
 # parce qu'on ne sait pas comment le lecteur lira notre graphique.  Si c'est imprimé
 # en noir et blanc et qu'on compte sur la couleur pour bien expliquer notre graphique
-# on est mal pris. Donc avec seulement quelques courbes/points, on ESSAIE de garder
+# alors on pourrait être mal pris. Donc avec seulement quelques courbes/points, on ESSAIE de garder
 # des symboles clairs.
-# Moi j'aime les ronds vides, pleins et les carrés aussi vides et pleins. Après ça,
+# J'aime les ronds vides, pleins et les carrés aussi vides et pleins. Après ça,
 # avec plus de 4 groupes de données, je commencerais probablement à utiliser
 # des couleurs ou des styles de lignes (pointillé par exemple)
+# axes.prop_cycle definit rond vide, rond plein, carré vide, et carré plein comme symboles, sans
+# lignes entre les points.
 
 axes.prop_cycle : cycler('marker', ['o','o','s','s'])+cycler(markerfacecolor=['w','k','w','k'])+cycler(linestyle=['None','None','None','None'])
-errorbar.capsize : 2
+
+# On ajoute des lignes au bout des barres d'erreurs
+errorbar.capsize : 2 
 
 # Qui a choisit bleu comme couleur par défaut?
-
-lines.markeredgecolor : black
-#lines.linewidth : 1.5
 scatter.edgecolors: black
+lines.markeredgecolor : black
+#lines.linewidth : 1.5 # à changer ici, mais valeur par défaut est 1.5
 
 # Tant qu'à faire une boite pour la légende, j'aime mieux noir pour le contour
 legend.edgecolor : 0
 
-# En 2022 et plus, on ne prend pas png paer defaut: on prend pdf
+# En 2022 et plus, on ne prend pas png par defaut: on prend pdf parce qu'on est poli et bien élevé
 savefig.format : pdf
 
-# On ajoute un peu d'espace pour me pas couper notre xlabel qui est un peu
-# plus grand que par défaut
-figure.subplot.bottom: 0.15
