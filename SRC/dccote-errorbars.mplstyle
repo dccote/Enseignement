@@ -1,0 +1,47 @@
+# La feuille complète avec tous les paramètres ajustables est disponible ici:
+# https://matplotlib.org/stable/tutorials/introductory/customizing.html#customizing-with-style-sheets
+
+# On veut voir les tick mineurs sur les deux axes, vers l'intérieur
+
+xtick.minor.visible : True
+xtick.direction : in
+xtick.labelsize : large
+ytick.minor.visible : True
+ytick.direction : in
+ytick.labelsize : large
+
+# Le texte pour les axes est trop petit par défaut: on l'augmente
+# et on ajoute un peu de padding pour qu'il ne soit pas par dessus le texte
+# des valeurs numeriques
+
+axes.labelsize : xx-large
+axes.labelpad : 10
+
+
+# Les symboles et couleurs: lorsqu'on peut, on essaie de rester en noir et blanc
+# parce qu'on ne sait pas comment le lecteur lira notre graphique.  Si c'est imprimé
+# en noir et blanc et qu'on compte sur la couleur pour bien expliquer notre graphique
+# on est mal pris. Donc avec seulement quelques courbes/points, on ESSAIE de garder
+# des symboles clairs.
+# Moi j'aime les ronds vides, pleins et les carrés aussi vides et pleins. Après ça,
+# avec plus de 4 groupes de données, je commencerais probablement à utiliser
+# des couleurs ou des styles de lignes (pointillé par exemple)
+
+axes.prop_cycle : cycler('marker', ['o','o','s','s'])+cycler(markerfacecolor=['w','k','w','k'])+cycler(linestyle=['None','None','None','None'])
+errorbar.capsize : 2
+
+# Qui a choisit bleu comme couleur par défaut?
+
+lines.markeredgecolor : black
+#lines.linewidth : 1.5
+scatter.edgecolors: black
+
+# Tant qu'à faire une boite pour la légende, j'aime mieux noir pour le contour
+legend.edgecolor : 0
+
+# En 2022 et plus, on ne prend pas png paer defaut: on prend pdf
+savefig.format : pdf
+
+# On ajoute un peu d'espace pour me pas couper notre xlabel qui est un peu
+# plus grand que par défaut
+figure.subplot.bottom: 0.15
