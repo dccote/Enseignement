@@ -27,7 +27,7 @@ axes.labelpad : 10
 # On ajoute un peu d'espace pour me pas couper notre xlabel xx-large qui est un peu
 # plus grand que par défaut
 figure.subplot.bottom: 0.15
-figure.subplot.left: 0.15
+figure.subplot.left: 0.20
 
 # Les symboles et couleurs: lorsqu'on peut, on essaie de rester en noir et blanc
 # parce qu'on ne sait pas comment le lecteur lira notre graphique.  Si c'est imprimé
