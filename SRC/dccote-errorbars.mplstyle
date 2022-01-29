@@ -1,11 +1,15 @@
 # Cette feuille correspond au style matplotlib pour des graphiques de points avec ou sans
-# barre d'erreur. Elle est disponible: 
+# barre d'erreur. Elle est disponible sur github: 
 # https://raw.githubusercontent.com/dccote/Enseignement/master/SRC/dccote-errorbars.mplstyle
 # La feuille complète avec tous les paramètres ajustables est disponible ici:
 # https://matplotlib.org/stable/tutorials/introductory/customizing.html#customizing-with-style-sheets
+#
+# Pour l'utiliser:
+# plt.style.use('https://raw.githubusercontent.com/dccote/Enseignement/master/SRC/dccote-errorbars.mplstyle')
+# ou avec une copie locale dans le même répertoire:
+# plt.style.use('dccote-errorbars.mplstyle')
 
 # On veut voir les ticks mineurs sur les deux axes, pointant vers l'intérieur
-
 xtick.minor.visible : True
 xtick.direction : in
 xtick.labelsize : large
@@ -23,6 +27,7 @@ axes.labelpad : 10
 # On ajoute un peu d'espace pour me pas couper notre xlabel xx-large qui est un peu
 # plus grand que par défaut
 figure.subplot.bottom: 0.15
+figure.subplot.left: 0.15
 
 # Les symboles et couleurs: lorsqu'on peut, on essaie de rester en noir et blanc
 # parce qu'on ne sait pas comment le lecteur lira notre graphique.  Si c'est imprimé
