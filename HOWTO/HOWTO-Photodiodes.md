@@ -17,7 +17,7 @@ En optique, on doit éventuellement prendre des mesures de lumière pour la cara
 | Tube photomultiplicateur (PMT)  | 10-100 MHz | 1,000,000 | V     | photon      | faible en compte, haut en analogique |
 | Solid-state photomultiplier (SSPM) | 5 MHz      | 1,000,000 | V      | photon      | faible-moyen                         |
 
-Ce document a comme but uniquement de discuter des photodiodes, puisque ce sont les détecteurs les plus simples et les plus communs lorsqu'on commence à concevoir des expériences.
+Ce document a comme but uniquement de discuter des photodiodes, puisque ce sont les détecteurs les plus simples et les plus communs lorsqu'on commence à concevoir des expériences en optique.
 
 ![image-20181017202730762](assets/image-20181017202730762.png)
 
@@ -27,11 +27,13 @@ Ce document a comme but uniquement de discuter des photodiodes, puisque ce sont 
 
 **Une photodiode donne un courant à chaque fois qu'un photon est absorbé.**  La photodiode est une structure de semiconducteurs: lorsqu'on illumine la surface du détecteur avec des photons ayant une énergie supérieure à la bande interdite, chaque photon absorbé créera une paire électron-trou dans la partie *intrinsèque*. Parce que le matériel dit *intrinsèque* est en sandwhich entre un semiconducteur de type *donneur* (à charge négative) et un autre de type *accepteur* (à charge positive), il se crée un champ électrique à travers la région *intrinsèque* qui poussera toute charge négative (électron) vers la région *accepteur*  et qui poussera une charge positive (trou) vers la région *donneur*. C'est pour cette raison que les photodiode sont parfois appelées *p-i-n photodiode* ou juste *p-i-n junction* ou vraiment simplement photodiode. La matériel de la région instrinsèque donne son nom à la photodiode: on parle de diode à la silice (Si), arseniure de gallium (GaAs), indium-arseniure de gallium (InGaAs), germanium (Ge). L'énergie de la bande interdite du matériel instrinsèque donne la response spectrale du détecteur: Si (< 1µm), GaAs ( < 850 nm). La photodiode Si est le détecteur le plus utilisé pour la lumière visible car il est sensible est par sa nature, très facile à faire à bas coût, ce qui en fait un photodétecteur de choix.
 
-Ces phénomènes sont entièrement décrits par la physique de l'état solide des semiconducteurs. L'intérêt de ces structures vient de leur utilisation dans un circuit électrique qui en fait un convertisseur de photons en électrons, donc un photodétecteur. Les caractéristiques de la photodétection (réponse en fréquence, force du signal en Volts, etc...) seront données par le reste du circuit.
+Ces phénomènes sont entièrement décrits par la physique de l'état solide des semiconducteurs. L'intérêt de ces structures vient de leur utilisation dans un circuit électrique qui en fait un **convertisseur de photons en électrons**, donc un **photodétecteur**. Les caractéristiques de la photodétection (réponse en fréquence, force du signal en Volts, etc...) seront données par le reste du circuit.
 
-![image-20181017205102746](assets/image-20181017205102746.png)
+![diode-photo-pin-structure-01](HOWTO-Photodiodes.assets/diode-photo-pin-structure-01.png)
 
-![image-20181017210208957](assets/image-20181017210208957.png)
+
+
+![image-20220202130044189](HOWTO-Photodiodes.assets/image-20220202130044189.png)
 
 ## Les circuits de photodétection
 
@@ -67,7 +69,7 @@ Ce "mode" n'est essentiellement jamais utilisé sauf pour faire des petits [circ
 
 
 
-La façon de convertir une source de courant en source de tension est d'utiliser un [amplificateur transimpédance](https://en.wikipedia.org/wiki/Transimpedance_amplifier) comme sur la figure.  Cet amplificateur a un facteur de conversion[^1] de R en V/A (ou bien sûr, en Ω).  Typiquement on retrouvera 10-100 kΩ, et la réponse en fréquence dépendra inversement de cette résistance[^2]. 
+La façon de convertir une source de courant en source de tension est d'utiliser un [amplificateur transimpédance](https://en.wikipedia.org/wiki/Transimpedance_amplifier) comme sur la figure.  Cet amplificateur a un facteur de conversion[^1] de R en V/A (ou bien sûr, en Ω).  Typiquement on retrouvera 100-1000 kΩ avec les photodétecteurs et la réponse en fréquence dépendra inversement de cette résistance[^2]. 
 
 Les caractéristiques de ce circuit sont :
 
@@ -98,7 +100,7 @@ Les caractéristiques de ce circuit sont :
 1. Le [DET110A](https://www.thorlabs.com/drawings/32368004505a6cc1-01947C6B-C6EE-BBBA-3CBED9E9C43ACD99/DET110-SpecSheet.pdf) de Thorlabs qui est très commun dans les laboratoires de 1er cycle est une photodiode Si avec un circuit de type [photoconductif](https://www.thorlabs.com/tutorials.cfm?tabID=31760), mais la résistance de charge (*load resistor* n'est pas dans le circuit).  On doit donc en fournir une (implicitement comme avec un ampèremètre) ou explicitement (en mettant une résistance entre deux pinces alligators). Cependant, la résistance doit être au maximum 10 kOhms.
 2. Parfois, on connecte directement une photodiode directement dans un oscilloscope, avec où sans source de tension. On note que la résistance interne de l'oscilloscope (souvent 1 MΩ ou 10 MΩ) devient la résistance dans laquelle le courant se décharge et fait partie du circuit. Ce n'est pas une très bonne idée en général.
    ![image-20181018082806053](assets/image-20181018082806053.png)
-3. Une carte d'acquisition simple (LabJack) qui numérise des signaux avec un *Analog-to-Digital Converter* (ADC) le fait toujours 1) en tension et 2) avec des amplificateurs à l'entrée qui n'accepte aucun courant (leur résistance d'entrée est infiniment grande). Ainsi, on ne peut pas espérer décharger une photodiode directement dans un numériseur: on doit mettre une résistance de charge et mesurer aux bornes de cette résistance. 
+3. Une carte d'acquisition simple (LabJack, National Instruments, Arduino) qui numérise des signaux avec un *Analog-to-Digital Converter* (ADC) le fait toujours 1) en tension et 2) avec des amplificateurs à l'entrée qui n'accepte aucun courant (leur résistance d'entrée est infiniment grande). Ainsi, on ne peut pas espérer décharger une photodiode directement dans un numériseur: on doit mettre une résistance de charge et mesurer aux bornes de cette résistance. 
 
 
 
