@@ -125,11 +125,11 @@ Bon apprentissage.
 
 ### Les inductances
 
-Le petit aimant enroulé autour des câbles de télé, câbles USB ou autres, joue le rôle d'une inductance pour empêcher les très hautes fréquences de passer dans le fil (souvent du bruit ou dans le cas des télés, un "power surge" après une panne de courant qui peut briser la télé). Le fil passe au centre, et faible au moins un boucle: on a une inductance. L'aimant permet d'augmenter sa valeur.
+Le petit aimant enroulé autour des câbles de télé, câbles USB ou autres, joue le rôle d'une inductance pour empêcher les très hautes fréquences de passer dans le fil (souvent du bruit ou dans le cas des télés, un "power surge" après une panne de courant qui peut briser la télé). Le fil passe au centre, et fait au moins une boucle: on a une inductance. L'aimant permet d'augmenter sa valeur.
 
 <img src="HOWTO-Electronique.assets/e7314fc8-e837-4a4b-b7c4-4c5bdad81f98.jpg" alt="Cylinder or box on computer cords: What's it for?" style="zoom:33%;" />
 
-Les inductances sont utilisés dans les transformateurs, génératrices et électroaimants, souvent dans l'électronique de puissance. Sinon, j'ai utilisé une inductance une fois dans un circuit.  Je ne me rappelle plus ce que j'ai fait. Je pense que c'était au siècle précédent. Les inductances, ça sert pas beaucoup moins que les condensateurs et résistances.
+Les inductances sont utilisés dans les transformateurs, génératrices et électroaimants, souvent dans l'électronique de puissance. Sinon, j'ai utilisé une inductance une fois dans un circuit.  Je ne me rappelle plus ce que j'ai fait. Je pense que c'était au siècle précédent. Les inductances, ça sert beaucoup moins que les condensateurs et résistances.
 
 ## Les sources
 
