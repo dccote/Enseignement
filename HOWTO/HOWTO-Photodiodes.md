@@ -39,7 +39,7 @@ Ces phénomènes sont entièrement décrits par la physique de l'état solide de
 
 ### Rappel
 
-La diode est un élement qui a comme caractéristique de laisser passer un courant lorsque la tension est *forward-biased* et ne laisse essentiellement pas passer de courant si la tension est dans le sens inverse (*reverse-biased*). Le mot *bias* en anglais se traduit par "la tension aux bornes de quelque chose".
+La diode est un élement qui a comme caractéristique de laisser passer un courant lorsque la tension est *forward-biased* et ne laisse essentiellement pas passer de courant si la tension est dans le sens inverse (*reverse-biased*). Le mot *bias* en anglais se traduit par "la tension aux bornes de quelque chose", pensez $\Delta V$.
 
 ![image-20181017221441448](assets/image-20181017221441448.png)
 
@@ -108,6 +108,7 @@ Les caractéristiques de ce circuit sont :
 
 
 
-[^1]: On ne dit pas d'un amplificateur transimpédenace qu'il a un gain car il n'amplifie pas une tension en une autre tension: il convertit un courant en tension.
+[^1]: On ne dit pas d'un amplificateur transimpédence qu'il a un gain car il n'amplifie pas une tension en une autre tension: il convertit un courant en tension.
+
 [^2]: L'amplificateur est à peu de choses près un filtre passe-bas à cause de la capacitance résiduelle C en parallèle avec la résistance R.  La réponse en fréquence a une coupure de 1/RC.
 
