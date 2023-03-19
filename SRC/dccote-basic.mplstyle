@@ -1,0 +1,37 @@
+# Cette feuille correspond au style matplotlib pour des graphiques de points avec ou sans
+# barre d'erreur. Elle est disponible sur github: 
+# https://raw.githubusercontent.com/dccote/Enseignement/master/SRC/dccote-basic.mplstyle
+# La feuille complète avec tous les paramètres ajustables est disponible ici:
+# https://matplotlib.org/stable/tutorials/introductory/customizing.html#customizing-with-style-sheets
+#
+# Pour l'utiliser:
+# plt.style.use('https://raw.githubusercontent.com/dccote/Enseignement/master/SRC/dccote-basic.mplstyle')
+# ou avec une copie locale dans le même répertoire:
+# plt.style.use('dccote-basic.mplstyle')
+
+# On veut voir les ticks mineurs sur les deux axes, pointant vers l'intérieur
+xtick.minor.visible : True
+xtick.direction : in
+xtick.labelsize : large
+ytick.minor.visible : True
+ytick.direction : in
+ytick.labelsize : large
+
+# Le texte pour les axes est trop petit par défaut: on l'augmente
+# et on ajoute un peu de padding pour qu'il ne soit pas par-dessus le texte
+# des valeurs numériques
+
+axes.labelsize : xx-large
+axes.labelpad : 10
+
+# On ajoute un peu d'espace pour me pas couper notre xlabel xx-large qui est un peu
+# plus grand que par défaut
+figure.subplot.bottom: 0.15
+figure.subplot.left: 0.15
+
+# Tant qu'à faire une boite pour la légende, j'aime mieux noir pour le contour
+legend.edgecolor : 0
+
+# En 2022 et plus, on ne prend pas png par defaut: on prend pdf parce qu'on est poli et bien élevé
+savefig.format : pdf
+

@@ -5,7 +5,7 @@
 # https://matplotlib.org/stable/tutorials/introductory/customizing.html#customizing-with-style-sheets
 #
 # Pour l'utiliser:
-# plt.style.use('https://raw.githubusercontent.com/dccote/Enseignement/master/SRC/dccote-errorbars.mplstyle')
+# plt.style.use('https://raw.githubusercontent.com/dccote/Enseignement/master/SRC/dccote-curves.mplstyle')
 # ou avec une copie locale dans le même répertoire:
 # plt.style.use('dccote-errorbars.mplstyle')
 
